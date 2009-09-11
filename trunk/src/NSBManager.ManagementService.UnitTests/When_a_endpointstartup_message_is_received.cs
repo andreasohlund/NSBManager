@@ -32,8 +32,7 @@ namespace NSBManager.ManagementService.UnitTests
     }
 
     public class EndpointStartupMessageHandler:IHandleMessages<EndpointStartupMessage>
-
-{
+    {
         private readonly IBus bus;
 
         public EndpointStartupMessageHandler(IBus bus)
@@ -45,7 +44,7 @@ namespace NSBManager.ManagementService.UnitTests
         {
             bus.Publish(new BusTopologyChangedEvent());
         }
-}
+    }
 
     public class EndpointStartupMessage : IMessage
     {
