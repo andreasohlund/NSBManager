@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSBManager.Instrumentation"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSBManager.Instrumentation.UnitTests", "NSBManager.Instrumentation.UnitTests\NSBManager.Instrumentation.UnitTests.csproj", "{529311CB-1478-4BC9-9188-B51FB0104CB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSBManager.UserInterface", "NSBManager.UserInterface\NSBManager.UserInterface.csproj", "{984334C2-2423-4F2E-BE64-1E9806885552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSBManager.UserInterface.UnitTests", "NSBManager.UserInterface.UnitTests\NSBManager.UserInterface.UnitTests.csproj", "{C9D7722A-BFF0-4EBC-844B-93B0FE3CE6F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{529311CB-1478-4BC9-9188-B51FB0104CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{529311CB-1478-4BC9-9188-B51FB0104CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{529311CB-1478-4BC9-9188-B51FB0104CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984334C2-2423-4F2E-BE64-1E9806885552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984334C2-2423-4F2E-BE64-1E9806885552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984334C2-2423-4F2E-BE64-1E9806885552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984334C2-2423-4F2E-BE64-1E9806885552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D7722A-BFF0-4EBC-844B-93B0FE3CE6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D7722A-BFF0-4EBC-844B-93B0FE3CE6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D7722A-BFF0-4EBC-844B-93B0FE3CE6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D7722A-BFF0-4EBC-844B-93B0FE3CE6F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
