@@ -67,7 +67,7 @@ namespace NSBManager.ManagementService.UnitTests
     public class EndpointStartupMessageHandler:IHandleMessages<EndpointStartupMessage>
     {
         private readonly IBus bus;
-        private ServiceBus serviceBus;
+        private readonly ServiceBus serviceBus;
 
         public EndpointStartupMessageHandler(IBus bus,ServiceBus serviceBus)
         {
