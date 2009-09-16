@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
-using NSBManager.ManagementService.UnitTests.Domain;
+using NSBManager.Instrumentation.Messages;
+using NSBManager.ManagementService.Messages;
+using NSBManager.TestHelpers;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -50,47 +51,5 @@ namespace NSBManager.ManagementService.UnitTests
 
 
 
-    }
-
-    public class BusTopologyChangedEvent : IMessage
-    {
-        public IEnumerable<Endpoint> Endpoints { get; set; }
-
-    }
-
-    public class Endpoint
-    {
-
-        public Guid Id { get; set; }
-    }
-
-    public class EndpointStartupMessageHandler:IHandleMessages<EndpointStartupMessage>
-    {
-        private readonly IBus bus;
-        private readonly ServiceBus serviceBus;
-
-        public EndpointStartupMessageHandler(IBus bus,ServiceBus serviceBus)
-        {
-            this.bus = bus;
-            this.serviceBus = serviceBus;
-        }
-
-        public void Handle(EndpointStartupMessage message)
-        {
-            var endpoint = new Endpoint {Id = message.EndpointId};
-            serviceBus.RegisterEndpoint(endpoint);
-
-            var busTopologyChangedEvent = new BusTopologyChangedEvent
-                                              {
-                                                  Endpoints = serviceBus.Endpoints
-                                              };
-
-            bus.Publish(busTopologyChangedEvent);
-        }
-    }
-
-    public class EndpointStartupMessage : IMessage
-    {
-        public Guid EndpointId { get; set; }
     }
 }

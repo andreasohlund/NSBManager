@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using NSBManager.ManagementService.Messages;
 using NUnit.Framework;
 
 namespace NSBManager.ManagementService.UnitTests.Domain
@@ -21,25 +21,6 @@ namespace NSBManager.ManagementService.UnitTests.Domain
 
 
             Assert.AreEqual(serviceBus.Endpoints.Count(),2);
-        }
-    }
-
-    public class ServiceBus
-    {
-        private readonly IList<Endpoint> endpoints = new List<Endpoint>();
-
-        public void RegisterEndpoint(Endpoint endpoint)
-        {
-            endpoints.Add(endpoint);
-
-        }
-
-        public IEnumerable<Endpoint> Endpoints
-        {
-            get 
-            {
-                return endpoints;
-            }
         }
     }
 }

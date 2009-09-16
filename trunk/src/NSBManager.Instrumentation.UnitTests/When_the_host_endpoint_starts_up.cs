@@ -1,0 +1,32 @@
+using System;
+using NSBManager.Instrumentation.Messages;
+using NServiceBus;
+using NUnit.Framework;
+using Rhino.Mocks;
+using NSBManager.TestHelpers;
+
+namespace NSBManager.Instrumentation.UnitTests
+{
+    [TestFixture]
+    public class When_the_host_endpoint_starts_up
+    {
+        private IBus bus;
+        
+        [SetUp]
+        public void SetUp()
+        {
+            bus = MockRepository.GenerateStub<IBus>();
+
+            var endpointWatcher = new EndpointMonitor(bus);
+
+
+            endpointWatcher.Start();
+        }
+
+        [Test]
+        public void A_endpoint_started_message_should_be_sent_to_the_management_service()
+        {
+            bus.AssertWasSent<EndpointStartupMessage>(p=>true);
+        }
+    }
+}
