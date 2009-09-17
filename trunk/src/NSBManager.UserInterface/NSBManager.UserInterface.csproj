@@ -119,9 +119,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NSBManager.Instrumentation\NSBManager.Instrumentation.csproj">
-      <Project>{C6C263D1-AA02-48BF-A3E0-3A7260CE42E8}</Project>
-      <Name>NSBManager.Instrumentation</Name>
+    <ProjectReference Include="..\NSBManager.Instrumentation.Core\NSBManager.Instrumentation.Core.csproj">
+      <Project>{D51E6AEB-DCB4-49D7-8B7B-E01962B127CE}</Project>
+      <Name>NSBManager.Instrumentation.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\NSBManager.ManagementService.Messages\NSBManager.ManagementService.Messages.csproj">
       <Project>{3ABF94E8-664D-4CF2-BF29-5E51EB957E7C}</Project>

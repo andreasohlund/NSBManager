@@ -1,4 +1,4 @@
-using NSBManager.Instrumentation.Messages;
+using NSBManager.Instrumentation.Core.Messages;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 

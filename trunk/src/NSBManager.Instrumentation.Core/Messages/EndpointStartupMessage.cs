@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-namespace NSBManager.Instrumentation.Messages
+namespace NSBManager.Instrumentation.Core.Messages
 {
     [Serializable]
     public class EndpointStartupMessage : IMessage

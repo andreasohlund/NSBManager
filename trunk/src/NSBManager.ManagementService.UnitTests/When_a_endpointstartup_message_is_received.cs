@@ -1,5 +1,5 @@
 using System;
-using NSBManager.Instrumentation.Messages;
+using NSBManager.Instrumentation.Core.Messages;
 using NSBManager.ManagementService.Messages;
 using NSBManager.TestHelpers;
 using NServiceBus;
