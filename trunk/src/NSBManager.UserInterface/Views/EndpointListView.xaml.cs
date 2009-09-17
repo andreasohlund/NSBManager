@@ -1,5 +1,4 @@
-﻿using System;
-using NSBManager.Instrumentation;
+﻿using NSBManager.Instrumentation;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 
@@ -23,11 +22,12 @@ namespace NSBManager.UserInterface.Views
         {
             bus = Configure.With()
                 .SpringBuilder()
-                .BinarySerializer()
+                .XmlSerializer()
                 .UnicastBus()
                     .MsmqTransport()
-                    .CreateBus()
-                    .Start();
+                    .PurgeOnStartup(true)
+                .CreateBus()
+                .Start();
 
 
             bus.Subscribe<BusTopologyChangedEvent>();
