@@ -1,0 +1,21 @@
+﻿<Window x:Class="NSBManager.UserInterface.Views.EndpointListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="clr-namespace:NSBManager.UserInterface.ViewModels"
+    Title="EndpointListView" Height="300" Width="300">
+    
+    <Window.DataContext> 
+        <viewModels:EndpointListViewModel />
+    </Window.DataContext>
+    
+    <Grid>
+        <ListBox
+            ItemsSource="{Binding Mode=OneWay, Path=Endpoints}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Mode=OneWay, Path=Name}" TextBlock.Foreground="Black" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
