@@ -4,7 +4,7 @@ using NServiceBus;
 
 namespace NSBManager.Instrumentation.Core
 {
-    public class EndpointMonitor
+    public class EndpointMonitor:IEndpointMonitor
     {
         private readonly IBus bus;
         private readonly Guid endpointId;

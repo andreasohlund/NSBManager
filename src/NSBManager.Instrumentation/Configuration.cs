@@ -3,7 +3,7 @@ using NServiceBus;
 using NServiceBus.Host;
 using NServiceBus.ObjectBuilder;
 
-namespace NSBManager.Instrumentation.UnitTests.GenericHost
+namespace NSBManager.Instrumentation
 {
     public class Configuration : IWantCustomInitialization
     {

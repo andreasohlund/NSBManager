@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointMonitor.cs" />
+    <Compile Include="IEndpointMonitor.cs" />
     <Compile Include="Messages\EndpointStartupMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
