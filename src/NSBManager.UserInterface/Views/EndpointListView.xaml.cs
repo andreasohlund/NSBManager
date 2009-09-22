@@ -37,7 +37,7 @@ namespace NSBManager.UserInterface.Views
 
             monitor.Start();
 
-
+            //scan all classes that implements IHandleEvent and autoregister and subscribe them
         }
     }
 }

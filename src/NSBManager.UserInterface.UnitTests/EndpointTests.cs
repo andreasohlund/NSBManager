@@ -1,3 +1,4 @@
+using NSBManager.UserInterface.Models;
 using NUnit.Framework;
 
 namespace NSBManager.UserInterface.UnitTests

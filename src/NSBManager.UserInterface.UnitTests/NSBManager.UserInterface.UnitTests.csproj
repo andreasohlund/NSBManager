@@ -31,9 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NServiceBus, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.2.9222, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\tools\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\RhinoMocks\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -51,10 +59,16 @@
   <ItemGroup>
     <Compile Include="EndpointListViewModelTests.cs" />
     <Compile Include="EndpointTests.cs" />
+    <Compile Include="Models\PhysicalModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="When_a_ViewModel_property_is_changed.cs" />
+    <Compile Include="When_the_bus_topology_changes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSBManager.ManagementService.Messages\NSBManager.ManagementService.Messages.csproj">
+      <Project>{3ABF94E8-664D-4CF2-BF29-5E51EB957E7C}</Project>
+      <Name>NSBManager.ManagementService.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSBManager.UserInterface\NSBManager.UserInterface.csproj">
       <Project>{984334C2-2423-4F2E-BE64-1E9806885552}</Project>
       <Name>NSBManager.UserInterface</Name>

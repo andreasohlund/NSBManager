@@ -74,6 +74,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\IEventAggregator.cs" />
+    <Compile Include="Models\PhysicalModel.cs" />
+    <Compile Include="Events\PhysicalModelChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,8 +94,9 @@
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="Endpoint.cs" />
+    <Compile Include="Models\Endpoint.cs" />
     <Compile Include="ViewModels\EndpointListViewModel.cs" />
+    <Compile Include="Events\IEventHandler.cs" />
     <Compile Include="ViewModels\ViewModelsExtension.cs" />
     <Compile Include="Views\EndpointListView.xaml.cs">
       <DependentUpon>EndpointListView.xaml</DependentUpon>

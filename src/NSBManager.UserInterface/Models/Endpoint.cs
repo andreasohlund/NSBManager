@@ -1,6 +1,4 @@
-using System;
-
-namespace NSBManager.UserInterface
+namespace NSBManager.UserInterface.Models
 {
     public class Endpoint
     {

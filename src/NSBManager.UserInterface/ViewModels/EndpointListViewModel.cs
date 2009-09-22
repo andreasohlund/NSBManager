@@ -1,9 +1,15 @@
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using NSBManager.UserInterface.Events;
+using NSBManager.UserInterface.Models;
 
 namespace NSBManager.UserInterface.ViewModels
 {
-    public class EndpointListViewModel : BaseViewModel
+    public class EndpointListViewModel : BaseViewModel, 
+                                         IEventHandler<PhysicalModelChanged>
     {
+       
         //Note: Is this property nessesary to raise the event?
         private string endpointListName;
         public string EndpointListName
@@ -32,18 +38,22 @@ namespace NSBManager.UserInterface.ViewModels
 
         public EndpointListViewModel()
         {
+
             endpoints = new ObservableCollection<Endpoint>();
 
-            //Todo: Remove this later on
-            GenerateTemporaryEndpoints();
         }
 
-        private void GenerateTemporaryEndpoints()
+        public void Handle(PhysicalModelChanged message)
         {
-            for(int i = 0; i < 5; i++)
+
+            endpoints.Clear();
+            foreach (var endpoint in message.Endpoints)
             {
-                endpoints.Add(new Endpoint{ Name = string.Format("Endpoint nr. {0}", i) });
+                endpoints.Add(endpoint);
             }
+
         }
+
+      
     }
 }

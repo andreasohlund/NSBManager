@@ -1,5 +1,8 @@
+using NSBManager.UserInterface.Events;
+using NSBManager.UserInterface.Models;
 using NSBManager.UserInterface.ViewModels;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace NSBManager.UserInterface.UnitTests
 {
@@ -11,6 +14,7 @@ namespace NSBManager.UserInterface.UnitTests
         [SetUp]
         public void Setup()
         {
+
             endpointListViewModel = new EndpointListViewModel();
         }
 
@@ -30,5 +34,6 @@ namespace NSBManager.UserInterface.UnitTests
 
             Assert.That(endpointListViewModel.EndpointListName.Equals("TestName"));
         }
+
     }
 }
