@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Infrastructure\EventAggregator.cs" />
+    <Compile Include="Infrastructure\EventRegistry.cs" />
     <Compile Include="Infrastructure\IEventAggregator.cs" />
     <Compile Include="Infrastructure\RegisterEventListenersInterceptor.cs" />
     <Compile Include="Models\PhysicalModel.cs" />

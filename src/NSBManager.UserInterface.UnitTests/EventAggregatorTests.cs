@@ -13,14 +13,11 @@ namespace NSBManager.UserInterface.UnitTests
         {
             var container = new Container(x =>
                 {
-                    x.ForRequestedType<IEventAggregator>()
-                        .TheDefaultIsConcreteType<EventAggregator>()
-                        .AsSingletons();
-
+                    x.AddRegistry(new EventRegistry());
+                    
                     x.ForRequestedType<IListener<TestEvent>>()
                         .TheDefaultIsConcreteType<TestListener>();
 
-                    x.RegisterInterceptor(new RegisterEventListenersInterceptor());
                 });
 
             var aggregator = container.GetInstance<IEventAggregator>();
