@@ -14,8 +14,9 @@ namespace NSBManager.UserInterface
                                             x.AddRegistry(new EventRegistry());
 
                                             //this line should be replaced with a convention scanner
+                                            x.ForConcreteType<EndpointListViewModel>();
                                             x.ForConcreteType<EndpointListView>().Configure
-                                                .SetterDependency(d => d.DataContext).Is(c => c.OfConcreteType<EndpointListViewModel>());
+                                                 .SetterDependency(d => d.DataContext).Is(c => c.ConstructedBy(ctx => ctx.GetInstance<EndpointListViewModel>()));
       
                                         });
 

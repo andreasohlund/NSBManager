@@ -40,9 +40,6 @@ namespace NSBManager.UserInterface.ViewModels
         {
 
             endpoints = new ObservableCollection<Endpoint>();
-
-            endpoints.Add(new Endpoint{Name = "test"});
-
         }
 
         public void Handle(PhysicalModelChanged message)
