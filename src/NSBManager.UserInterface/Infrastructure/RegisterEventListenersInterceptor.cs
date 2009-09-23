@@ -1,4 +1,5 @@
 using System;
+using NSBManager.UserInterface.Events;
 using StructureMap;
 using StructureMap.Interceptors;
 
@@ -8,19 +9,37 @@ namespace NSBManager.UserInterface.Infrastructure
     {
         public object Process(object target, IContext context)
         {
-            context.GetInstance<IEventAggregator>().AddListener(target);
-
+             // Assuming that "target" is an implementation of IListener<T>,
+            var eventType = target.GetType().FindInterfaceThatCloses(typeof (IListener<>)).GetGenericArguments()[0];
+            var type = typeof (Registration<>).MakeGenericType(eventType);
+            var registration = (Registration) Activator.CreateInstance(type);
+            
+            registration.RegisterListener(context, target);
+ 
+            // we didn't change the target object, so just return it
             return target;
         }
 
         public bool MatchesType(Type type)
         {
-            foreach (var i in type.GetInterfaces())
+            return type.ImplementsInterfaceTemplate(typeof(IListener<>));
+        }
+
+
+        // The inner type and interface is just a little trick to
+        // grease the generic wheels
+        public interface Registration
+        {
+            void RegisterListener(IContext context, object listener);
+        }
+
+        public class Registration<T> : Registration
+        {
+            public void RegisterListener(IContext context, object listener)
             {
-                if(i.Name.StartsWith("IListener"))
-                    return true;
+                var aggregator = context.GetInstance<IEventAggregator>();
+                aggregator.RegisterListener((IListener<T>)listener);
             }
-            return false;
         }
     }
 }

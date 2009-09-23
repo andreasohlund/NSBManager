@@ -1,8 +1,10 @@
+using NSBManager.UserInterface.Events;
+
 namespace NSBManager.UserInterface.Infrastructure
 {
     public interface IEventAggregator
     {
         void Publish<T>(T message);
-        void AddListener(object listener);
+        void RegisterListener<T>(IListener<T> listener);
     }
 }

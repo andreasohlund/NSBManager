@@ -25,9 +25,10 @@ namespace NSBManager.UserInterface.Infrastructure
             }
         }
 
-        public void AddListener(object listener)
+        public void RegisterListener<T>(IListener<T> listener)
         {
             listeners.Add(listener);
         }
+
     }
 }
