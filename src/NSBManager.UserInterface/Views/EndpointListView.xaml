@@ -4,9 +4,9 @@
     xmlns:viewModels="clr-namespace:NSBManager.UserInterface.ViewModels"
     Title="EndpointListView" Height="300" Width="300">
     
-    <Window.DataContext> 
+    <!--<Window.DataContext> 
         <viewModels:EndpointListViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
     
     <Grid>
         <ListBox

@@ -9,7 +9,7 @@ namespace NSBManager.UserInterface.ViewModels
     public class EndpointListViewModel : BaseViewModel, 
                                          IListener<PhysicalModelChanged>
     {
-       
+        
         //Note: Is this property nessesary to raise the event?
         private string endpointListName;
         public string EndpointListName
@@ -40,6 +40,8 @@ namespace NSBManager.UserInterface.ViewModels
         {
 
             endpoints = new ObservableCollection<Endpoint>();
+
+            endpoints.Add(new Endpoint{Name = "test"});
 
         }
 

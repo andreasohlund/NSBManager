@@ -1,4 +1,5 @@
 using NSBManager.UserInterface.Infrastructure;
+using NSBManager.UserInterface.ViewModels;
 using NSBManager.UserInterface.Views;
 using StructureMap;
 
@@ -11,7 +12,10 @@ namespace NSBManager.UserInterface
             ObjectFactory.Configure(x=>
                                         {
                                             x.AddRegistry(new EventRegistry());
-                                            x.ForConcreteType<EndpointListView>();
+
+                                            //this line should be replaced with a convention scanner
+                                            x.ForConcreteType<EndpointListView>().Configure
+                                                .SetterDependency(d => d.DataContext).Is(c => c.OfConcreteType<EndpointListViewModel>());
       
                                         });
 
@@ -20,10 +24,5 @@ namespace NSBManager.UserInterface
         }
 
        
-    }
-
-    public class FakeEndpointListViewModel
-    {
-        
     }
 }
