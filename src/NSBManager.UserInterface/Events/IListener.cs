@@ -1,6 +1,6 @@
 namespace NSBManager.UserInterface.Events
 {
-    public interface IEventHandler<T>
+    public interface IListener<T>
     {
         void Handle(T message);
     }

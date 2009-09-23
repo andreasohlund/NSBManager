@@ -7,7 +7,7 @@ using NSBManager.UserInterface.Models;
 namespace NSBManager.UserInterface.ViewModels
 {
     public class EndpointListViewModel : BaseViewModel, 
-                                         IEventHandler<PhysicalModelChanged>
+                                         IListener<PhysicalModelChanged>
     {
        
         //Note: Is this property nessesary to raise the event?

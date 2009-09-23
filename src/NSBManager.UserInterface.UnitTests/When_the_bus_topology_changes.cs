@@ -16,7 +16,7 @@ namespace NSBManager.UserInterface.UnitTests
 
             var eventMessage = new BusTopologyChangedEvent
                                    {
-                                       Endpoints = new System.Collections.Generic.List<NSBManager.ManagementService.Messages.Endpoint> { new ManagementService.Messages.Endpoint() }
+                                       Endpoints = new System.Collections.Generic.List<Endpoint> { new Endpoint() }
                                    };
             
             messageHandler.Handle(eventMessage);

@@ -41,6 +41,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NServiceBus\containers\structuremap\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -74,7 +82,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Infrastructure\EventAggregator.cs" />
     <Compile Include="Infrastructure\IEventAggregator.cs" />
+    <Compile Include="Infrastructure\RegisterEventListenersInterceptor.cs" />
     <Compile Include="Models\PhysicalModel.cs" />
     <Compile Include="Events\PhysicalModelChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -96,7 +107,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Models\Endpoint.cs" />
     <Compile Include="ViewModels\EndpointListViewModel.cs" />
-    <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Events\IListener.cs" />
     <Compile Include="ViewModels\ViewModelsExtension.cs" />
     <Compile Include="Views\EndpointListView.xaml.cs">
       <DependentUpon>EndpointListView.xaml</DependentUpon>
