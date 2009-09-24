@@ -7,7 +7,7 @@ using NSBManager.UserInterface.ViewModels;
 
 namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 {
-    public class EndpointListViewModel : BaseViewModel, 
+    public class EndpointListViewModel : BaseViewModel,
                                          IListener<PhysicalModelChanged>
     {
         private readonly IPhysicalModel physicalModel;
@@ -28,6 +28,7 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 
         public void Handle(PhysicalModelChanged message)
         {
+            //dialog.Show("Topology changed, refresh?")
             this.RaisePropertyChanged(d => d.Endpoints);
         }
 

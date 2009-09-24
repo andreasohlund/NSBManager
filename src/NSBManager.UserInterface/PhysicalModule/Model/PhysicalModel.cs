@@ -1,9 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading;
-using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using Endpoint = NSBManager.UserInterface.Models.Endpoint;
@@ -36,7 +31,7 @@ namespace NSBManager.UserInterface.PhysicalModule.Model
                 endpoints.Add(endpoint);
             }
 
-            eventAggregator.Publish<PhysicalModelChanged>(new PhysicalModelChanged());
+            eventAggregator.Publish<PhysicalModelChanged>();
         }
 
 

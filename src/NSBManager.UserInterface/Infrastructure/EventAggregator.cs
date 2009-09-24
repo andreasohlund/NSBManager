@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -28,6 +29,11 @@ namespace NSBManager.UserInterface.Infrastructure
                 }
 
             }
+        }
+
+        public void Publish<T>() where T:new()
+        {
+            Publish(new T());
         }
 
         public void RegisterListener<T>(IListener<T> listener)
