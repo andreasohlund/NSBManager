@@ -1,7 +1,5 @@
-using NSBManager.Instrumentation.Core;
 using NServiceBus;
 using NServiceBus.Host;
-using NServiceBus.ObjectBuilder;
 
 namespace NSBManager.Instrumentation
 {
@@ -9,7 +7,7 @@ namespace NSBManager.Instrumentation
     {
         public void Init()
         {
-            Configure.Instance.Configurer.ConfigureComponent<EndpointMonitor>(ComponentCallModelEnum.Singleton);
+            Configure.Instance.EnableInstrumentation();
         }
     }
 }

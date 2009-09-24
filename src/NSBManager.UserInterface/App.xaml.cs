@@ -30,32 +30,34 @@ namespace NSBManager.UserInterface
 
             //this will of course change when we starts to use the shell
             var view = ObjectFactory.GetInstance<EndpointListView>();
-            
+
             view.Show();
         }
 
 
 
-       
+
         private void ConfigureNServiceBus()
         {
-            bus = Configure.With()
+            var config = Configure.With()
                 .StructureMapBuilder()
                 .XmlSerializer()
+                .EnableInstrumentation()
                 .UnicastBus()
                     .LoadMessageHandlers()
                         .MsmqTransport()
                         .IsTransactional(true)
-                        .PurgeOnStartup(true)
-                .CreateBus()
+                        .PurgeOnStartup(true);
+
+            bus = config.CreateBus()
                 .Start();
 
 
-          
+            var monitor = config.Builder.Build<IEndpointMonitor>();
 
-            var monitor = new EndpointMonitor(bus);
 
-           monitor.Start();
+
+            monitor.Start();
         }
     }
 }

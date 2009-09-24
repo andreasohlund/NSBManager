@@ -35,15 +35,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NServiceBus\NServiceBus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigureExtensions.cs" />
     <Compile Include="EndpointMonitor.cs" />
     <Compile Include="IEndpointMonitor.cs" />
+    <Compile Include="ITransportInspector.cs" />
     <Compile Include="Messages\EndpointStartupMessage.cs" />
+    <Compile Include="Inspectors\MsmqTransportInspector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

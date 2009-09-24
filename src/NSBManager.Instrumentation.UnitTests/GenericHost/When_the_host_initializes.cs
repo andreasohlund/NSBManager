@@ -16,11 +16,12 @@ namespace NSBManager.Instrumentation.UnitTests.GenericHost
 
             Configure.With()
                 .SpringBuilder()
-                .UnicastBus();
+                .UnicastBus()
+                .MsmqTransport();
 
             configuration.Init();
 
-            Assert.AreNotEqual(null,  Configure.Instance.Builder.Build<EndpointMonitor>());
+            Assert.AreNotEqual(null,  Configure.Instance.Builder.Build<IEndpointMonitor>());
         }
     }
 }
