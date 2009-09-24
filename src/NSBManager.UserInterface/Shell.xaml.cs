@@ -1,4 +1,7 @@
 ﻿using System;
+using NSBManager.UserInterface.PhysicalModule.ViewModels;
+using NSBManager.UserInterface.Views;
+using StructureMap;
 
 namespace NSBManager.UserInterface
 {
@@ -15,6 +18,9 @@ namespace NSBManager.UserInterface
         public void ShowView()
         {
             Show();
+
+            //Note: Just testing... Do it the right way later!
+            contentControl.Content = ObjectFactory.GetInstance<EndpointListView>();
         }
     }
 }

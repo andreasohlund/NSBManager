@@ -71,7 +71,6 @@
     <Compile Include="Models\PhysicalModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewFactoryTests.cs" />
-    <Compile Include="When_application_starts.cs" />
     <Compile Include="When_a_ViewModel_property_is_changed.cs" />
     <Compile Include="When_the_bus_topology_changes.cs" />
   </ItemGroup>

@@ -6,7 +6,6 @@
     <Grid VerticalAlignment="Top" Height="459.2">
     	<Grid.Background>
     		<RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="1.55" RadiusY="0.62">
-
     			<RadialGradientBrush.RelativeTransform>
     				<TransformGroup>
     					<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleY="1.351"/>
@@ -59,6 +58,6 @@
     			<DropShadowEffect BlurRadius="0" ShadowDepth="1"/>
     		</TextBlock.Effect>
     	</TextBlock>
-        
+        <ContentControl x:Name="contentControl" />
     </Grid>
 </Window>
