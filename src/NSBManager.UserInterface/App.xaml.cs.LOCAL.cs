@@ -27,12 +27,11 @@ namespace NSBManager.UserInterface
 
             ConfigureNServiceBus();
 
-            bootStrapper.CreateShell();
 
             //this will of course change when we starts to use the shell
-            //var view = ObjectFactory.GetInstance<EndpointListView>();
+            var view = ObjectFactory.GetInstance<EndpointListView>();
 
-            //view.Show();
+            view.Show();
         }
 
 

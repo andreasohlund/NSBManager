@@ -1,4 +1,6 @@
+
 using NSBManager.UserInterface.DemoModels;
+using System.Windows;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.PhysicalModule.ViewModels;
@@ -23,6 +25,8 @@ namespace NSBManager.UserInterface
                                             //this line should be replaced with a convention scanner
                                             x.ForConcreteType<EndpointListViewModel>();
                                             x.ForConcreteType<EndpointListView>();
+                                            x.For<IShellView>().Use<Shell>();
+                                            x.For<ShellPresenter>().Use<ShellPresenter>();
                                             
                                         });
 
@@ -30,6 +34,16 @@ namespace NSBManager.UserInterface
             ObjectFactory.Profile = profileToUse;
         }
 
-       
+        public DependencyObject CreateShell()
+        {
+            var presenter = ObjectFactory.GetInstance<ShellPresenter>();
+            IShellView view = presenter.View;
+
+            view.ShowView();
+
+            return view as DependencyObject;
+        }
+
+        
     }
 }

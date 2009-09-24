@@ -27,38 +27,35 @@ namespace NSBManager.UserInterface
 
             ConfigureNServiceBus();
 
-            bootStrapper.CreateShell();
 
             //this will of course change when we starts to use the shell
-            //var view = ObjectFactory.GetInstance<EndpointListView>();
-
-            //view.Show();
+            var view = ObjectFactory.GetInstance<EndpointListView>();
+            
+            view.Show();
         }
 
 
 
-
+       
         private void ConfigureNServiceBus()
         {
-            var config = Configure.With()
+            bus = Configure.With()
                 .StructureMapBuilder()
                 .XmlSerializer()
-                .EnableInstrumentation()
                 .UnicastBus()
                     .LoadMessageHandlers()
                         .MsmqTransport()
                         .IsTransactional(true)
-                        .PurgeOnStartup(true);
-
-            bus = config.CreateBus()
+                        .PurgeOnStartup(true)
+                .CreateBus()
                 .Start();
 
 
-            var monitor = config.Builder.Build<IEndpointMonitor>();
+          
 
+            var monitor = new EndpointMonitor(bus);
 
-
-            monitor.Start();
+           monitor.Start();
         }
     }
 }
