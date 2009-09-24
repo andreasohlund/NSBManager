@@ -51,6 +51,7 @@ namespace NSBManager.UserInterface.ViewModels
                 endpoints.Add(endpoint);
             }
 
+            this.RaisePropertyChanged(d => d.Endpoints);
         }
 
       

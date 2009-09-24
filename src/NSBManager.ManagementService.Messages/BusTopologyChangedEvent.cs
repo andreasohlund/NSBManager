@@ -7,7 +7,7 @@ namespace NSBManager.ManagementService.Messages
     [Serializable]
     public class BusTopologyChangedEvent : IMessage
     {
-        public IEnumerable<Endpoint> Endpoints { get; set; }
+        public List<Endpoint> Endpoints { get; set; }
 
     }
 }

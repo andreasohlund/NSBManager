@@ -1,6 +1,7 @@
 using NSBManager.Instrumentation.Core.Messages;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
+using System.Linq;
 
 namespace NSBManager.ManagementService
 {
@@ -22,7 +23,7 @@ namespace NSBManager.ManagementService
 
             var busTopologyChangedEvent = new BusTopologyChangedEvent
                                               {
-                                                  Endpoints = serviceBus.Endpoints
+                                                  Endpoints = serviceBus.Endpoints.ToList()
                                               };
 
             bus.Publish(busTopologyChangedEvent);

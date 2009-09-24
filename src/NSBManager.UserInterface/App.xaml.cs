@@ -41,18 +41,19 @@ namespace NSBManager.UserInterface
                 .StructureMapBuilder()
                 .XmlSerializer()
                 .UnicastBus()
-                    .MsmqTransport()
-                    .PurgeOnStartup(true)
+                    .LoadMessageHandlers()
+                        .MsmqTransport()
+                        .IsTransactional(true)
+                        .PurgeOnStartup(true)
                 .CreateBus()
                 .Start();
 
 
-            bus.Subscribe<BusTopologyChangedEvent>();
           
 
             var monitor = new EndpointMonitor(bus);
 
-            monitor.Start();
+           monitor.Start();
         }
     }
 }

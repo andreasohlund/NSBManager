@@ -1,4 +1,5 @@
 using NSBManager.UserInterface.Infrastructure;
+using NSBManager.UserInterface.Models;
 using NSBManager.UserInterface.ViewModels;
 using NSBManager.UserInterface.Views;
 using StructureMap;
@@ -12,6 +13,8 @@ namespace NSBManager.UserInterface
             ObjectFactory.Configure(x=>
                                         {
                                             x.AddRegistry(new EventRegistry());
+
+                                            x.ForRequestedType<IPhysicalModel>().TheDefaultIsConcreteType<PhysicalModel>();
 
                                             //this line should be replaced with a convention scanner
                                             x.ForConcreteType<EndpointListViewModel>();

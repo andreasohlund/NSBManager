@@ -5,7 +5,7 @@ using NSBManager.UserInterface.Infrastructure;
 
 namespace NSBManager.UserInterface.Models
 {
-    public class PhysicalModel
+    public class PhysicalModel : IPhysicalModel
     {
         private readonly IEventAggregator aggregator;
 
