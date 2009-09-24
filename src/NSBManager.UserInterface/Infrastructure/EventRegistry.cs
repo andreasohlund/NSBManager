@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Windows.Threading;
 using StructureMap.Configuration.DSL;
 
 namespace NSBManager.UserInterface.Infrastructure
@@ -6,12 +8,19 @@ namespace NSBManager.UserInterface.Infrastructure
     {
         public EventRegistry()
         {
-            ForRequestedType<IEventAggregator>()
-                      .TheDefaultIsConcreteType<EventAggregator>()
-                      .AsSingletons();
-
-
             RegisterInterceptor(new RegisterEventListenersInterceptor());
+
+            For<IEventAggregator>().AsSingletons().Use<EventAggregator>();
+
+            ForSingletonOf<SynchronizationContext>().TheDefault.Is.ConstructedBy(() =>
+            {
+                if (SynchronizationContext.Current == null)
+                {
+                    SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext());
+                }
+
+                return SynchronizationContext.Current;
+            });
         }
     }
 }

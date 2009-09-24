@@ -14,7 +14,7 @@ namespace NSBManager.UserInterface
                                         {
                                             x.AddRegistry(new EventRegistry());
 
-                                            x.ForRequestedType<IPhysicalModel>().TheDefaultIsConcreteType<PhysicalModel>();
+                                            x.For<IPhysicalModel>().Use<PhysicalModel>();
 
                                             //this line should be replaced with a convention scanner
                                             x.ForConcreteType<EndpointListViewModel>();

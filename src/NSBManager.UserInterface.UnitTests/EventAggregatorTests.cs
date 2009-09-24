@@ -1,4 +1,3 @@
-using NSBManager.UserInterface.Events;
 using NSBManager.UserInterface.Infrastructure;
 using NUnit.Framework;
 using StructureMap;

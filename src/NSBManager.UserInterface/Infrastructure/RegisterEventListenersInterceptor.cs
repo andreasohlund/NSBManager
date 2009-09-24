@@ -1,5 +1,4 @@
 using System;
-using NSBManager.UserInterface.Events;
 using StructureMap;
 using StructureMap.Interceptors;
 

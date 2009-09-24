@@ -1,5 +1,3 @@
-using NSBManager.UserInterface.Events;
-
 namespace NSBManager.UserInterface.Infrastructure
 {
     public interface IEventAggregator

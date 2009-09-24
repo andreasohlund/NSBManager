@@ -1,34 +1,30 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Windows;
-using System.Windows.Threading;
-using NSBManager.UserInterface.Events;
-using StructureMap;
 
 namespace NSBManager.UserInterface.Infrastructure
 {
     public class EventAggregator : IEventAggregator
     {
+        private readonly SynchronizationContext context;
         private readonly IList<object> listeners;
 
-        public EventAggregator()
+        private readonly object locker = new object();
+
+        public EventAggregator(SynchronizationContext context)
         {
             listeners = new List<object>();
+            this.context = context;
         }
 
         public void Publish<T>(T message)
         {
-            foreach (var listener in listeners)
+            foreach (var potentialListener in listeners)
             {
-                if (listener is IListener<T>)
+                if (potentialListener is IListener<T>)
                 {
+                    var listener = potentialListener as IListener<T>;
 
-                    Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)(() => (
-                                                          listener as IListener<T>).Handle(message))
-                                                          );
-
+                    context.Send(state => listener.Handle(message), null);
                 }
 
             }
@@ -36,7 +32,8 @@ namespace NSBManager.UserInterface.Infrastructure
 
         public void RegisterListener<T>(IListener<T> listener)
         {
-            listeners.Add(listener);
+            lock(locker)
+                listeners.Add(listener);
         }
 
     }

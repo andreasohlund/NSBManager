@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using NSBManager.UserInterface.Events;
+using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.Models;
 
 namespace NSBManager.UserInterface.ViewModels

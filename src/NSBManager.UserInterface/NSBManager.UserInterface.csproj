@@ -114,7 +114,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Models\Endpoint.cs" />
     <Compile Include="ViewModels\EndpointListViewModel.cs" />
-    <Compile Include="Events\IListener.cs" />
+    <Compile Include="Infrastructure\IListener.cs" />
     <Compile Include="ViewModels\ViewModelsExtension.cs" />
     <Compile Include="Views\EndpointListView.xaml.cs">
       <DependentUpon>EndpointListView.xaml</DependentUpon>

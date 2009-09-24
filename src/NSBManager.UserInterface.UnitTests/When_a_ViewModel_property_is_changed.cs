@@ -4,10 +4,10 @@ using NUnit.Framework;
 namespace NSBManager.UserInterface.UnitTests
 {
     [TestFixture]
-    public class When_a_ViewModel_property_is_changed
+    public class When_a_viewmodel_property_is_changed
     {
         [Test]
-        public void PropertyChanged_event_should_be_raised()
+        public void Propertychanged_event_should_be_raised()
         {
             bool wasRaised = false;
 
