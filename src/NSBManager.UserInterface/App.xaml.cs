@@ -27,8 +27,10 @@ namespace NSBManager.UserInterface
 
             ConfigureNServiceBus();
 
-            var view = ObjectFactory.GetInstance<EndpointListView>();
 
+            //this will of course change when we starts to use the shell
+            var view = ObjectFactory.GetInstance<EndpointListView>();
+            
             view.Show();
         }
 

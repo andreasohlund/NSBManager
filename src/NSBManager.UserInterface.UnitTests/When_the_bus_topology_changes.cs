@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NSBManager.ManagementService.Messages;
-using NSBManager.UserInterface.MessageHandlers;
-using NSBManager.UserInterface.Models;
+using NSBManager.UserInterface.PhysicalModule.MessageHandlers;
+using NSBManager.UserInterface.PhysicalModule.Model;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -18,7 +18,7 @@ namespace NSBManager.UserInterface.UnitTests
         {
             var physicalModel = MockRepository.GenerateStub<IPhysicalModel>();
 
-            IHandleMessages<BusTopologyChangedEvent> messageHandler = new BusTopologyChangedEventHandler(physicalModel);
+            IHandleMessages<BusTopologyChangedEvent> messageHandler = new BusTopologyChangedEventHandler(physicalModel,null);
 
             var eventMessage = new BusTopologyChangedEvent
                                    {

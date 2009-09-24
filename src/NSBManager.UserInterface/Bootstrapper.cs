@@ -1,6 +1,6 @@
 using NSBManager.UserInterface.Infrastructure;
-using NSBManager.UserInterface.Models;
-using NSBManager.UserInterface.ViewModels;
+using NSBManager.UserInterface.PhysicalModule.Model;
+using NSBManager.UserInterface.PhysicalModule.ViewModels;
 using NSBManager.UserInterface.Views;
 using StructureMap;
 
@@ -14,13 +14,13 @@ namespace NSBManager.UserInterface
                                         {
                                             x.AddRegistry(new EventRegistry());
 
-                                            x.For<IPhysicalModel>().Use<PhysicalModel>();
+                                            x.For<IPhysicalModel>().AsSingletons()
+                                                .Use<PhysicalModel>();
 
                                             //this line should be replaced with a convention scanner
                                             x.ForConcreteType<EndpointListViewModel>();
-                                            x.ForConcreteType<EndpointListView>().Configure
-                                                 .SetterDependency(d => d.DataContext).Is(c => c.ConstructedBy(ctx => ctx.GetInstance<EndpointListViewModel>()));
-      
+                                            x.ForConcreteType<EndpointListView>();
+                                            
                                         });
 
 

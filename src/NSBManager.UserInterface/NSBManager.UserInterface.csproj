@@ -87,14 +87,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="MessageHandlers\BusTopologyChangedEventHandler.cs" />
+    <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
+    <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="Infrastructure\EventAggregator.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
     <Compile Include="Infrastructure\IEventAggregator.cs" />
     <Compile Include="Infrastructure\RegisterEventListenersInterceptor.cs" />
-    <Compile Include="Models\IPhysicalModel.cs" />
-    <Compile Include="Models\PhysicalModel.cs" />
-    <Compile Include="Events\PhysicalModelChanged.cs" />
+    <Compile Include="PhysicalModule\Model\IPhysicalModel.cs" />
+    <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
+    <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,11 +113,11 @@
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="Models\Endpoint.cs" />
-    <Compile Include="ViewModels\EndpointListViewModel.cs" />
+    <Compile Include="PhysicalModule\Model\Endpoint.cs" />
+    <Compile Include="PhysicalModule\ViewModels\EndpointListViewModel.cs" />
     <Compile Include="Infrastructure\IListener.cs" />
     <Compile Include="ViewModels\ViewModelsExtension.cs" />
-    <Compile Include="Views\EndpointListView.xaml.cs">
+    <Compile Include="PhysicalModule\Views\EndpointListView.xaml.cs">
       <DependentUpon>EndpointListView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -135,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EndpointListView.xaml">
+    <Page Include="PhysicalModule\Views\EndpointListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
