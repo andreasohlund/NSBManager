@@ -20,7 +20,7 @@ namespace NSBManager.UserInterface
 
             var profile = "";
 
-            if (e.Args.Count() > 1)
+            if (e.Args.Count() > 0)
                 profile = e.Args[0];
 
             bootStrapper.BootstrapStructureMap(profile);

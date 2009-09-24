@@ -1,3 +1,4 @@
+using NSBManager.UserInterface.DemoModels;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.PhysicalModule.ViewModels;
@@ -16,6 +17,8 @@ namespace NSBManager.UserInterface
 
                                             x.For<IPhysicalModel>().AsSingletons()
                                                 .Use<PhysicalModel>();
+                                            x.CreateProfile("demo")
+                                                .For<IPhysicalModel>().UseConcreteType<FakePhysicalModel>();
 
                                             //this line should be replaced with a convention scanner
                                             x.ForConcreteType<EndpointListViewModel>();

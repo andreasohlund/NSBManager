@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="DemoModels\FakePhysicalModel.cs" />
     <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="Infrastructure\EventAggregator.cs" />
