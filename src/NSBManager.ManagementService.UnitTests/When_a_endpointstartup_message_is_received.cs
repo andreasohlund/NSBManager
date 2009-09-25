@@ -13,7 +13,7 @@ namespace NSBManager.ManagementService.UnitTests
     public class When_a_endpointstartup_message_is_received
     {
         private IBus bus;
-        private Guid endpointId;
+        private string endpointId;
 
 
         [SetUp]
@@ -24,7 +24,7 @@ namespace NSBManager.ManagementService.UnitTests
 
             IHandleMessages<EndpointStartupMessage> messageHandler = new EndpointStartupMessageHandler(bus,serviceBus);
 
-            endpointId = Guid.NewGuid();
+            endpointId = "test@localhost";
 
 
             var endpointStartupMessage = new EndpointStartupMessage

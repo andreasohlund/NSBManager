@@ -18,7 +18,7 @@ namespace NSBManager.UserInterface.UnitTests
         {
             var physicalModel = MockRepository.GenerateStub<IPhysicalModel>();
 
-            IHandleMessages<BusTopologyChangedEvent> messageHandler = new BusTopologyChangedEventHandler(physicalModel,null);
+            IHandleMessages<BusTopologyChangedEvent> messageHandler = new BusTopologyChangedEventHandler(physicalModel);
 
             var eventMessage = new BusTopologyChangedEvent
                                    {

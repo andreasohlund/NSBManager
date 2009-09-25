@@ -12,6 +12,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core
     public class When_the_host_endpoint_starts_up
     {
         private IBus bus;
+        private TransportInfo transportInfo;
         
         [SetUp]
         public void SetUp()
@@ -19,6 +20,9 @@ namespace NSBManager.Instrumentation.UnitTests.Core
             bus = MockRepository.GenerateStub<IBus>();
             var transportInspector = MockRepository.GenerateStub<ITransportInspector>();
 
+            transportInfo = new TransportInfo {Adress = "test@localhost"};
+
+            transportInspector.Stub(x => x.GetTransportInfo()).Return(transportInfo);
             var endpointWatcher = new EndpointMonitor(bus, transportInspector);
 
 
@@ -28,7 +32,8 @@ namespace NSBManager.Instrumentation.UnitTests.Core
         [Test]
         public void A_endpoint_startup_message_should_be_sent_to_the_management_service()
         {
-            bus.AssertWasSent<EndpointStartupMessage>(p=>p.EndpointId != Guid.Empty);
+            //transport.adress is guaranteed to be unique across endpoints so we use that a ID
+            bus.AssertWasSent<EndpointStartupMessage>(p=>p.EndpointId == transportInfo.Adress);
         }
     }
 }

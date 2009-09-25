@@ -5,7 +5,6 @@ namespace NSBManager.ManagementService.Messages
     [Serializable]
     public class Endpoint
     {
-
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

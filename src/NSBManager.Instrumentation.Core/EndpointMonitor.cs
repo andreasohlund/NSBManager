@@ -7,23 +7,22 @@ namespace NSBManager.Instrumentation.Core
     public class EndpointMonitor:IEndpointMonitor
     {
         private readonly IBus bus;
-        private readonly Guid endpointId;
         private readonly ITransportInspector transportInspector;
 
         public EndpointMonitor(IBus bus, ITransportInspector transportInspector)
         {
-            endpointId = Guid.NewGuid();
-
             this.bus = bus;
             this.transportInspector = transportInspector;
         }
 
         public void Start()
         {
+            var transportInfo = transportInspector.GetTransportInfo();
+
             var startupMessage = new EndpointStartupMessage
                                      {
-                                         EndpointId = endpointId,
-                                         Transport = transportInspector.GetTransportInfo()
+                                         EndpointId = transportInfo.Adress,
+                                         Transport = transportInfo
                                      };
             bus.Send(startupMessage);
         }

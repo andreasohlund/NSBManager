@@ -6,7 +6,7 @@ namespace NSBManager.Instrumentation.Core.Messages
     [Serializable]
     public class EndpointStartupMessage : IMessage
     {
-        public Guid EndpointId { get; set; }
+        public string EndpointId { get; set; }
 
         public TransportInfo Transport { get; set; }
     }

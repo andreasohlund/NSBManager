@@ -1,5 +1,6 @@
 using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus.Unicast.Transport.Msmq;
+using NServiceBus.Utils;
 
 namespace NSBManager.Instrumentation.Core.Inspectors
 {
@@ -17,7 +18,7 @@ namespace NSBManager.Instrumentation.Core.Inspectors
             return new TransportInfo
                        {
                            Type = TransportTypes.Msmq,
-                           Adress = transport.Address
+                           Adress = MsmqUtilities.GetQueueNameFromLogicalName(transport.InputQueue) + "@" +MsmqUtilities.GetMachineNameFromLogicalName(transport.InputQueue)
                        };
         }
     }

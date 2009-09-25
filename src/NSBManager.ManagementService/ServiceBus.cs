@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NSBManager.ManagementService.Messages;
+using System.Linq;
 
 namespace NSBManager.ManagementService
 {
@@ -9,7 +10,8 @@ namespace NSBManager.ManagementService
 
         public void RegisterEndpoint(Endpoint endpoint)
         {
-            endpoints.Add(endpoint);
+            if (endpoints.Count(x => x.Id == endpoint.Id) == 0)
+                endpoints.Add(endpoint);
 
         }
 
