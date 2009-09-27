@@ -45,12 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Inspectors\Host\ExeHostInspector.cs" />
     <Compile Include="ConfigureExtensions.cs" />
     <Compile Include="EndpointMonitor.cs" />
     <Compile Include="IEndpointMonitor.cs" />
-    <Compile Include="ITransportInspector.cs" />
+    <Compile Include="Inspectors\IHostInspector.cs" />
+    <Compile Include="Inspectors\ITransportInspector.cs" />
     <Compile Include="Messages\EndpointStartupMessage.cs" />
-    <Compile Include="Inspectors\MsmqTransportInspector.cs" />
+    <Compile Include="Inspectors\Transport\MsmqTransportInspector.cs" />
+    <Compile Include="Messages\HostInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,6 @@
 using System;
 using NSBManager.Instrumentation.Core;
+using NSBManager.Instrumentation.Core.Inspectors;
 using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus;
 using NUnit.Framework;
@@ -13,6 +14,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core
     {
         private IBus bus;
         private TransportInfo transportInfo;
+        private HostInfo hostInfo;
         
         [SetUp]
         public void SetUp()
@@ -22,8 +24,16 @@ namespace NSBManager.Instrumentation.UnitTests.Core
 
             transportInfo = new TransportInfo {Adress = "test@localhost"};
 
-            transportInspector.Stub(x => x.GetTransportInfo()).Return(transportInfo);
-            var endpointWatcher = new EndpointMonitor(bus, transportInspector);
+            transportInspector.Stub(x => x.GetTransportInformation()).Return(transportInfo);
+
+            var hostInspector = MockRepository.GenerateStub<IHostInspector>();
+
+            hostInfo = new HostInfo();
+            hostInspector.Stub(x => x.GetHostInformation()).Return(hostInfo);
+
+            var endpointWatcher = new EndpointMonitor(bus, 
+                transportInspector,
+                hostInspector);
 
 
             endpointWatcher.Start();
@@ -34,7 +44,10 @@ namespace NSBManager.Instrumentation.UnitTests.Core
         {
             //transport.adress is guaranteed to be unique across endpoints so we use that a ID
             bus.AssertWasSent<EndpointStartupMessage>(p=>p.EndpointId == transportInfo.Adress && 
-                p.Server == Environment.MachineName);
+                p.Server == Environment.MachineName &&
+                p.Host == hostInfo);
         }
+
+
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using NSBManager.Instrumentation.Core;
+using NSBManager.Instrumentation.Core.Inspectors;
 using NServiceBus;
 using NUnit.Framework;
 
@@ -30,6 +31,12 @@ namespace NSBManager.Instrumentation.UnitTests.Core
         public void The_transport_inspector_should_be_registered()
         {
             Assert.IsNotNull(config.Builder.Build<ITransportInspector>());
+        }
+
+        [Test]
+        public void The_host_inspector_should_be_registered()
+        {
+            Assert.IsNotNull(config.Builder.Build<IHostInspector>());
         }
     }
 } 

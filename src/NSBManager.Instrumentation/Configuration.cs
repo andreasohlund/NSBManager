@@ -1,5 +1,6 @@
 using NServiceBus;
 using NServiceBus.Host;
+using NServiceBus.ObjectBuilder;
 
 namespace NSBManager.Instrumentation
 {
@@ -7,7 +8,10 @@ namespace NSBManager.Instrumentation
     {
         public void Init()
         {
-            Configure.Instance.EnableInstrumentation();
+            //Configure the custom host inspector
+            Configure.Instance.EnableInstrumentation(new NServiceBusGenericHostInspector());
+
+            
         }
     }
 }

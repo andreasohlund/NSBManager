@@ -1,4 +1,5 @@
-using NSBManager.Instrumentation.Core.Inspectors;
+using System;
+using NSBManager.Instrumentation.Core.Inspectors.Transport;
 using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus.Unicast.Transport.Msmq;
 using NUnit.Framework;
@@ -14,16 +15,16 @@ namespace NSBManager.Instrumentation.UnitTests.Core.Inspectors
         {
             var transport = new MsmqTransport
                                 {
-                                    InputQueue = "unittests@localhost"
+                                    InputQueue = "unittests"
                                 };
 
             var inspector = new MsmqTransportInspector(transport);
 
-            var info = inspector.GetTransportInfo();
+            var info = inspector.GetTransportInformation();
 
             info.Type.ShouldEqual(TransportTypes.Msmq);
 
-            info.Adress.ShouldEqual("unittests@localhost");
+            info.Adress.ShouldEqual(transport.InputQueue + "@" + Environment.MachineName);
         }
     }
 } 

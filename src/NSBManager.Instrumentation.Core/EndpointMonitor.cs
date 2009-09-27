@@ -1,4 +1,5 @@
 using System;
+using NSBManager.Instrumentation.Core.Inspectors;
 using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus;
 
@@ -8,22 +9,27 @@ namespace NSBManager.Instrumentation.Core
     {
         private readonly IBus bus;
         private readonly ITransportInspector transportInspector;
+        private readonly IHostInspector hostInspector;
 
-        public EndpointMonitor(IBus bus, ITransportInspector transportInspector)
+        public EndpointMonitor( IBus bus, 
+                                ITransportInspector transportInspector, 
+                                IHostInspector hostInspector)
         {
             this.bus = bus;
             this.transportInspector = transportInspector;
+            this.hostInspector = hostInspector;
         }
 
         public void Start()
         {
-            var transportInfo = transportInspector.GetTransportInfo();
+            var transportInfo = transportInspector.GetTransportInformation();
 
             var startupMessage = new EndpointStartupMessage
                                      {
                                          EndpointId = transportInfo.Adress,
                                          Server = Environment.MachineName,
-                                         Transport = transportInfo
+                                         Transport = transportInfo,
+                                         Host = hostInspector.GetHostInformation()
                                      };
             bus.Send(startupMessage);
         }

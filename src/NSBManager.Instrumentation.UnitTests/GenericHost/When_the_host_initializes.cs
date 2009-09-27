@@ -1,18 +1,22 @@
 using System;
 using NSBManager.Instrumentation.Core;
+using NSBManager.Instrumentation.Core.Inspectors;
 using NServiceBus;
 using NServiceBus.Host;
 using NUnit.Framework;
+using NBehave.Spec.NUnit;
 
 namespace NSBManager.Instrumentation.UnitTests.GenericHost
 {
     [TestFixture]
     public class When_the_host_initializes
     {
-        [Test]
-        public void The_endpoint_monitor_should_be_configured()
+        private IWantCustomInitialization configuration;
+
+        [SetUp]
+        public void Setup()
         {
-            IWantCustomInitialization configuration = new Configuration();
+            configuration = new Configuration();
 
             Configure.With()
                 .SpringBuilder()
@@ -21,7 +25,20 @@ namespace NSBManager.Instrumentation.UnitTests.GenericHost
 
             configuration.Init();
 
-            Assert.AreNotEqual(null,  Configure.Instance.Builder.Build<IEndpointMonitor>());
+
+        }
+
+        [Test]
+        public void The_endpoint_monitor_should_be_configured()
+        {
+            Configure.Instance.Builder.Build<IEndpointMonitor>().ShouldNotBeNull();
+        }
+
+        [Test]
+        public void The_nservicebus_generic_host_inspector_should_be_configured()
+        {
+            Configure.Instance.Builder.Build<IHostInspector>()
+                .ShouldBeInstanceOfType(typeof(NServiceBusGenericHostInspector));
         }
     }
 }

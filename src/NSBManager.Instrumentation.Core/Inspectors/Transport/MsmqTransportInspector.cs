@@ -2,7 +2,7 @@ using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus.Unicast.Transport.Msmq;
 using NServiceBus.Utils;
 
-namespace NSBManager.Instrumentation.Core.Inspectors
+namespace NSBManager.Instrumentation.Core.Inspectors.Transport
 {
     public class MsmqTransportInspector:ITransportInspector
     {
@@ -13,7 +13,7 @@ namespace NSBManager.Instrumentation.Core.Inspectors
             this.transport = transport;
         }
 
-        public TransportInfo GetTransportInfo()
+        public TransportInfo GetTransportInformation()
         {
             return new TransportInfo
                        {

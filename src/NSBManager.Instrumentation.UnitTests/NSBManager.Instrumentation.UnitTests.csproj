@@ -64,6 +64,7 @@
     <Compile Include="..\NSBManager.ManagementService.UnitTests\IBusExtensions.cs">
       <Link>IBusExtensions.cs</Link>
     </Compile>
+    <Compile Include="Core\Inspectors\ExeHostInspectorTests.cs" />
     <Compile Include="Core\Inspectors\MsmqTransportInspectorTests.cs" />
     <Compile Include="Core\When_configuring_instrumentation.cs" />
     <Compile Include="GenericHost\When_the_host_initializes.cs" />

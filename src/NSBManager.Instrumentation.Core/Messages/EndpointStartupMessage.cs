@@ -11,6 +11,8 @@ namespace NSBManager.Instrumentation.Core.Messages
         public string Server { get; set; }
 
         public TransportInfo Transport { get; set; }
+
+        public HostInfo Host { get; set; }
     }
 
     public class TransportInfo
