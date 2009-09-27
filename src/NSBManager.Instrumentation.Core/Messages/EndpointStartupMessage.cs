@@ -8,6 +8,8 @@ namespace NSBManager.Instrumentation.Core.Messages
     {
         public string EndpointId { get; set; }
 
+        public string Server { get; set; }
+
         public TransportInfo Transport { get; set; }
     }
 

@@ -22,6 +22,7 @@ namespace NSBManager.Instrumentation.Core
             var startupMessage = new EndpointStartupMessage
                                      {
                                          EndpointId = transportInfo.Adress,
+                                         Server = Environment.MachineName,
                                          Transport = transportInfo
                                      };
             bus.Send(startupMessage);
