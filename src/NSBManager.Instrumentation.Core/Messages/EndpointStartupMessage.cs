@@ -15,6 +15,7 @@ namespace NSBManager.Instrumentation.Core.Messages
         public HostInfo Host { get; set; }
     }
 
+    [Serializable]
     public class TransportInfo
     {
         public string Adress { get; set; }

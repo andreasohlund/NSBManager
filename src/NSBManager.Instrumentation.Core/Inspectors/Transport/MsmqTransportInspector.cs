@@ -1,3 +1,4 @@
+using System;
 using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus.Unicast.Transport.Msmq;
 using NServiceBus.Utils;
@@ -21,7 +22,7 @@ namespace NSBManager.Instrumentation.Core.Inspectors.Transport
                        };
         }
     }
-
+    [Serializable]
     public class MsmqTransportInfo : TransportInfo
     {
     }

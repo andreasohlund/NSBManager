@@ -1,9 +1,18 @@
+using System;
+using NServiceBus;
 using NServiceBus.Host;
 
 namespace NSBManager.ManagementService
 {
     public class EndpointConfig:IConfigureThisEndpoint,
-                                AsA_Publisher
+                                AsA_Publisher, IWantCustomInitialization
+        
     {
+        public void Init()
+        {
+            Configure.With().SpringBuilder().BinarySerializer();
+        }
     }
+
+   
 }

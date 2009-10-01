@@ -42,7 +42,7 @@ namespace NSBManager.UserInterface
         {
             var config = Configure.With()
                 .StructureMapBuilder()
-                .XmlSerializer()
+                .BinarySerializer()
                 .EnableInstrumentation()
                 .UnicastBus()
                     .LoadMessageHandlers()
