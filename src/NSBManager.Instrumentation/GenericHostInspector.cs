@@ -3,11 +3,11 @@ using NSBManager.Instrumentation.Core.Messages;
 
 namespace NSBManager.Instrumentation
 {
-    public class NServiceBusGenericHostInspector:IHostInspector
+    public class GenericHostInspector:IHostInspector
     {
         public HostInfo GetHostInformation()
         {
-            return null;
+            return new GenericHostInfo();
         }
     }
 }

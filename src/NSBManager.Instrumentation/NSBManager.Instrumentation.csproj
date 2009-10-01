@@ -50,8 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="GenericHostInfo.cs" />
     <Compile Include="HostMonitor.cs" />
-    <Compile Include="NServiceBusGenericHostInspector.cs" />
+    <Compile Include="GenericHostInspector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

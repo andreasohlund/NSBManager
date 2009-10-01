@@ -22,7 +22,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core.Inspectors
 
             var info = inspector.GetTransportInformation();
 
-            info.Type.ShouldEqual(TransportTypes.Msmq);
+            info.ShouldBeInstanceOfType(typeof(MsmqTransportInfo));
 
             info.Adress.ShouldEqual(transport.InputQueue + "@" + Environment.MachineName);
         }

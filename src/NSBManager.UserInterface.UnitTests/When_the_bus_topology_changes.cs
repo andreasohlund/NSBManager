@@ -28,7 +28,7 @@ namespace NSBManager.UserInterface.UnitTests
             messageHandler.Handle(eventMessage);
 
 
-            physicalModel.AssertWasCalled(x => x.UpdateModel(Arg<IEnumerable<UserInterface.Models.Endpoint>>.Matches(a => a.Count() == 1)));
+            physicalModel.AssertWasCalled(x => x.UpdateModel(Arg<IEnumerable<PhysicalModule.Model.Endpoint>>.Matches(a => a.Count() == 1)));
         }
     }
 } 

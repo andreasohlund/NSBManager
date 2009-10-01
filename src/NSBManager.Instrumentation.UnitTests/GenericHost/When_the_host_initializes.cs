@@ -38,7 +38,7 @@ namespace NSBManager.Instrumentation.UnitTests.GenericHost
         public void The_nservicebus_generic_host_inspector_should_be_configured()
         {
             Configure.Instance.Builder.Build<IHostInspector>()
-                .ShouldBeInstanceOfType(typeof(NServiceBusGenericHostInspector));
+                .ShouldBeInstanceOfType(typeof(GenericHostInspector));
         }
     }
 }

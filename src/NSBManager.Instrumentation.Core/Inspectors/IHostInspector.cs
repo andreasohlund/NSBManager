@@ -1,7 +1,9 @@
+using NSBManager.Instrumentation.Core.Messages;
+
 namespace NSBManager.Instrumentation.Core.Inspectors
 {
     public interface IHostInspector
     {
-        Messages.HostInfo GetHostInformation();
+        HostInfo GetHostInformation();
     }
 }

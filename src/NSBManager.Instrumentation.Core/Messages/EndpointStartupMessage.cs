@@ -17,13 +17,7 @@ namespace NSBManager.Instrumentation.Core.Messages
 
     public class TransportInfo
     {
-        public TransportTypes Type { get; set; }
-
         public string Adress { get; set; }
     }
 
-    public enum TransportTypes
-    {
-        Msmq
-    }
 }

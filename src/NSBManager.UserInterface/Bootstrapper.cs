@@ -19,8 +19,10 @@ namespace NSBManager.UserInterface
 
                                             x.For<IPhysicalModel>().AsSingletons()
                                                 .Use<PhysicalModel>();
+
                                             x.CreateProfile("demo")
                                                 .For<IPhysicalModel>().UseConcreteType<FakePhysicalModel>();
+
 
                                             //this line should be replaced with a convention scanner
                                             x.ForConcreteType<EndpointListViewModel>();

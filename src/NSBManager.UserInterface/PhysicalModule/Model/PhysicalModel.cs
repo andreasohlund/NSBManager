@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Events;
-using Endpoint = NSBManager.UserInterface.Models.Endpoint;
 
 namespace NSBManager.UserInterface.PhysicalModule.Model
 {

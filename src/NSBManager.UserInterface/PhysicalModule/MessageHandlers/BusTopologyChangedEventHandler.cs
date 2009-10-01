@@ -3,7 +3,7 @@ using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NServiceBus;
 
-using Endpoint=NSBManager.UserInterface.Models.Endpoint;
+using Endpoint=NSBManager.UserInterface.PhysicalModule.Model.Endpoint;
 
 namespace NSBManager.UserInterface.PhysicalModule.MessageHandlers
 {

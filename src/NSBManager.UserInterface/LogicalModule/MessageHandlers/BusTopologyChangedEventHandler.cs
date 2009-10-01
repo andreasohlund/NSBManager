@@ -1,8 +1,7 @@
 using System.Linq;
 using NSBManager.ManagementService.Messages;
-using NSBManager.UserInterface.Models;
 using NServiceBus;
-using Endpoint=NSBManager.UserInterface.Models.Endpoint;
+using Endpoint=NSBManager.UserInterface.PhysicalModule.Model.Endpoint;
 
 namespace NSBManager.UserInterface.LogicalModule.MessageHandlers
 {

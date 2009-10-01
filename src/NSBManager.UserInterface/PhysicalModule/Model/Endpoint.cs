@@ -1,4 +1,4 @@
-namespace NSBManager.UserInterface.Models
+namespace NSBManager.UserInterface.PhysicalModule.Model
 {
     public class Endpoint
     {

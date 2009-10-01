@@ -1,4 +1,4 @@
-using NSBManager.UserInterface.Models;
+using NSBManager.UserInterface.PhysicalModule.Model;
 using NUnit.Framework;
 
 namespace NSBManager.UserInterface.UnitTests

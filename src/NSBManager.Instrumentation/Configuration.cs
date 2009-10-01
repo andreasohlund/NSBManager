@@ -9,7 +9,7 @@ namespace NSBManager.Instrumentation
         public void Init()
         {
             //Configure the custom host inspector
-            Configure.Instance.EnableInstrumentation(new NServiceBusGenericHostInspector());
+            Configure.Instance.EnableInstrumentation(new GenericHostInspector());
 
             
         }

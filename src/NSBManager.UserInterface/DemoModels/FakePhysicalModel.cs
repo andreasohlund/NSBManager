@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NSBManager.UserInterface.Models;
 using NSBManager.UserInterface.PhysicalModule.Model;
 
 namespace NSBManager.UserInterface.DemoModels
@@ -12,7 +11,6 @@ namespace NSBManager.UserInterface.DemoModels
         public FakePhysicalModel()
         {
             endpoints = new List<Endpoint>();
-
             for (int i = 0; i < 20; i++)
             {
                 endpoints.Add(new Endpoint

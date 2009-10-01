@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NSBManager.UserInterface.Models;
 
 namespace NSBManager.UserInterface.PhysicalModule.Model
 {

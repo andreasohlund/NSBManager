@@ -15,11 +15,14 @@ namespace NSBManager.Instrumentation.Core.Inspectors.Transport
 
         public TransportInfo GetTransportInformation()
         {
-            return new TransportInfo
+            return new MsmqTransportInfo
                        {
-                           Type = TransportTypes.Msmq,
                            Adress = MsmqUtilities.GetQueueNameFromLogicalName(transport.InputQueue) + "@" +MsmqUtilities.GetMachineNameFromLogicalName(transport.InputQueue)
                        };
         }
+    }
+
+    public class MsmqTransportInfo : TransportInfo
+    {
     }
 }

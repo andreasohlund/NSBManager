@@ -1,4 +1,3 @@
-using NSBManager.UserInterface.Models;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.PhysicalModule.ViewModels;
