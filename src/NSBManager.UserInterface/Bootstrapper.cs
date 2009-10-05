@@ -1,4 +1,8 @@
 
+using Microsoft.Practices.Composite.Modularity;
+using Microsoft.Practices.Composite.Presentation.Regions;
+using Microsoft.Practices.Composite.Regions;
+using Microsoft.Practices.Composite.UnityExtensions;
 using NSBManager.UserInterface.DemoModels;
 using System.Windows;
 using NSBManager.UserInterface.Infrastructure;
@@ -9,11 +13,11 @@ using StructureMap;
 
 namespace NSBManager.UserInterface
 {
-    public class Bootstrapper
+    public class Bootstrapper : UnityBootstrapper
     {
         public void BootstrapStructureMap(string profileToUse)
         {
-            ObjectFactory.Configure(x=>
+            ObjectFactory.Configure(x =>
                                         {
                                             x.AddRegistry(new EventRegistry());
 
@@ -28,22 +32,33 @@ namespace NSBManager.UserInterface
                                             x.ForConcreteType<EndpointListViewModel>();
                                             x.ForConcreteType<EndpointListView>();
                                             x.For<IShellView>().Use<Shell>();
+                                            //x.For<IRegionManager>().Use<RegionManager>();
                                             x.For<ShellPresenter>().Use<ShellPresenter>();
-                                            
+                                            x.For<PhysicalModule.PhysicalModule>().Use<PhysicalModule.PhysicalModule>();
+
                                         });
 
 
             ObjectFactory.Profile = profileToUse;
         }
 
-        public DependencyObject CreateShell()
+        protected override void InitializeModules()
         {
-            var presenter = ObjectFactory.GetInstance<ShellPresenter>();
-            IShellView view = presenter.View;
+            //IModule physicalModule = ObjectFactory.GetInstance<PhysicalModule.PhysicalModule>();
+            IModule physicalModule = Container.Resolve<PhysicalModule.PhysicalModule>();
+            physicalModule.Initialize();
+        }
 
-            view.ShowView();
+        protected override DependencyObject CreateShell()
+        {
+            //var presenter = ObjectFactory.GetInstance<ShellPresenter>();
+            //IShellView view = presenter.View;
 
-            return view as DependencyObject;
+            //view.ShowView();
+
+            var shell = new Shell();
+            shell.Show();
+            return shell;
         }
 
         

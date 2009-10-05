@@ -18,9 +18,6 @@ namespace NSBManager.UserInterface
         public void ShowView()
         {
             Show();
-
-            //Note: Just testing... Do it the right way later!
-            contentControl.Content = ObjectFactory.GetInstance<EndpointListView>();
         }
     }
 }

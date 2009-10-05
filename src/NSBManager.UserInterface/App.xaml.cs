@@ -27,16 +27,9 @@ namespace NSBManager.UserInterface
 
             ConfigureNServiceBus();
 
-            bootStrapper.CreateShell();
-
-            //this will of course change when we starts to use the shell
-            //var view = ObjectFactory.GetInstance<EndpointListView>();
-
-            //view.Show();
+            
+            bootStrapper.Run();
         }
-
-
-
 
         private void ConfigureNServiceBus()
         {
@@ -55,8 +48,6 @@ namespace NSBManager.UserInterface
 
 
             var monitor = config.Builder.Build<IEndpointMonitor>();
-
-
 
             monitor.Start();
         }
