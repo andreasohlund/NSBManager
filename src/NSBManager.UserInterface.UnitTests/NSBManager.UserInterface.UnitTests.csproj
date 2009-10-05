@@ -75,6 +75,10 @@
     <Compile Include="When_the_bus_topology_changes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">
+      <Project>{7A3B9250-C9E9-4378-A8A0-816E642A7A01}</Project>
+      <Name>NSBManager.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSBManager.ManagementService.Messages\NSBManager.ManagementService.Messages.csproj">
       <Project>{3ABF94E8-664D-4CF2-BF29-5E51EB957E7C}</Project>
       <Name>NSBManager.ManagementService.Messages</Name>

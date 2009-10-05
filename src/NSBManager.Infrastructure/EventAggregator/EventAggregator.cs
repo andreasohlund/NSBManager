@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace NSBManager.UserInterface.Infrastructure
+namespace NSBManager.Infrastructure.EventAggregator
 {
     public class EventAggregator : IEventAggregator
     {

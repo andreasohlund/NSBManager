@@ -1,3 +1,4 @@
+using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.Infrastructure;
 using NUnit.Framework;
 using StructureMap;

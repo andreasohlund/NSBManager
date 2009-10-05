@@ -2,13 +2,13 @@ using System;
 using StructureMap;
 using StructureMap.Interceptors;
 
-namespace NSBManager.UserInterface.Infrastructure
+namespace NSBManager.Infrastructure.EventAggregator
 {
     public class RegisterEventListenersInterceptor : TypeInterceptor
     {
         public object Process(object target, IContext context)
         {
-             // Assuming that "target" is an implementation of IListener<T>,
+            // Assuming that "target" is an implementation of IListener<T>,
             var eventType = target.GetType().FindInterfaceThatCloses(typeof (IListener<>)).GetGenericArguments()[0];
             var type = typeof (Registration<>).MakeGenericType(eventType);
             var registration = (Registration) Activator.CreateInstance(type);

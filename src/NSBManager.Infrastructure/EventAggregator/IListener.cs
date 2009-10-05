@@ -1,4 +1,4 @@
-namespace NSBManager.UserInterface.Infrastructure
+namespace NSBManager.Infrastructure.EventAggregator
 {
     public interface IListener<T>
     {

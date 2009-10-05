@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using NSBManager.UserInterface.Infrastructure;
+using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.ViewModels;

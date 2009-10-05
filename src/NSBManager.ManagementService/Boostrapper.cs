@@ -1,4 +1,5 @@
 using System;
+using NSBManager.ManagementService.EndpointControl;
 using NServiceBus;
 using NServiceBus.Host;
 using NServiceBus.ObjectBuilder;

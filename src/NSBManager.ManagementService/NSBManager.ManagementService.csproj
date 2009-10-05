@@ -55,11 +55,19 @@
   <ItemGroup>
     <Compile Include="Boostrapper.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="EndpointStartupMessageHandler.cs" />
+    <Compile Include="EndpointControl\DomainEvents\EndpointStartedEvent.cs" />
+    <Compile Include="EndpointControl\IServiceBus.cs" />
+    <Compile Include="IDomainEvents.cs" />
+    <Compile Include="MessageHandling\EndpointStartupMessageHandler.cs" />
+    <Compile Include="MessageHandling\SendBusTopologyChangedToInterestedSubscribers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBus.cs" />
+    <Compile Include="EndpointControl\ServiceBus.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">
+      <Project>{7A3B9250-C9E9-4378-A8A0-816E642A7A01}</Project>
+      <Name>NSBManager.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSBManager.Instrumentation.Core\NSBManager.Instrumentation.Core.csproj">
       <Project>{D51E6AEB-DCB4-49D7-8B7B-E01962B127CE}</Project>
       <Name>NSBManager.Instrumentation.Core</Name>
@@ -75,6 +83,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Alarms\" />
+    <Folder Include="FailedMessages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

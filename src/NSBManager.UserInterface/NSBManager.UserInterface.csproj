@@ -88,13 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-	<Compile Include="IShellView.cs" />    <Compile Include="DemoModels\FakePhysicalModel.cs" />
+    <Compile Include="IShellView.cs" />
+    <Compile Include="DemoModels\FakePhysicalModel.cs" />
     <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
-    <Compile Include="Infrastructure\EventAggregator.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
-    <Compile Include="Infrastructure\IEventAggregator.cs" />
-    <Compile Include="Infrastructure\RegisterEventListenersInterceptor.cs" />
     <Compile Include="PhysicalModule\Model\IPhysicalModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
@@ -118,7 +116,6 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="PhysicalModule\Model\Endpoint.cs" />
     <Compile Include="PhysicalModule\ViewModels\EndpointListViewModel.cs" />
-    <Compile Include="Infrastructure\IListener.cs" />
     <Compile Include="ViewModels\ViewModelsExtension.cs" />
     <Compile Include="PhysicalModule\Views\EndpointListView.xaml.cs">
       <DependentUpon>EndpointListView.xaml</DependentUpon>
@@ -149,6 +146,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">
+      <Project>{7A3B9250-C9E9-4378-A8A0-816E642A7A01}</Project>
+      <Name>NSBManager.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSBManager.Instrumentation.Core\NSBManager.Instrumentation.Core.csproj">
       <Project>{D51E6AEB-DCB4-49D7-8B7B-E01962B127CE}</Project>
       <Name>NSBManager.Instrumentation.Core</Name>

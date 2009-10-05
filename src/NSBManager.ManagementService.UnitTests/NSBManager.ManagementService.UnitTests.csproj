@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NServiceBus\NServiceBus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.2.9222, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\tools\NUnit\nunit.framework.dll</HintPath>
@@ -51,11 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\ServiceBusTests.cs" />
+    <Compile Include="FailedMessages\When_a_endpoint_has_started.cs" />
     <Compile Include="IBusExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="When_a_endpointstartup_message_is_received.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">
+      <Project>{7A3B9250-C9E9-4378-A8A0-816E642A7A01}</Project>
+      <Name>NSBManager.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSBManager.Instrumentation.Core\NSBManager.Instrumentation.Core.csproj">
       <Project>{D51E6AEB-DCB4-49D7-8B7B-E01962B127CE}</Project>
       <Name>NSBManager.Instrumentation.Core</Name>

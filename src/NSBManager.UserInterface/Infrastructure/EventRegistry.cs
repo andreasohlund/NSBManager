@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Windows.Threading;
+using NSBManager.Infrastructure.EventAggregator;
 using StructureMap.Configuration.DSL;
 
 namespace NSBManager.UserInterface.Infrastructure
