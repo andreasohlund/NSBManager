@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
-using NSBManager.UserInterface.Views;
+using NSBManager.UserInterface.PhysicalModule.Views;
 using StructureMap;
 
 namespace NSBManager.UserInterface.PhysicalModule
@@ -17,7 +17,7 @@ namespace NSBManager.UserInterface.PhysicalModule
         public void Initialize()
         {
             IRegion mainRegion = regionManager.Regions["MainRegion"];
-            mainRegion.Add(ObjectFactory.GetInstance<EndpointListView>());
+            mainRegion.Add(ObjectFactory.GetInstance<ServerView>());
         }
     }
 }

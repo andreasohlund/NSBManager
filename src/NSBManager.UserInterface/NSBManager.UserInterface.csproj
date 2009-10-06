@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{984334C2-2423-4F2E-BE64-1E9806885552}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -104,12 +104,22 @@
     <Compile Include="IShellView.cs" />
     <Compile Include="DemoModels\FakePhysicalModel.cs" />
     <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
+    <Compile Include="PhysicalModule\Events\ServerChangedEvent.cs" />
     <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
     <Compile Include="PhysicalModule\Model\IPhysicalModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
     <Compile Include="PhysicalModule\PhysicalModule.cs" />
+    <Compile Include="PhysicalModule\Model\Server.cs" />
+    <Compile Include="PhysicalModule\ViewModels\ServerDetailsViewModel.cs" />
+    <Compile Include="PhysicalModule\ViewModels\ServerViewModel.cs" />
+    <Compile Include="PhysicalModule\Views\ServerDetailsView.xaml.cs">
+      <DependentUpon>ServerDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhysicalModule\Views\ServerView.xaml.cs">
+      <DependentUpon>ServerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -151,6 +161,14 @@
     <Page Include="NSBMResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PhysicalModule\Views\ServerDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhysicalModule\Views\ServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Shell.xaml">
       <SubType>Designer</SubType>

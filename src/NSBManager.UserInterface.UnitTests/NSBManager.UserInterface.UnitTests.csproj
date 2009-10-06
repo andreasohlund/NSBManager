@@ -65,12 +65,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EndpointListViewModelTests.cs" />
+    <Compile Include="ViewModels\EndpointListViewModelTests.cs" />
     <Compile Include="EndpointTests.cs" />
     <Compile Include="EventAggregatorTests.cs" />
     <Compile Include="Models\PhysicalModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewFactoryTests.cs" />
+    <Compile Include="ViewModels\ServerDetailsViewModelTests.cs" />
+    <Compile Include="ViewModels\ServerViewModelTests.cs" />
     <Compile Include="When_a_ViewModel_property_is_changed.cs" />
     <Compile Include="When_the_bus_topology_changes.cs" />
   </ItemGroup>

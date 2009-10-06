@@ -11,7 +11,7 @@ using NSBManager.UserInterface.DemoModels;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.PhysicalModule.ViewModels;
-using NSBManager.UserInterface.Views;
+using NSBManager.UserInterface.PhysicalModule.Views;
 using StructureMap;
 
 namespace NSBManager.UserInterface
@@ -67,6 +67,11 @@ namespace NSBManager.UserInterface
                                             x.ForConcreteType<PhysicalModule.PhysicalModule>();
                                             x.ForConcreteType<EndpointListViewModel>();
                                             x.ForConcreteType<EndpointListView>();
+                                            x.ForConcreteType<ServerViewModel>();
+                                            x.ForConcreteType<ServerView>();
+                                            x.ForConcreteType<ServerDetailsViewModel>();
+                                            x.ForConcreteType<ServerDetailsView>();
+
 
                                             // For Prism
                                             x.AddRegistry(new PrismRegistry());

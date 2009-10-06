@@ -11,12 +11,21 @@ namespace NSBManager.UserInterface.DemoModels
         public FakePhysicalModel()
         {
             endpoints = new List<Endpoint>();
-            for (int i = 0; i < 20; i++)
+            GenerateServersWithEndpoints(7, 3);
+        }
+
+        private void GenerateServersWithEndpoints(int nrOfServers, int nrOfEndpoints)
+        {
+            for (int s = 1; s < nrOfServers + 1; s++)
             {
-                endpoints.Add(new Endpoint
-                                  {
-                                      Name = string.Format("endpoint{0}@server{1}", i, i)
-                                  });
+                for (int e = 1; e < nrOfEndpoints + 1; e++)
+                {
+                    endpoints.Add(new Endpoint
+                                      {
+                                          Name = string.Format("endpoint{0}", e),
+                                          ServerName = string.Format("server{0}", s)
+                                      });
+                }
             }
         }
 

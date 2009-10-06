@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Microsoft.Practices.Composite.Presentation.Regions;assembly=Microsoft.Practices.Composite.Presentation" x:Class="NSBManager.UserInterface.Shell"
     Title="Shell" Height="497" Width="977" mc:Ignorable="d" Background="#FF212121">
-    <Grid VerticalAlignment="Top" Height="459.2">
+    <Grid VerticalAlignment="Stretch" >
     	<Grid.Background>
     		<RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="1.55" RadiusY="0.62">
     			<RadialGradientBrush.RelativeTransform>
@@ -26,12 +26,12 @@
 
     		</RadialGradientBrush>
     	</Grid.Background>
-    	<TextBlock x:Name="BackgroundLogoText" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" FontSize="29.333" Text="NSBManager" TextWrapping="Wrap" Foreground="Black" d:LayoutOverrides="VerticalAlignment">
+    	<TextBlock x:Name="BackgroundLogoText" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" FontSize="29.333" Text="NSBManager" TextWrapping="NoWrap" Foreground="Black" d:LayoutOverrides="VerticalAlignment">
     		<TextBlock.Effect>
     			<BlurEffect Radius="11"/>
     		</TextBlock.Effect>
     	</TextBlock>
-    	<TextBlock x:Name="LogoTextReflection" HorizontalAlignment="Left" Margin="8,35.2,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" FontSize="29.333" Text="NSBManager" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="VerticalAlignment" Opacity="0.3">
+    	<TextBlock x:Name="LogoTextReflection" HorizontalAlignment="Left" Margin="8,35.2,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" FontSize="29.333" Text="NSBManager" TextWrapping="NoWrap" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="VerticalAlignment" Opacity="0.3">
     		<TextBlock.Effect>
     			<BlurEffect Radius="2"/>
     		</TextBlock.Effect>
@@ -53,19 +53,21 @@
     		</TextBlock.RenderTransform>
     	</TextBlock>
     	<Rectangle Fill="{DynamicResource LogoText Foreground Gradient}" HorizontalAlignment="Left" Margin="10.832,39.184,0,0" VerticalAlignment="Top" Width="123.48" Height="1.089"/>
-    	<TextBlock x:Name="ForegroundLogoText" Foreground="{DynamicResource LogoText Foreground Gradient}" HorizontalAlignment="Left" Margin="8,7.073,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" FontSize="29.333" Text="NSBManager" TextWrapping="Wrap" d:LayoutOverrides="VerticalAlignment">
+    	<TextBlock x:Name="ForegroundLogoText" Foreground="{DynamicResource LogoText Foreground Gradient}" HorizontalAlignment="Left" Margin="8,7.073,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" FontSize="29.333" Text="NSBManager" TextWrapping="NoWrap" d:LayoutOverrides="VerticalAlignment">
     		<TextBlock.Effect>
     			<DropShadowEffect BlurRadius="0" ShadowDepth="1"/>
     		</TextBlock.Effect>
     	</TextBlock>
         
-        <Border Margin="10,81,10,10" CornerRadius="4,4,4,4" BorderBrush="DimGray" Background="Transparent" BorderThickness="1,1,1,1">
-            <StackPanel Width="Auto" Height="Auto" Margin="10,10,10,10">
-                <ItemsControl Name="MainRegion" cal:RegionManager.RegionName="MainRegion"/>        
-            </StackPanel>
+        <Border Margin="10,81,10,10" CornerRadius="4,4,4,4" BorderBrush="DimGray" Background="Transparent" BorderThickness="1,1,1,1" VerticalAlignment="Stretch">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
             </Border.Effect>
+
+            <StackPanel Width="Auto" Height="Auto" Margin="10,10,10,10" HorizontalAlignment="Left">
+                <ItemsControl Name="MainRegion" cal:RegionManager.RegionName="MainRegion"/>
+            </StackPanel>
+            
         </Border>
         
     </Grid>

@@ -1,6 +1,6 @@
 ﻿using NSBManager.UserInterface.PhysicalModule.ViewModels;
 
-namespace NSBManager.UserInterface.Views
+namespace NSBManager.UserInterface.PhysicalModule.Views
 {
     /// <summary>
     /// Interaction logic for EndpointListView.xaml
