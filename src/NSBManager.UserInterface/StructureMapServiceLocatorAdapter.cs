@@ -7,16 +7,21 @@ namespace NSBManager.UserInterface
 {
     public class StructureMapServiceLocatorAdapter : ServiceLocatorImplBase
     {
-        private readonly Container container;
+        private readonly IContainer container;
 
-        public StructureMapServiceLocatorAdapter(Container container)
+        public StructureMapServiceLocatorAdapter()
         {
-            this.container = container;
+            this.container = ObjectFactory.GetInstance<IContainer>();
         }
 
         protected override object DoGetInstance(Type serviceType, string key)
         {
-            return container.TryGetInstance(serviceType, key);
+            if(key == null)
+            {
+                return container.GetInstance(serviceType);
+            }
+            
+            return container.GetInstance(serviceType, key);
         }
 
         protected override IEnumerable<object> DoGetAllInstances(Type serviceType)

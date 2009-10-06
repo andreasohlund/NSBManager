@@ -1,13 +1,5 @@
-﻿using System;
-using NSBManager.UserInterface.PhysicalModule.ViewModels;
-using NSBManager.UserInterface.Views;
-using StructureMap;
-
-namespace NSBManager.UserInterface
+﻿namespace NSBManager.UserInterface
 {
-    /// <summary>
-    /// Interaction logic for Shell.xaml
-    /// </summary>
     public partial class Shell : IShellView
     {
         public Shell()

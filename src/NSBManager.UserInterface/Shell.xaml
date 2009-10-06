@@ -61,7 +61,7 @@
         
         <Border Margin="10,81,10,10" CornerRadius="4,4,4,4" BorderBrush="DimGray" Background="Transparent" BorderThickness="1,1,1,1">
             <StackPanel Width="Auto" Height="Auto" Margin="10,10,10,10">
-                <ItemsControl Name="MainRegion" cal:RegionManager.RegionName="MainRegion"/>
+                <ItemsControl Name="MainRegion" cal:RegionManager.RegionName="MainRegion"/>        
             </StackPanel>
             <Border.Effect>
                 <DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
