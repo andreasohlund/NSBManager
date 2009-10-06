@@ -11,7 +11,7 @@ namespace NSBManager.UserInterface
 
         public StructureMapServiceLocatorAdapter()
         {
-            this.container = ObjectFactory.GetInstance<IContainer>();
+            container = ObjectFactory.GetInstance<IContainer>();
         }
 
         protected override object DoGetInstance(Type serviceType, string key)

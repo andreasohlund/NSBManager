@@ -2,13 +2,11 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using Microsoft.Practices.Composite.Logging;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Presentation.Regions;
 using Microsoft.Practices.Composite.Presentation.Regions.Behaviors;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.ServiceLocation;
-using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.DemoModels;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Model;
