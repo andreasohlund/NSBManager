@@ -23,7 +23,8 @@ namespace NSBManager.UserInterface.DemoModels
                 {
                     endpoints.Add(new Endpoint
                                       {
-                                          Id = string.Format("endpoint{0}", e)
+                                          Id = string.Format("endpoint{0}@server{1}", e,s),
+                                          ServerName = string.Format("server{0}", s)
                                       });
                 }
             }
