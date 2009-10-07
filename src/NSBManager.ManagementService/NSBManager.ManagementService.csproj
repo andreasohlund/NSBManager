@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NServiceBus\containers\structuremap\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\lib\NServiceBus\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
