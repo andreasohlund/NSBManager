@@ -1,8 +1,5 @@
-using System;
-using NSBManager.ManagementService.EndpointControl;
-using NServiceBus;
 using NServiceBus.Host;
-using NServiceBus.ObjectBuilder;
+using StructureMap;
 
 namespace NSBManager.ManagementService
 {
@@ -10,7 +7,7 @@ namespace NSBManager.ManagementService
     {
         public void Init()
         {
-            Configure.Instance.Configurer.ConfigureComponent<ServiceBus>(ComponentCallModelEnum.Singleton);
+            ObjectFactory.Configure(x=> x.AddRegistry(new ManagementServiceRegistry()));
         }
     }
 }

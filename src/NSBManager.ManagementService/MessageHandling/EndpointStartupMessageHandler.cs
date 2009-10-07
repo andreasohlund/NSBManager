@@ -7,18 +7,19 @@ namespace NSBManager.ManagementService.MessageHandling
 {
     public class EndpointStartupMessageHandler:IHandleMessages<EndpointStartupMessage>
     {
-        private readonly IServiceBus serviceBus;
+        private readonly IBusTopology busTopology;
+     
 
-        public EndpointStartupMessageHandler(IServiceBus serviceBus)
+        public EndpointStartupMessageHandler(IBusTopology busTopology)
         {
-            this.serviceBus = serviceBus;
+            this.busTopology = busTopology;
         }
 
         public void Handle(EndpointStartupMessage message)
         {
             var endpoint = new Endpoint {Id = message.EndpointId};
             
-            serviceBus.RegisterEndpoint(endpoint);
+            busTopology.RegisterEndpoint(endpoint);
 
         }
     }

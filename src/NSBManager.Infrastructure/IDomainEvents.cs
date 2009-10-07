@@ -1,6 +1,6 @@
 using NSBManager.Infrastructure.EventAggregator;
 
-namespace NSBManager.ManagementService
+namespace NSBManager.Infrastructure
 {
     public interface IDomainEvents: IEventAggregator
     {

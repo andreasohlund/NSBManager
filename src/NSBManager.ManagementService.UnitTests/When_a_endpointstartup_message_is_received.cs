@@ -12,15 +12,15 @@ namespace NSBManager.ManagementService.UnitTests
     public class When_a_endpointstartup_message_is_received
     {
         private string endpointId;
-        private IServiceBus serviceBus;
+        private IBusTopology busTopology;
 
 
         [SetUp]
         public void SetUp()
         {
-            serviceBus = MockRepository.GenerateStub<IServiceBus>();
+            busTopology = MockRepository.GenerateStub<IBusTopology>();
 
-            IHandleMessages<EndpointStartupMessage> messageHandler = new EndpointStartupMessageHandler(serviceBus);
+            IHandleMessages<EndpointStartupMessage> messageHandler = new EndpointStartupMessageHandler(busTopology);
 
             endpointId = "test@localhost";
 
@@ -38,20 +38,10 @@ namespace NSBManager.ManagementService.UnitTests
         [Test]
         public void The_servicebus_should_be_notified()
         {
-            serviceBus.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(e => e.Id == endpointId)));
+            busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(e => e.Id == endpointId)));
         }
 
-        //[Test]
-        //public void A_busTopologyChangedEvent_event_should_be_published()
-        //{
-        //    bus.AssertWasPublished<BusTopologyChangedEvent>(p => p.GetType() == typeof(BusTopologyChangedEvent));
-        //}
-
-        //[Test]
-        //public void The_event_should_contain_a_list_of_endpoints()
-        //{
-        //    bus.AssertWasPublished<BusTopologyChangedEvent>(p => p.Endpoints.Select(e=>e.Id == endpointId).Count()==1);
-        //}
+       
 
 
 

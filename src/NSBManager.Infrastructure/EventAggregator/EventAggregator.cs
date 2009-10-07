@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace NSBManager.Infrastructure.EventAggregator
 {
-    public class EventAggregator : IEventAggregator
+    public class EventAggregator : IDomainEvents
     {
         private readonly SynchronizationContext context;
         private readonly IList<object> listeners;
@@ -31,15 +31,19 @@ namespace NSBManager.Infrastructure.EventAggregator
             }
         }
 
-        public void Publish<T>() where T:new()
+        public void Publish<T>() where T : new()
         {
             Publish(new T());
         }
 
         public void RegisterListener<T>(IListener<T> listener)
         {
-            lock(locker)
-                listeners.Add(listener);
+            lock (locker)
+            {
+                if (!listeners.Contains(listener))
+                    listeners.Add(listener);
+            }
+
         }
 
     }

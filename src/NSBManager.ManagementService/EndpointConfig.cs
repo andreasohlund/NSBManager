@@ -10,7 +10,7 @@ namespace NSBManager.ManagementService
     {
         public void Init()
         {
-            Configure.With().SpringBuilder().BinarySerializer();
+            Configure.With().StructureMapBuilder().BinarySerializer();
         }
     }
 

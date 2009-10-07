@@ -1,16 +1,18 @@
 using System.Collections.Generic;
+using NSBManager.Infrastructure;
+using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.Messages;
 using System.Linq;
 
 namespace NSBManager.ManagementService.EndpointControl
 {
-    public class ServiceBus : IServiceBus
+    public class BusTopology : IBusTopology
     {
         private readonly IDomainEvents domainEvents;
 
         private readonly IList<Endpoint> endpoints = new List<Endpoint>();
 
-        public ServiceBus(IDomainEvents domainEvents)
+        public BusTopology(IDomainEvents domainEvents)
         {
             this.domainEvents = domainEvents;
         }
@@ -21,19 +23,16 @@ namespace NSBManager.ManagementService.EndpointControl
             {
                 endpoints.Add(endpoint);
 
-               
-               //domainEvents.Publish(new EndpointStartedEvent)
+
+                domainEvents.Publish(new EndpointStartedEvent());
             }
                 
 
         }
 
-        public IEnumerable<Endpoint> Endpoints
+        public IEnumerable<Endpoint> GetCurrentEndpoints()
         {
-            get 
-            {
-                return endpoints;
-            }
+            return endpoints;
         }
     }
 }

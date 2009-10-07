@@ -20,8 +20,8 @@ namespace NSBManager.UserInterface.PhysicalModule.MessageHandlers
         {
             physicalModel.UpdateModel(message.Endpoints.Select(x => new Endpoint
                                                                         {
-                                                                            //todo: add endpoint name here
-                                                                            Name = x.Id
+                                                                            Name = x.Id,
+                                                                            ServerName = x.Id
                                                                         }));
 
         }

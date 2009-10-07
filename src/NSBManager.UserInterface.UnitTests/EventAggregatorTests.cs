@@ -1,3 +1,4 @@
+using System;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.Infrastructure;
 using NUnit.Framework;
@@ -26,16 +27,27 @@ namespace NSBManager.UserInterface.UnitTests
             aggregator.Publish(new TestEvent());
 
             Assert.True(listener.WasCalled);
+            Assert.False(listener.Event2WasCalled);
         }
     }
 
-    public class TestListener : IListener<TestEvent>
+    public class TestListener : IListener<TestEvent>, IListener<TestEvent2>
     {
         public bool WasCalled { get; set; }
+        public bool Event2WasCalled { get; set; }
         public void Handle(TestEvent message)
         {
             WasCalled = true;
         }
+
+        public void Handle(TestEvent2 message)
+        {
+            Event2WasCalled = true;
+        }
+    }
+
+    public class TestEvent2
+    {
     }
 
     public class TestEvent
