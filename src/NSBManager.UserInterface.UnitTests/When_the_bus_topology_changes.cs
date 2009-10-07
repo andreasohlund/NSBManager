@@ -5,7 +5,6 @@ using NSBManager.UserInterface.PhysicalModule.Model;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
-using Endpoint=NSBManager.ManagementService.Messages.Endpoint;
 using System.Linq;
 
 namespace NSBManager.UserInterface.UnitTests
@@ -28,7 +27,7 @@ namespace NSBManager.UserInterface.UnitTests
             messageHandler.Handle(eventMessage);
 
 
-            physicalModel.AssertWasCalled(x => x.UpdateModel(Arg<IEnumerable<PhysicalModule.Model.Endpoint>>.Matches(a => a.Count() == 1)));
+            physicalModel.AssertWasCalled(x => x.UpdateModel(Arg<IEnumerable<Endpoint>>.Matches(a => a.Count() == 1)));
         }
     }
 } 

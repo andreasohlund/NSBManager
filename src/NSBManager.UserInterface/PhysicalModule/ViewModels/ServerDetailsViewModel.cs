@@ -1,11 +1,9 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.ViewModels;
-using IEventAggregator=Microsoft.Practices.Composite.Events.IEventAggregator;
 
 namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 {
@@ -29,7 +27,9 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
         {
             var endpointsOnServer = new ObservableCollection<Endpoint>();
 
-            var endpoints = physicalModel.Endpoints.Where(x => x.ServerName == Filter);
+            var endpoints = physicalModel.Endpoints
+                .Where(x => x.ServerName == Filter) 
+                .Select(y => new Endpoint {Name = y.Id, ServerName = y.ServerName});
 
             foreach (var endpoint in endpoints)
             {

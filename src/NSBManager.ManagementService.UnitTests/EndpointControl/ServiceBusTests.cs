@@ -7,7 +7,7 @@ using NSBManager.ManagementService.Messages;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace NSBManager.ManagementService.UnitTests.Domain
+namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
     [TestFixture]
     public class ServiceBusTests
@@ -27,7 +27,7 @@ namespace NSBManager.ManagementService.UnitTests.Domain
         [Test]
         public void RegisterEndpoint_adds_endpoints()
         {
-            busTopology.RegisterEndpoint(new Endpoint{Id = "1@localhost"});
+            busTopology.RegisterEndpoint(new Endpoint{Id = "1@localhost",ServerName = "localhost"});
 
             domainEvents.AssertWasCalled(x => x.Publish(Arg<EndpointStartedEvent>.Is.Anything));
 

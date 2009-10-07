@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using NSBManager.Infrastructure.EventAggregator;
+using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.PhysicalModule.Events;
 
 namespace NSBManager.UserInterface.PhysicalModule.Model
@@ -20,6 +22,7 @@ namespace NSBManager.UserInterface.PhysicalModule.Model
         {
             get { return endpoints; }
         }
+
 
         public void UpdateModel(IEnumerable<Endpoint> currentEndpoints)
         {

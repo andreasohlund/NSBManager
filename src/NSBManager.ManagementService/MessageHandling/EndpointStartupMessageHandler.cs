@@ -17,7 +17,11 @@ namespace NSBManager.ManagementService.MessageHandling
 
         public void Handle(EndpointStartupMessage message)
         {
-            var endpoint = new Endpoint {Id = message.EndpointId};
+            var endpoint = new Endpoint
+                               {
+                                   Id = message.EndpointId,
+                                   ServerName = message.Server
+                               };
             
             busTopology.RegisterEndpoint(endpoint);
 

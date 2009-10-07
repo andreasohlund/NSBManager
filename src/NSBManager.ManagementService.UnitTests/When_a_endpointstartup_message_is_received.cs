@@ -14,6 +14,7 @@ namespace NSBManager.ManagementService.UnitTests
         private string endpointId;
         private IBusTopology busTopology;
 
+        private string serverName = "server";
 
         [SetUp]
         public void SetUp()
@@ -27,7 +28,8 @@ namespace NSBManager.ManagementService.UnitTests
 
             var endpointStartupMessage = new EndpointStartupMessage
             {
-                EndpointId = endpointId
+                EndpointId = endpointId,
+                Server = serverName
             };
 
 
@@ -38,7 +40,9 @@ namespace NSBManager.ManagementService.UnitTests
         [Test]
         public void The_servicebus_should_be_notified()
         {
-            busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(e => e.Id == endpointId)));
+            busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(
+                e => e.Id == endpointId &&
+                e.ServerName == serverName)));
         }
 
        

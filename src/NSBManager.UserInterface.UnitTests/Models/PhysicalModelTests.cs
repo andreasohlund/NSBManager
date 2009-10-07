@@ -1,4 +1,5 @@
 using NSBManager.Infrastructure.EventAggregator;
+using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NUnit.Framework;

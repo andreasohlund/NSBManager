@@ -17,16 +17,13 @@ namespace NSBManager.UserInterface.UnitTests.ViewModels
         {
             var physicalModel = MockRepository.GenerateStub<IPhysicalModel>();
 
-            var endpoints = new List<Endpoint>
+            var endpoints = new List<NSBManager.ManagementService.Messages.Endpoint>
                                 {
-                                    new Endpoint {Name = "endpoint1", ServerName = "server1"},
-                                    new Endpoint {Name = "endpoint2", ServerName = "server1"},
-                                    new Endpoint {Name = "endpoint1", ServerName = "server2"},
-                                    new Endpoint {Name = "endpoint1", ServerName = "server3"},
-                                    new Endpoint {Name = "endpoint2", ServerName = "server3"},
-                                    new Endpoint {Name = "endpoint1", ServerName = "server4"}
+                                    new ManagementService.Messages.Endpoint {Id = "endpoint1",ServerName ="server1"},
+                                    new ManagementService.Messages.Endpoint {Id = "endpoint2",ServerName ="server1"},
+                                    new ManagementService.Messages.Endpoint {Id = "endpoint3",ServerName ="server2"},
+                                    
                                 };
-
             physicalModel.Stub(x => x.Endpoints).Return(endpoints);
             serverViewModel = new ServerViewModel(physicalModel);
         }

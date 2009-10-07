@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.PhysicalModule.Model;
 
 namespace NSBManager.UserInterface.DemoModels
@@ -22,8 +23,7 @@ namespace NSBManager.UserInterface.DemoModels
                 {
                     endpoints.Add(new Endpoint
                                       {
-                                          Name = string.Format("endpoint{0}", e),
-                                          ServerName = string.Format("server{0}", s)
+                                          Id = string.Format("endpoint{0}", e)
                                       });
                 }
             }

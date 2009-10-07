@@ -1,9 +1,6 @@
-using System.Linq;
 using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NServiceBus;
-
-using Endpoint=NSBManager.UserInterface.PhysicalModule.Model.Endpoint;
 
 namespace NSBManager.UserInterface.PhysicalModule.MessageHandlers
 {
@@ -18,11 +15,7 @@ namespace NSBManager.UserInterface.PhysicalModule.MessageHandlers
 
         public void Handle(BusTopologyChangedEvent message)
         {
-            physicalModel.UpdateModel(message.Endpoints.Select(x => new Endpoint
-                                                                        {
-                                                                            Name = x.Id,
-                                                                            ServerName = x.Id
-                                                                        }));
+            physicalModel.UpdateModel(message.Endpoints);
 
         }
     }

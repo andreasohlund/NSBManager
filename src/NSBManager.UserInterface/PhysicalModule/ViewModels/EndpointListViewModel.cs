@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
@@ -16,7 +17,8 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
         {
             get
             {
-                return new ObservableCollection<Endpoint>( physicalModel.Endpoints);
+                return new ObservableCollection<Endpoint>( physicalModel.Endpoints
+                    .Select(x => new Endpoint{Name = x.Id,ServerName = x.Id}));
             }
         }
 

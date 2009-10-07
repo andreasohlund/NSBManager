@@ -1,5 +1,5 @@
 using Microsoft.Practices.Composite.Presentation.Events;
-using NSBManager.UserInterface.PhysicalModule.Model;
+using NSBManager.UserInterface.PhysicalModule.ViewModels;
 
 namespace NSBManager.UserInterface.PhysicalModule.Events
 {

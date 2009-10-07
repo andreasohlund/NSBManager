@@ -111,7 +111,7 @@
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
     <Compile Include="PhysicalModule\PhysicalModule.cs" />
-    <Compile Include="PhysicalModule\Model\Server.cs" />
+    <Compile Include="PhysicalModule\ViewModels\Server.cs" />
     <Compile Include="PhysicalModule\ViewModels\ServerDetailsViewModel.cs" />
     <Compile Include="PhysicalModule\ViewModels\ServerViewModel.cs" />
     <Compile Include="PhysicalModule\Views\ServerDetailsView.xaml.cs">
@@ -140,7 +140,7 @@
     <Compile Include="StructureMapBootstrapper.cs" />
     <Compile Include="StructureMapServiceLocatorAdapter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="PhysicalModule\Model\Endpoint.cs" />
+    <Compile Include="PhysicalModule\ViewModels\Endpoint.cs" />
     <Compile Include="PhysicalModule\ViewModels\EndpointListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelsExtension.cs" />
     <Compile Include="PhysicalModule\Views\EndpointListView.xaml.cs">

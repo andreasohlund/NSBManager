@@ -11,32 +11,37 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
     {
         private readonly IPhysicalModel physicalModel;
 
+        private readonly ObservableCollection<Server> servers = new ObservableCollection<Server>();
+
         public ObservableCollection<Server> Servers
         {
-            get { return GetServersFromPhysicalView(); }
+            get { return servers; }
         }
 
         public ServerViewModel(IPhysicalModel physicalModel)
         {
             this.physicalModel = physicalModel;
+
+            RefreshServersFromPhysicalView();
         }
 
-        private ObservableCollection<Server> GetServersFromPhysicalView()
+        private void RefreshServersFromPhysicalView()
         {
-            var listOfServers = new ObservableCollection<Server>();
 
-            var servers = physicalModel.Endpoints.GroupBy(x => x.ServerName);
+            var groupedServers = physicalModel.Endpoints.GroupBy(x => x.ServerName);
 
-            foreach (var keys in servers)
+
+            servers.Clear();
+            foreach (var keys in groupedServers)
             {
-                listOfServers.Add(new Server{Name = keys.Key});
+                servers.Add(new Server { Name = keys.Key });
             }
-            return listOfServers;
+
         }
 
         public void Handle(PhysicalModelChanged message)
         {
-            
+            RefreshServersFromPhysicalView();
         }
     }
 }

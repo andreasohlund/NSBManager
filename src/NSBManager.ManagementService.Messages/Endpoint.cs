@@ -6,5 +6,6 @@ namespace NSBManager.ManagementService.Messages
     public class Endpoint
     {
         public string Id { get; set; }
+        public string ServerName { get; set; }
     }
 }

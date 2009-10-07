@@ -18,6 +18,7 @@ namespace NSBManager.ManagementService.UnitTests
     {
         private IBus bus;
         private string endpointId = "test@testserver";
+
         private IBusTopology busTopology;
 
         [SetUp]
@@ -26,7 +27,10 @@ namespace NSBManager.ManagementService.UnitTests
             bus = MockRepository.GenerateStub<IBus>();
             busTopology = MockRepository.GenerateStub<IBusTopology>();
 
-            busTopology.Stub(x => x.GetCurrentEndpoints()).Return(new List<Endpoint> {new Endpoint {Id = endpointId}});
+            busTopology.Stub(x => x.GetCurrentEndpoints()).Return(new List<Endpoint> {new Endpoint
+                                                                                          {
+                                                                                              Id = endpointId,
+                                                                                          }});
             
             IListener<EndpointStartedEvent> messagePublisher =
                 new BusTopologyChangedMonitor(bus,busTopology);

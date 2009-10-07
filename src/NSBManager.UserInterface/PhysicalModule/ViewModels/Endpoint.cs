@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 
-namespace NSBManager.UserInterface.PhysicalModule.Model
+namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 {
     public class Endpoint : DependencyObject
     {
@@ -33,8 +33,8 @@ namespace NSBManager.UserInterface.PhysicalModule.Model
         }
 
         public static readonly DependencyProperty ServerNameProperty = DependencyProperty.Register("ServerName", typeof(string),
-                                                                                             typeof(Endpoint),
-                                                                                             new UIPropertyMetadata("ServerName"));
+                                                                                                   typeof(Endpoint),
+                                                                                                   new UIPropertyMetadata("ServerName"));
 
         //public string ServerName { get; set; }
     }

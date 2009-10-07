@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace NSBManager.UserInterface.PhysicalModule.Model
+namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 {
     public class Server : DependencyObject
     {

@@ -1,6 +1,6 @@
-using System;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
+using NSBManager.ManagementService.FailedMessages;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -22,30 +22,5 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
 
             monitor.AssertWasCalled(x => x.StartMonitoring(eventMessage.AdressOfFailedMessagesStore));
         }
-    }
-
-    public class FailedMessagesService : IListener<EndpointStartedEvent>
-    {
-        private readonly IFailedMessagesMonitor monitor;
-
-        public FailedMessagesService(IFailedMessagesMonitor monitor)
-        {
-            this.monitor = monitor;
-        }
-
-        public void Handle(EndpointStartedEvent message)
-        {
-            MonitorFailedMessagesStore(message.AdressOfFailedMessagesStore);
-        }
-
-        private void MonitorFailedMessagesStore(string adressOfFailedMessagesStore)
-        {
-            monitor.StartMonitoring(adressOfFailedMessagesStore);
-        }
-    }
-
-    public interface IFailedMessagesMonitor
-    {
-        void StartMonitoring(string adress);
     }
 } 
