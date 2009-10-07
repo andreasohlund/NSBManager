@@ -1,3 +1,4 @@
+using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.FailedMessages;
@@ -13,8 +14,9 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
         public void Its_failed_messages_store_should_be_monitored()
         {
             var monitor = MockRepository.GenerateStub<IFailedMessagesMonitor>();
+            var domainEvents = MockRepository.GenerateStub<IDomainEvents>();
 
-            IListener<EndpointStartedEvent> service = new FailedMessagesService(monitor);
+            IListener<EndpointStartedEvent> service = new FailedMessagesService(monitor, domainEvents);
 
             var eventMessage = new EndpointStartedEvent {AdressOfFailedMessagesStore = "error@someserver"};
 

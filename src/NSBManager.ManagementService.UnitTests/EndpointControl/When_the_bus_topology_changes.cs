@@ -11,7 +11,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 
-namespace NSBManager.ManagementService.UnitTests
+namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
     [TestFixture]
     public class When_the_bus_topology_changes

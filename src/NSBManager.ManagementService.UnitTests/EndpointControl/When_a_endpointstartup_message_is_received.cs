@@ -6,7 +6,7 @@ using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace NSBManager.ManagementService.UnitTests
+namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
     [TestFixture]
     public class When_a_endpointstartup_message_is_received
@@ -27,10 +27,10 @@ namespace NSBManager.ManagementService.UnitTests
 
 
             var endpointStartupMessage = new EndpointStartupMessage
-            {
-                EndpointId = endpointId,
-                Server = serverName
-            };
+                                             {
+                                                 EndpointId = endpointId,
+                                                 Server = serverName
+                                             };
 
 
             messageHandler.Handle(endpointStartupMessage);
@@ -41,8 +41,8 @@ namespace NSBManager.ManagementService.UnitTests
         public void The_servicebus_should_be_notified()
         {
             busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(
-                e => e.Id == endpointId &&
-                e.ServerName == serverName)));
+                                                                    e => e.Id == endpointId &&
+                                                                         e.ServerName == serverName)));
         }
 
        
