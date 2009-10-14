@@ -18,5 +18,12 @@ namespace NSBManager.TestHelpers
             bus.AssertWasCalled(x => x.Send(Arg<IMessage[]>
                                                    .Matches(p => exp.Compile().Invoke((T)p[0]))));
         }
+
+
+        public static void AssertReply<T>(this IBus bus, Expression<Predicate<T>> exp) where T : IMessage
+        {
+            bus.AssertWasCalled(x => x.Reply(Arg<IMessage[]>
+                                                   .Matches(p => exp.Compile().Invoke((T)p[0]))));
+        }
     }
 }

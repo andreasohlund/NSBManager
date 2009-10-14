@@ -68,10 +68,13 @@
     <Compile Include="FailedMessages\FailedMessage.cs" />
     <Compile Include="FailedMessages\DomainEvents\FailedMessageDetectedEvent.cs" />
     <Compile Include="FailedMessages\FailedMessagesService.cs" />
-    <Compile Include="FailedMessages\IFailedMessagesMonitor.cs" />
+    <Compile Include="FailedMessages\IFailedMessagesSource.cs" />
+    <Compile Include="FailedMessages\IFailedMessagesService.cs" />
+    <Compile Include="FailedMessages\IFailedMessagesSourceFactory.cs" />
     <Compile Include="ManagementServiceRegistry.cs" />
     <Compile Include="MessageHandling\EndpointStartupMessageHandler.cs" />
     <Compile Include="MessageHandling\BusTopologyChangedMonitor.cs" />
+    <Compile Include="MessageHandling\GetAllFailedMessagesRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EndpointControl\BusTopology.cs" />
   </ItemGroup>

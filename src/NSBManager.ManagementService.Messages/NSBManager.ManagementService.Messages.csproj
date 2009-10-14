@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BusTopologyChangedEvent.cs" />
     <Compile Include="Endpoint.cs" />
+    <Compile Include="GetAllFailedMessagesReply.cs" />
+    <Compile Include="GetAllFailedMessagesRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

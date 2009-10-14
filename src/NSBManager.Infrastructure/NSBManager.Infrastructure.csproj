@@ -52,6 +52,7 @@
     <Compile Include="EventAggregator\EventAggregator.cs" />
     <Compile Include="EventAggregator\IEventAggregator.cs" />
     <Compile Include="EventAggregator\IListener.cs" />
+    <Compile Include="EventAggregator\IOneShootListener.cs" />
     <Compile Include="IDomainEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EventAggregator\RegisterEventListenersInterceptor.cs" />

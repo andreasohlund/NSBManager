@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
@@ -5,37 +8,73 @@ using NSBManager.ManagementService.FailedMessages.DomainEvents;
 
 namespace NSBManager.ManagementService.FailedMessages
 {
-    public class FailedMessagesService : IListener<EndpointStartedEvent>
+    public class FailedMessagesService : IFailedMessagesService,
+                                            IListener<EndpointStartedEvent>
     {
-        private readonly IFailedMessagesMonitor monitor;
+        private readonly IFailedMessagesSourceFactory failedMessagesSourceFactory;
         private readonly IDomainEvents domainEvents;
+        private readonly IList<FailedMessage> failedMessages = new List<FailedMessage>();
+        private readonly IDictionary<string, IFailedMessagesSource> sources;
 
-        public FailedMessagesService(IFailedMessagesMonitor monitor, 
+        public FailedMessagesService(IFailedMessagesSourceFactory failedMessagesSourceFactory,
                                      IDomainEvents domainEvents)
         {
-            this.monitor = monitor;
+            this.failedMessagesSourceFactory = failedMessagesSourceFactory;
             this.domainEvents = domainEvents;
 
-            monitor.OnMessageFailed += HandleOnMessageFailed;
+            sources = new Dictionary<string, IFailedMessagesSource>();
+        }
+
+        public IEnumerable<FailedMessage> FailedMessages
+        {
+            get
+            {
+                return failedMessages;
+            }
         }
 
         private void HandleOnMessageFailed(FailedMessage failedMessage)
         {
-            domainEvents.Publish(new FailedMessageDetectedEvent
-                                     {
-                                         FailedMessage = failedMessage
-                                     });
+            lock (failedMessages)
+                if (!failedMessages.Contains(failedMessage))
+                {
+                    failedMessages.Add(failedMessage);
+
+                    domainEvents.Publish(new FailedMessageDetectedEvent
+                    {
+                        FailedMessage = failedMessage
+                    });
+                }
         }
 
 
         public void Handle(EndpointStartedEvent message)
         {
-            MonitorFailedMessagesStore(message.AdressOfFailedMessagesStore);
+            MonitorFailedMessagesSource(message.AdressOfFailedMessagesStore);
         }
 
-        private void MonitorFailedMessagesStore(string adressOfFailedMessagesStore)
+        public void MonitorFailedMessagesSource(string adressOfFailedMessagesSource)
         {
-            monitor.StartMonitoring(adressOfFailedMessagesStore);
+            if (sources.ContainsKey(adressOfFailedMessagesSource))
+                return;
+
+            var source = failedMessagesSourceFactory.CreateFailedMessagesSource(adressOfFailedMessagesSource);
+
+            source.OnMessageFailed += HandleOnMessageFailed;
+
+            source.StartMonitoring();
+            sources.Add(adressOfFailedMessagesSource, source);
+        }
+
+        public IEnumerable<FailedMessage> GetAllMessages()
+        {
+            foreach (var failedMessagesSource in sources.Values)
+            {
+                foreach (var message in failedMessagesSource.GetAllMessages())
+                {
+                    yield return message;
+                }
+            }
         }
     }
 }

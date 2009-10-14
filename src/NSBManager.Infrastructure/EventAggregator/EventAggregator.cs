@@ -19,13 +19,24 @@ namespace NSBManager.Infrastructure.EventAggregator
 
         public void Publish<T>(T message)
         {
-            foreach (var potentialListener in listeners)
+            var potentialListeners = new List<object>(listeners);
+
+            foreach (var potentialListener in potentialListeners)
             {
                 if (potentialListener is IListener<T>)
                 {
                     var listener = potentialListener as IListener<T>;
 
                     context.Send(state => listener.Handle(message), null);
+
+                    if (listener is IOneShootListener<T>)
+                    {
+                        lock (locker)
+                        {
+                            listeners.Remove(listener);
+                        }
+
+                    }
                 }
 
             }

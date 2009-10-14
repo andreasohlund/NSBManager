@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NBehave.Spec.NUnit, Version=0.4.0.0, Culture=neutral, PublicKeyToken=d421feca0f4a05f6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\NBehave\NBehave.Spec.NUnit.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
@@ -56,11 +60,13 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Messaging" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointControl\ServiceBusTests.cs" />
     <Compile Include="FailedMessages\FailedMessagesServiceTests.cs" />
-    <Compile Include="FailedMessages\When_a_endpoint_has_started.cs" />
+    <Compile Include="FailedMessages\MsmqMonitor\MsmqFailedMessagesSourceTests.cs" />
+    <Compile Include="FailedMessages\When_all_failed_messages_is_requested.cs" />
     <Compile Include="IBusExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EndpointControl\When_a_endpointstartup_message_is_received.cs" />
