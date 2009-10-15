@@ -1,7 +1,11 @@
+using System;
 using System.Threading;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl;
+using NSBManager.ManagementService.FailedMessages;
+using NSBManager.ManagementService.FailedMessages.FailedMessageSources;
+using NServiceBus.Unicast.Transport.Msmq;
 using StructureMap.Configuration.DSL;
 
 namespace NSBManager.ManagementService
@@ -11,7 +15,17 @@ namespace NSBManager.ManagementService
         public ManagementServiceRegistry()
         {
             ConfigureDomainEvents();
+
+            ConfigureFailedMessageSources();
             For<IBusTopology>().AsSingletons().Use<BusTopology>();
+        }
+
+        private void ConfigureFailedMessageSources()
+        {
+            For<IFailedMessagesSource>()
+                .Use<MsmqFailedMessagesSource>()
+                .WithName(typeof(MsmqTransport).Name);
+
         }
 
         private void ConfigureDomainEvents()

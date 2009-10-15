@@ -59,6 +59,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Messaging" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boostrapper.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="EndpointControl\IBusTopology.cs" />
     <Compile Include="FailedMessages\FailedMessage.cs" />
     <Compile Include="FailedMessages\DomainEvents\FailedMessageDetectedEvent.cs" />
+    <Compile Include="FailedMessages\FailedMessageSources\MsmqFailedMessagesSource.cs" />
     <Compile Include="FailedMessages\FailedMessagesService.cs" />
     <Compile Include="FailedMessages\IFailedMessagesSource.cs" />
     <Compile Include="FailedMessages\IFailedMessagesService.cs" />
