@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="NSBManager.UserInterface.PhysicalModule.Views.ServerView"
+﻿<UserControl x:Name="ServerViewControl" x:Class="NSBManager.UserInterface.PhysicalModule.Views.ServerView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:commands="clr-namespace:Microsoft.Practices.Composite.Presentation.Commands;assembly=Microsoft.Practices.Composite.Presentation">
     <UserControl.Resources>
-        <DataTemplate x:Key="itemsTemplate">
+       <DataTemplate x:Key="itemsTemplate">
             <Border Margin="10,10,10,10" 
                     CornerRadius="4,4,4,4" 
                     BorderBrush="DimGray" 
@@ -15,12 +16,24 @@
                 </Border.Effect>
                 <StackPanel Background="Transparent" Margin="10" Width="100" Height="40">
                     <TextBlock Text="{Binding Name}" Foreground="White" />
+                    <Button Content="{Binding Name}" 
+                            commands:Click.Command="{Binding DataContext.SelectedServerCommand, ElementName=ServerViewControl}"
+                            commands:Click.CommandParameter="{Binding}" />
                 </StackPanel>
             </Border>
         </DataTemplate>
     </UserControl.Resources>
-    
+
     <Grid HorizontalAlignment="Stretch">
+        <!--<ListView ItemsSource="{Binding Path=Servers}"
+                  SelectedItem="{Binding Path=SelectedServer, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Server Name" DisplayMemberBinding="{Binding Path=Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+        
         <ItemsControl ItemsSource="{Binding Servers}"
                       ItemTemplate="{StaticResource itemsTemplate}">
             <ItemsControl.ItemsPanel>
@@ -29,5 +42,6 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
+        
     </Grid>
 </UserControl>

@@ -3,7 +3,7 @@ using NSBManager.UserInterface.PhysicalModule.Model;
 
 namespace NSBManager.UserInterface.PhysicalModule.Events
 {
-    public class ServerChangedEvent : CompositePresentationEvent<Server>
+    public class ServerSelectedEvent : CompositePresentationEvent<Server>
     {
         public string SelectedServer { get; set; }
     }

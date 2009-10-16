@@ -16,11 +16,11 @@ namespace NSBManager.UserInterface
 
         protected override object DoGetInstance(Type serviceType, string key)
         {
-            if(key == null)
+            if (key == null)
             {
                 return container.GetInstance(serviceType);
             }
-            
+
             return container.GetInstance(serviceType, key);
         }
 

@@ -89,34 +89,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Infrastructure\PrismRegistry.cs" />
-    <Compile Include="IShellView.cs" />
     <Compile Include="DemoModels\FakePhysicalModel.cs" />
+    <Compile Include="Infrastructure\RegionNames.cs" />
+    <Compile Include="IShellView.cs" />
     <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="PhysicalModule\Events\ServerChangedEvent.cs" />
+    <Compile Include="PhysicalModule\Events\ServerSelectedEvent.cs" />
     <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
     <Compile Include="PhysicalModule\Model\IPhysicalModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
+    <Compile Include="PhysicalModule\Model\Server.cs" />
     <Compile Include="PhysicalModule\PhysicalModule.cs" />
-    <Compile Include="PhysicalModule\ViewModels\Server.cs" />
-    <Compile Include="PhysicalModule\ViewModels\ServerDetailsViewModel.cs" />
-    <Compile Include="PhysicalModule\ViewModels\ServerViewModel.cs" />
+    <Compile Include="PhysicalModule\Views\IServerDetailsPresentationModel.cs" />
+    <Compile Include="PhysicalModule\Views\IServerDetailsView.cs" />
+    <Compile Include="PhysicalModule\Views\IServerPresentationModel.cs" />
+    <Compile Include="PhysicalModule\Views\IServerView.cs" />
+    <Compile Include="PhysicalModule\Views\ServerDetailsPresentationModel.cs" />
     <Compile Include="PhysicalModule\Views\ServerDetailsView.xaml.cs">
       <DependentUpon>ServerDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PhysicalModule\Views\ServerPresentationModel.cs" />
     <Compile Include="PhysicalModule\Views\ServerView.xaml.cs">
       <DependentUpon>ServerView.xaml</DependentUpon>
     </Compile>
@@ -138,14 +137,7 @@
     </Compile>
     <Compile Include="ShellPresenter.cs" />
     <Compile Include="StructureMapBootstrapper.cs" />
-    <Compile Include="StructureMapServiceLocatorAdapter.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="PhysicalModule\ViewModels\Endpoint.cs" />
-    <Compile Include="PhysicalModule\ViewModels\EndpointListViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelsExtension.cs" />
-    <Compile Include="PhysicalModule\Views\EndpointListView.xaml.cs">
-      <DependentUpon>EndpointListView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="StructureMapServiceLocator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -156,28 +148,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="NSBMResourceDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PhysicalModule\Views\ServerDetailsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PhysicalModule\Views\ServerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Shell.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PhysicalModule\Views\EndpointListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">
@@ -192,6 +162,32 @@
       <Project>{3ABF94E8-664D-4CF2-BF29-5E51EB957E7C}</Project>
       <Name>NSBManager.ManagementService.Messages</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="NSBMResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhysicalModule\Views\ServerDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhysicalModule\Views\ServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PhysicalModule\ViewModels\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

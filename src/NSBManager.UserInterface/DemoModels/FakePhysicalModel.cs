@@ -12,7 +12,7 @@ namespace NSBManager.UserInterface.DemoModels
         public FakePhysicalModel()
         {
             endpoints = new List<Endpoint>();
-            GenerateServersWithEndpoints(7, 3);
+            GenerateServersWithEndpoints(8, 4);
         }
 
         private void GenerateServersWithEndpoints(int nrOfServers, int nrOfEndpoints)

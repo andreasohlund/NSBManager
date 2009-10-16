@@ -1,16 +1,16 @@
-using Microsoft.Practices.Composite.Modularity;
+using System;
 using System.Windows;
+using Microsoft.Practices.Composite.Modularity;
 using StructureMap;
 
 namespace NSBManager.UserInterface
 {
     public class Bootstrapper : StructureMapBootstrapper
     {
-
         protected override IModuleCatalog GetModuleCatalog()
         {
-            var catalog = new ModuleCatalog()
-                .AddModule(typeof (PhysicalModule.PhysicalModule));
+            var catalog = new ModuleCatalog();
+            catalog.AddModule(typeof (PhysicalModule.PhysicalModule));
 
             return catalog;
         }
@@ -23,6 +23,6 @@ namespace NSBManager.UserInterface
             view.ShowView();
 
             return view as DependencyObject;
-        }  
+        }
     }
 }

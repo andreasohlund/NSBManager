@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace NSBManager.UserInterface.PhysicalModule.ViewModels
+namespace NSBManager.UserInterface.PhysicalModule.Model
 {
     public class Server : DependencyObject
     {
@@ -8,7 +8,7 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
         {
             get
             {
-                return (string) GetValue(NameProperty);
+                return (string)GetValue(NameProperty);
             }
             set
             {
@@ -16,10 +16,8 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
             }
         }
 
-        public static readonly DependencyProperty NameProperty = DependencyProperty.Register("Name", typeof (string),
-                                                                                             typeof (Server),
+        public static readonly DependencyProperty NameProperty = DependencyProperty.Register("Name", typeof(string),
+                                                                                             typeof(Server),
                                                                                              new UIPropertyMetadata(""));
-
-        
     }
 }
