@@ -1,6 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
+using Microsoft.Practices.Composite.Presentation.Commands;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
@@ -23,6 +26,8 @@ namespace NSBManager.UserInterface.PhysicalModule.Views
             get { return servers; }
         }
 
+        public ICommand SelectedServerCommand { get; set; }
+
         public ServerPresentationModel(IServerView view, IPhysicalModel physicalModel, IEventAggregator eventAggregator)
         {
             View = view;
@@ -31,6 +36,12 @@ namespace NSBManager.UserInterface.PhysicalModule.Views
             this.eventAggregator = eventAggregator;
 
             RefreshServersFromPhysicalModel();
+            SelectedServerCommand = new DelegateCommand<Server>(ServerSelected);
+        }
+
+        private void ServerSelected(Server server)
+        {
+            SelectedServer = server;
         }
 
         private void RefreshServersFromPhysicalModel()
@@ -43,6 +54,8 @@ namespace NSBManager.UserInterface.PhysicalModule.Views
                 servers.Add(new Server { Name = keys.Key });
             }
         }
+
+        
 
 
         public Server SelectedServer

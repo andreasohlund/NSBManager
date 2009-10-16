@@ -5,8 +5,8 @@
 
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Selected Server: " VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBlock Text="{Binding SelectedServer.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontWeight="Bold" />
+            <TextBlock Text="Selected Server: " VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="White"/>
+            <TextBlock Text="{Binding SelectedServer.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" />
         </StackPanel>
         
     </Grid>
