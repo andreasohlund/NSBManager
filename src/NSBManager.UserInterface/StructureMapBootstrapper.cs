@@ -10,7 +10,6 @@ using Microsoft.Practices.ServiceLocation;
 using NSBManager.UserInterface.DemoModels;
 using NSBManager.UserInterface.Infrastructure;
 using NSBManager.UserInterface.PhysicalModule.Model;
-using NSBManager.UserInterface.PhysicalModule.ViewModels;
 using NSBManager.UserInterface.PhysicalModule.Views;
 using StructureMap;
 
@@ -59,20 +58,13 @@ namespace NSBManager.UserInterface
                                                 .For<IPhysicalModel>().UseConcreteType<FakePhysicalModel>();
 
                                             //this line should be replaced with a convention scanner
-                                            
+
                                             x.ForConcreteType<ShellPresenter>();
                                             x.For<IShellView>().Use<Shell>();
 
                                             // Modules
                                             x.ForConcreteType<PhysicalModule.PhysicalModule>();
-                                            x.ForConcreteType<EndpointListViewModel>();
-                                            x.ForConcreteType<EndpointListView>();
-                                            x.ForConcreteType<ServerViewModel>();
-                                            x.ForConcreteType<ServerView>();
-                                            x.ForConcreteType<ServerDetailsViewModel>();
-                                            x.ForConcreteType<ServerDetailsView>();
-
-
+                                            
                                             // For Prism
                                             x.AddRegistry(new PrismRegistry());
 

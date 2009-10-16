@@ -1,17 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
 using System.Windows.Controls;
-using NSBManager.UserInterface.PhysicalModule.Model;
-using NSBManager.UserInterface.PhysicalModule.ViewModels;
-using StructureMap;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace NSBManager.UserInterface.PhysicalModule.Views
 {
-    public partial class ServerView
+    /// <summary>
+    /// Interaction logic for ServerView.xaml
+    /// </summary>
+    public partial class ServerView : IServerView
     {
-        public ServerView(ServerViewModel serverViewModel)
+        public ServerView()
         {
             InitializeComponent();
-            DataContext = serverViewModel;
+        }
+
+        public IServerPresentationModel Model
+        {
+            get { return DataContext as IServerPresentationModel; }
+            set { DataContext = value; }
         }
     }
 }

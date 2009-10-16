@@ -65,15 +65,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\EndpointListViewModelTests.cs" />
-    <Compile Include="EndpointTests.cs" />
     <Compile Include="EventAggregatorTests.cs" />
     <Compile Include="Models\PhysicalModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewFactoryTests.cs" />
-    <Compile Include="ViewModels\ServerDetailsViewModelTests.cs" />
-    <Compile Include="ViewModels\ServerViewModelTests.cs" />
-    <Compile Include="When_a_ViewModel_property_is_changed.cs" />
     <Compile Include="When_the_bus_topology_changes.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +84,9 @@
       <Project>{984334C2-2423-4F2E-BE64-1E9806885552}</Project>
       <Name>NSBManager.UserInterface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PresentationModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
