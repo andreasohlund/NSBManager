@@ -8,42 +8,58 @@ namespace NSBManager.ManagementService.FailedMessages.FailedMessageSources
 {
     public class MsmqFailedMessagesSource : IFailedMessagesSource
     {
-        private readonly string errorQueueAdress;
-
+        private readonly MessageQueue errorQueue;
+        private Cursor cursor;
         public MsmqFailedMessagesSource(string adress)
         {
-            errorQueueAdress = adress;
+            var fullPath = MsmqUtilities.GetFullPath(adress);
+
+            errorQueue = new MessageQueue(fullPath)
+            {
+                MessageReadPropertyFilter =
+                {
+                    Id = true,
+                    Priority = true,
+                    SentTime = true,
+                    MessageType = true,
+                    Label = true,
+
+
+                }
+            };
         }
 
         public event Action<FailedMessage> OnMessageFailed;
-        
+
         public void StartMonitoring()
         {
-            throw new NotImplementedException();
+            cursor = errorQueue.CreateCursor();
+
+            errorQueue.BeginPeek(MessageQueue.InfiniteTimeout, cursor, PeekAction.Current, null, OnPeekCompleted);
+        }
+
+
+        private void OnPeekCompleted(IAsyncResult asyncResult)
+        {
+            var message = errorQueue.EndPeek(asyncResult);
+            
+            OnMessageFailed(ConvertToFailedMessage(message));
+
+            errorQueue.BeginPeek(MessageQueue.InfiniteTimeout, cursor, PeekAction.Next, null, OnPeekCompleted);
         }
 
         public IEnumerable<FailedMessage> GetAllMessages()
         {
-            var fullPath = MsmqUtilities.GetFullPath(errorQueueAdress);
 
-            var errorQueue = new MessageQueue(fullPath)
-                                 {
-                                     MessageReadPropertyFilter =
-                                         {
-                                             Id = true,
-                                             Priority = true,
-                                             SentTime = true,
-                                             MessageType = true,
-                                             Label = true,
+            return errorQueue.GetAllMessages().Select(m => ConvertToFailedMessage(m));
+        }
 
-
-                                         }
-                                 };
-
-            return errorQueue.GetAllMessages().Select(m => new FailedMessage
-                                                               {
-                                                                   Id = m.Id
-                                                               });
+        private static FailedMessage ConvertToFailedMessage(Message msmqMessage)
+        {
+            return new FailedMessage
+                       {
+                           Id = msmqMessage.Id
+                       };
         }
     }
 }

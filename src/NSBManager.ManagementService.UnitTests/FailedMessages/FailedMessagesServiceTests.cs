@@ -27,7 +27,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
             domainEvents = MockRepository.GenerateStub<IDomainEvents>();
             service = new FailedMessagesService(factory, domainEvents);
             source = MockRepository.GenerateStub<IFailedMessagesSource>();
-
+            source.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage>());
             factory.Stub(x => x.CreateFailedMessagesSource(adressOfFailedMessagesSource)).Return(source);
         }
 
@@ -84,14 +84,13 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
 
             factory.Stub(x => x.CreateFailedMessagesSource(adressOfAnotherFailedMessagesSource)).Return(anotherSource);
 
-            source.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage> {new FailedMessage()});
-            anotherSource.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage> { new FailedMessage(), new FailedMessage() });
+            anotherSource.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage> { new FailedMessage { Id = "2" }, new FailedMessage { Id = "3" } });
 
             service.MonitorFailedMessagesSource(adressOfFailedMessagesSource);
 
             service.MonitorFailedMessagesSource(adressOfAnotherFailedMessagesSource);
 
-            service.GetAllMessages().Count().ShouldEqual(3);
+            service.GetAllMessages().Count().ShouldEqual(2);
 
         }
 

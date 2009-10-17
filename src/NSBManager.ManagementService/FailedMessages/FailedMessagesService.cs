@@ -60,6 +60,12 @@ namespace NSBManager.ManagementService.FailedMessages
 
             var source = failedMessagesSourceFactory.CreateFailedMessagesSource(adressOfFailedMessagesSource);
 
+            foreach (var failedMessage in source.GetAllMessages())
+            {
+                if (!failedMessages.Contains(failedMessage))
+                    failedMessages.Add(failedMessage);  
+            } 
+
             source.OnMessageFailed += HandleOnMessageFailed;
 
             source.StartMonitoring();
@@ -68,13 +74,14 @@ namespace NSBManager.ManagementService.FailedMessages
 
         public IEnumerable<FailedMessage> GetAllMessages()
         {
-            foreach (var failedMessagesSource in sources.Values)
-            {
-                foreach (var message in failedMessagesSource.GetAllMessages())
-                {
-                    yield return message;
-                }
-            }
+            return failedMessages;
+            //foreach (var failedMessagesSource in sources.Values)
+            //{
+            //    foreach (var message in failedMessagesSource.GetAllMessages())
+            //    {
+            //        yield return message;
+            //    }
+            //}
         }
     }
 }
