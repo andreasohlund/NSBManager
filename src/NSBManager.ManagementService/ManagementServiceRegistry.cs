@@ -4,7 +4,7 @@ using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl;
 using NSBManager.ManagementService.FailedMessages;
-using NSBManager.ManagementService.FailedMessages.FailedMessageSources;
+using NSBManager.ManagementService.FailedMessages.FailedMessageStores;
 using NServiceBus.Unicast.Transport.Msmq;
 using StructureMap.Configuration.DSL;
 
@@ -16,14 +16,14 @@ namespace NSBManager.ManagementService
         {
             ConfigureDomainEvents();
 
-            ConfigureFailedMessageSources();
+            ConfigureFailedMessageStores();
             For<IBusTopology>().AsSingletons().Use<BusTopology>();
         }
 
-        private void ConfigureFailedMessageSources()
+        private void ConfigureFailedMessageStores()
         {
-            For<IFailedMessagesSource>()
-                .Use<MsmqFailedMessagesSource>()
+            For<IFailedMessagesStore>()
+                .Use<MsmqFailedMessagesStore>()
                 .WithName(typeof(MsmqTransport).Name);
 
         }

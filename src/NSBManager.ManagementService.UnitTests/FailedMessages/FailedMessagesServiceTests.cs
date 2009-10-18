@@ -16,19 +16,19 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
     public class FailedMessagesServiceTests
     {
         private FailedMessagesService service;
-        private IFailedMessagesSource source;
+        private IFailedMessagesStore store;
         private IDomainEvents domainEvents;
-        private IFailedMessagesSourceFactory factory;
-        private string adressOfFailedMessagesSource = "error@server";
+        private IFailedMessagesStoreFactory factory;
+        private string adressOfFailedMessagesStore = "error@server";
         [SetUp]
         public void Setup()
         {
-            factory = MockRepository.GenerateStub<IFailedMessagesSourceFactory>();
+            factory = MockRepository.GenerateStub<IFailedMessagesStoreFactory>();
             domainEvents = MockRepository.GenerateStub<IDomainEvents>();
             service = new FailedMessagesService(factory, domainEvents);
-            source = MockRepository.GenerateStub<IFailedMessagesSource>();
-            source.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage>());
-            factory.Stub(x => x.CreateFailedMessagesSource(adressOfFailedMessagesSource)).Return(source);
+            store = MockRepository.GenerateStub<IFailedMessagesStore>();
+            store.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage>());
+            factory.Stub(x => x.CreateFailedMessagesStore(adressOfFailedMessagesStore)).Return(store);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
         {
             var failedMessage = new FailedMessage();
 
-            service.MonitorFailedMessagesSource(adressOfFailedMessagesSource);
+            service.MonitorFailedMessagesStores(adressOfFailedMessagesStore);
 
             RaiseFailedMessageEvent(failedMessage);
 
@@ -48,7 +48,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
         {
             var duplicateId = "3";
 
-            service.MonitorFailedMessagesSource(adressOfFailedMessagesSource);
+            service.MonitorFailedMessagesStores(adressOfFailedMessagesStore);
 
 
             RaiseFailedMessageEvent(new FailedMessage{Id = "1"});
@@ -61,34 +61,34 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
         }
 
         [Test]
-        public void Should_start_monitoring_failed_message_sources_when_endpoints_starts_up()
+        public void Should_start_monitoring_failed_message_store_when_endpoints_starts_up()
         {
             var handler = (IListener<EndpointStartedEvent>) service;
 
-            var eventMessage = new EndpointStartedEvent { AdressOfFailedMessagesStore = adressOfFailedMessagesSource };
+            var eventMessage = new EndpointStartedEvent { AdressOfFailedMessagesStore = adressOfFailedMessagesStore };
 
             handler.Handle(eventMessage);
 
             //mulitple calls with the same adress should be ok
             handler.Handle(eventMessage);
 
-            source.AssertWasCalled(x => x.StartMonitoring());
+            store.AssertWasCalled(x => x.StartMonitoring());
 
         }
        
         [Test]
-        public void GetAllMessages_should_aggregate_all_message_sources()
+        public void GetAllMessages_should_aggregate_all_message_stores()
         {
-            var adressOfAnotherFailedMessagesSource = "124";
-            var anotherSource = MockRepository.GenerateStub<IFailedMessagesSource>();
+            var adressOfAnotherFailedMessagesStore = "124";
+            var anotherStore = MockRepository.GenerateStub<IFailedMessagesStore>();
 
-            factory.Stub(x => x.CreateFailedMessagesSource(adressOfAnotherFailedMessagesSource)).Return(anotherSource);
+            factory.Stub(x => x.CreateFailedMessagesStore(adressOfAnotherFailedMessagesStore)).Return(anotherStore);
 
-            anotherSource.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage> { new FailedMessage { Id = "2" }, new FailedMessage { Id = "3" } });
+            anotherStore.Stub(x => x.GetAllMessages()).Return(new List<FailedMessage> { new FailedMessage { Id = "2" }, new FailedMessage { Id = "3" } });
 
-            service.MonitorFailedMessagesSource(adressOfFailedMessagesSource);
+            service.MonitorFailedMessagesStores(adressOfFailedMessagesStore);
 
-            service.MonitorFailedMessagesSource(adressOfAnotherFailedMessagesSource);
+            service.MonitorFailedMessagesStores(adressOfAnotherFailedMessagesStore);
 
             service.GetAllMessages().Count().ShouldEqual(2);
 
@@ -97,7 +97,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
 
         private void RaiseFailedMessageEvent(FailedMessage failedMessage)
         {
-            source.GetEventRaiser(e => e.OnMessageFailed += null).Raise(failedMessage);
+            store.GetEventRaiser(e => e.OnMessageFailed += null).Raise(failedMessage);
         }
 
     }

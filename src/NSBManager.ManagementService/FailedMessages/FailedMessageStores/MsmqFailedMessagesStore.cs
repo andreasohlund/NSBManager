@@ -4,29 +4,29 @@ using System.Linq;
 using System.Messaging;
 using NServiceBus.Utils;
 
-namespace NSBManager.ManagementService.FailedMessages.FailedMessageSources
+namespace NSBManager.ManagementService.FailedMessages.FailedMessageStores
 {
-    public class MsmqFailedMessagesSource : IFailedMessagesSource
+    public class MsmqFailedMessagesStore : IFailedMessagesStore
     {
         private readonly MessageQueue errorQueue;
         private Cursor cursor;
-        public MsmqFailedMessagesSource(string adress)
+        public MsmqFailedMessagesStore(string adress)
         {
             var fullPath = MsmqUtilities.GetFullPath(adress);
 
             errorQueue = new MessageQueue(fullPath)
-            {
-                MessageReadPropertyFilter =
-                {
-                    Id = true,
-                    Priority = true,
-                    SentTime = true,
-                    MessageType = true,
-                    Label = true,
+                             {
+                                 MessageReadPropertyFilter =
+                                     {
+                                         Id = true,
+                                         Priority = true,
+                                         SentTime = true,
+                                         MessageType = true,
+                                         Label = true,
 
 
-                }
-            };
+                                     }
+                             };
         }
 
         public event Action<FailedMessage> OnMessageFailed;

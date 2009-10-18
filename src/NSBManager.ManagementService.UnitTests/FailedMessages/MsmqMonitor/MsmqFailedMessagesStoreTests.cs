@@ -2,16 +2,16 @@ using System.Diagnostics;
 using System.Messaging;
 using System.Threading;
 using NSBManager.ManagementService.FailedMessages;
-using NSBManager.ManagementService.FailedMessages.FailedMessageSources;
+using NSBManager.ManagementService.FailedMessages.FailedMessageStores;
 using NServiceBus.Utils;
 using NUnit.Framework;
 
 namespace NSBManager.ManagementService.UnitTests.FailedMessages.MsmqMonitor
 {
     [TestFixture]
-    public class MsmqFailedMessagesSourceTests
+    public class MsmqFailedMessagesStoreTests
     {
-        private MsmqFailedMessagesSource messageSource;
+        private MsmqFailedMessagesStore messageStore;
         private int numberOfMessagesArrived = 0;
         private const string queueName = "managementservice.unittests@localhost";
 
@@ -21,7 +21,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages.MsmqMonitor
         [SetUp]
         public void Setup()
         {
-            messageSource = new MsmqFailedMessagesSource(queueName);
+            messageStore = new MsmqFailedMessagesStore(queueName);
             var fullPath = MsmqUtilities.GetFullPath(queueName);
 
             errorQueue = new MessageQueue(fullPath);
@@ -32,16 +32,16 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages.MsmqMonitor
         public void Can_peek_all_messages_from_queue()
         {
 
-            foreach (var message in messageSource.GetAllMessages())
+            foreach (var message in messageStore.GetAllMessages())
                 Debug.WriteLine(message.Id);
         }
 
         [Test, Explicit("Manual test")]
         public void Should_trigger_event_when_a_new_message_arrives()
         {
-            messageSource.OnMessageFailed += HandleOnMessageFailed;
+            messageStore.OnMessageFailed += HandleOnMessageFailed;
 
-            messageSource.StartMonitoring();
+            messageStore.StartMonitoring();
 
             var currentNumberOfMessages = errorQueue.GetAllMessages().Length;
 

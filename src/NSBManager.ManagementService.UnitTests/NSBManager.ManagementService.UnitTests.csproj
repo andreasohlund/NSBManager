@@ -70,8 +70,8 @@
   <ItemGroup>
     <Compile Include="EndpointControl\ServiceBusTests.cs" />
     <Compile Include="FailedMessages\FailedMessagesServiceTests.cs" />
-    <Compile Include="FailedMessages\FailedMessagesSourceFactoryTests.cs" />
-    <Compile Include="FailedMessages\MsmqMonitor\MsmqFailedMessagesSourceTests.cs" />
+    <Compile Include="FailedMessages\FailedMessagesStoreFactoryTests.cs" />
+    <Compile Include="FailedMessages\MsmqMonitor\MsmqFailedMessagesStoreTests.cs" />
     <Compile Include="FailedMessages\When_all_failed_messages_is_requested.cs" />
     <Compile Include="IBusExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

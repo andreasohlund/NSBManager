@@ -68,11 +68,11 @@
     <Compile Include="EndpointControl\IBusTopology.cs" />
     <Compile Include="FailedMessages\FailedMessage.cs" />
     <Compile Include="FailedMessages\DomainEvents\FailedMessageDetectedEvent.cs" />
-    <Compile Include="FailedMessages\FailedMessageSources\MsmqFailedMessagesSource.cs" />
+    <Compile Include="FailedMessages\FailedMessageStores\MsmqFailedMessagesStore.cs" />
     <Compile Include="FailedMessages\FailedMessagesService.cs" />
-    <Compile Include="FailedMessages\IFailedMessagesSource.cs" />
+    <Compile Include="FailedMessages\IFailedMessagesStore.cs" />
     <Compile Include="FailedMessages\IFailedMessagesService.cs" />
-    <Compile Include="FailedMessages\IFailedMessagesSourceFactory.cs" />
+    <Compile Include="FailedMessages\IFailedMessagesStoreFactory.cs" />
     <Compile Include="ManagementServiceRegistry.cs" />
     <Compile Include="MessageHandling\EndpointStartupMessageHandler.cs" />
     <Compile Include="MessageHandling\BusTopologyChangedMonitor.cs" />

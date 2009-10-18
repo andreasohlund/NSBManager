@@ -11,18 +11,18 @@ namespace NSBManager.ManagementService.FailedMessages
     public class FailedMessagesService : IFailedMessagesService,
                                             IListener<EndpointStartedEvent>
     {
-        private readonly IFailedMessagesSourceFactory failedMessagesSourceFactory;
+        private readonly IFailedMessagesStoreFactory failedMessagesStoreFactory;
         private readonly IDomainEvents domainEvents;
         private readonly IList<FailedMessage> failedMessages = new List<FailedMessage>();
-        private readonly IDictionary<string, IFailedMessagesSource> sources;
+        private readonly IDictionary<string, IFailedMessagesStore> failedMessagesStores;
 
-        public FailedMessagesService(IFailedMessagesSourceFactory failedMessagesSourceFactory,
+        public FailedMessagesService(IFailedMessagesStoreFactory failedMessagesStoreFactory,
                                      IDomainEvents domainEvents)
         {
-            this.failedMessagesSourceFactory = failedMessagesSourceFactory;
+            this.failedMessagesStoreFactory = failedMessagesStoreFactory;
             this.domainEvents = domainEvents;
 
-            sources = new Dictionary<string, IFailedMessagesSource>();
+            failedMessagesStores = new Dictionary<string, IFailedMessagesStore>();
         }
 
         public IEnumerable<FailedMessage> FailedMessages
@@ -50,38 +50,31 @@ namespace NSBManager.ManagementService.FailedMessages
 
         public void Handle(EndpointStartedEvent message)
         {
-            MonitorFailedMessagesSource(message.AdressOfFailedMessagesStore);
+            MonitorFailedMessagesStores(message.AdressOfFailedMessagesStore);
         }
 
-        public void MonitorFailedMessagesSource(string adressOfFailedMessagesSource)
+        public void MonitorFailedMessagesStores(string adressOfFailedMessagesStore)
         {
-            if (sources.ContainsKey(adressOfFailedMessagesSource))
+            if (failedMessagesStores.ContainsKey(adressOfFailedMessagesStore))
                 return;
 
-            var source = failedMessagesSourceFactory.CreateFailedMessagesSource(adressOfFailedMessagesSource);
+            var store = failedMessagesStoreFactory.CreateFailedMessagesStore(adressOfFailedMessagesStore);
 
-            foreach (var failedMessage in source.GetAllMessages())
+            foreach (var failedMessage in store.GetAllMessages())
             {
                 if (!failedMessages.Contains(failedMessage))
                     failedMessages.Add(failedMessage);  
             } 
 
-            source.OnMessageFailed += HandleOnMessageFailed;
+            store.OnMessageFailed += HandleOnMessageFailed;
 
-            source.StartMonitoring();
-            sources.Add(adressOfFailedMessagesSource, source);
+            store.StartMonitoring();
+            failedMessagesStores.Add(adressOfFailedMessagesStore, store);
         }
 
         public IEnumerable<FailedMessage> GetAllMessages()
         {
             return failedMessages;
-            //foreach (var failedMessagesSource in sources.Values)
-            //{
-            //    foreach (var message in failedMessagesSource.GetAllMessages())
-            //    {
-            //        yield return message;
-            //    }
-            //}
         }
     }
 }
