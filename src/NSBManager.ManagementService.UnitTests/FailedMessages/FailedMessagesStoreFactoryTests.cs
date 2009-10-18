@@ -1,6 +1,5 @@
 using NSBManager.ManagementService.FailedMessages;
 using NSBManager.ManagementService.FailedMessages.FailedMessageStores;
-using NServiceBus.Unicast.Transport;
 using NServiceBus.Unicast.Transport.Msmq;
 using NUnit.Framework;
 using StructureMap;
@@ -24,24 +23,6 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
             store.ShouldNotBeNull();
 
             store.ShouldBeInstanceOfType(typeof (MsmqFailedMessagesStore));
-        }
-    }
-
-    public class FailedMessagesStoreFactory : IFailedMessagesStoreFactory
-    {
-        private readonly IContainer container;
-        private readonly ITransport transport;
-
-        public FailedMessagesStoreFactory(IContainer container,ITransport transport)
-        {
-            this.container = container;
-            this.transport = transport;
-        }
-
-        public IFailedMessagesStore CreateFailedMessagesStore(string address)
-        {
-            return container.With("adress").EqualTo(address)
-                .GetInstance<IFailedMessagesStore>(transport.GetType().Name);
         }
     }
 } 

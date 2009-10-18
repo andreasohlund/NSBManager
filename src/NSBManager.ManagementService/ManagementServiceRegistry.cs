@@ -22,6 +22,7 @@ namespace NSBManager.ManagementService
 
         private void ConfigureFailedMessageStores()
         {
+            For<IFailedMessagesStoreFactory>().Use<FailedMessagesStoreFactory>();
             For<IFailedMessagesStore>()
                 .Use<MsmqFailedMessagesStore>()
                 .WithName(typeof(MsmqTransport).Name);

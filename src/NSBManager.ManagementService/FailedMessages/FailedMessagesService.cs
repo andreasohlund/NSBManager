@@ -1,14 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
+using NServiceBus.Host;
 
 namespace NSBManager.ManagementService.FailedMessages
 {
-    public class FailedMessagesService : IFailedMessagesService,
+    public class FailedMessagesService :    IFailedMessagesService,
+                                            IWantToRunAtStartup,
                                             IListener<EndpointStartedEvent>
     {
         private readonly IFailedMessagesStoreFactory failedMessagesStoreFactory;
@@ -75,6 +75,16 @@ namespace NSBManager.ManagementService.FailedMessages
         public IEnumerable<FailedMessage> GetAllMessages()
         {
             return failedMessages;
+        }
+
+        public void Run()
+        {
+            
+        }
+
+        public void Stop()
+        {
+            
         }
     }
 }

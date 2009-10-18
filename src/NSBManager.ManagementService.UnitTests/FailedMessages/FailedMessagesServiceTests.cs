@@ -5,6 +5,7 @@ using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.FailedMessages;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
+using NServiceBus.Host;
 using NUnit.Framework;
 using Rhino.Mocks;
 using NBehave.Spec.NUnit;
@@ -92,6 +93,12 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
 
             service.GetAllMessages().Count().ShouldEqual(2);
 
+        }
+
+        [Test]
+        public void Should_run_at_startup()
+        {
+            Assert.True(service is IWantToRunAtStartup);
         }
 
 

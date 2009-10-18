@@ -68,6 +68,7 @@
     <Compile Include="EndpointControl\IBusTopology.cs" />
     <Compile Include="FailedMessages\FailedMessage.cs" />
     <Compile Include="FailedMessages\DomainEvents\FailedMessageDetectedEvent.cs" />
+    <Compile Include="FailedMessages\FailedMessagesStoreFactory.cs" />
     <Compile Include="FailedMessages\FailedMessageStores\MsmqFailedMessagesStore.cs" />
     <Compile Include="FailedMessages\FailedMessagesService.cs" />
     <Compile Include="FailedMessages\IFailedMessagesStore.cs" />
