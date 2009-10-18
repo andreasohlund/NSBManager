@@ -24,7 +24,10 @@ namespace NSBManager.ManagementService.EndpointControl
                 endpoints.Add(endpoint);
 
 
-                domainEvents.Publish(new EndpointStartedEvent());
+                domainEvents.Publish(new EndpointStartedEvent
+                                         {
+                                             AdressOfFailedMessagesStore = endpoint.AdressOfFailedMessageStore
+                                         });
             }
                 
 

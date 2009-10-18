@@ -10,21 +10,36 @@ namespace NSBManager.Instrumentation.UnitTests.Core.Inspectors
     [TestFixture]
     public class MsmqTransportInspectorTests
     {
-        [Test]
-        public void Can_read_adress_from_transport()
+        private TransportInfo transportInfo;
+        private MsmqTransport transport;
+        [SetUp]
+        public void Setup()
         {
-            var transport = new MsmqTransport
-                                {
-                                    InputQueue = "unittests"
-                                };
+
+            transport = new MsmqTransport
+            {
+                InputQueue = "unittests",
+                ErrorQueue ="error"
+            };
 
             var inspector = new MsmqTransportInspector(transport);
 
-            var info = inspector.GetTransportInformation();
+            transportInfo = inspector.GetTransportInformation();
+        }
 
-            info.ShouldBeInstanceOfType(typeof(MsmqTransportInfo));
+        [Test]
+        public void Should_get_adress_from_transport()
+        {
 
-            info.Adress.ShouldEqual(transport.InputQueue + "@" + Environment.MachineName);
+            transportInfo.ShouldBeInstanceOfType(typeof(MsmqTransportInfo));
+
+            transportInfo.Adress.ShouldEqual(transport.InputQueue + "@" + Environment.MachineName);
+        }
+
+        [Test]
+        public void Should_get_adress_of_failed_messages_store()
+        {
+            transportInfo.AdressOfFailedMessageStore.ShouldEqual(transport.ErrorQueue+"@" + Environment.MachineName);
         }
     }
 } 

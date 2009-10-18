@@ -19,6 +19,8 @@ namespace NSBManager.Instrumentation.Core.Messages
     public class TransportInfo
     {
         public string Adress { get; set; }
+
+        public string AdressOfFailedMessageStore { get; set; }
     }
 
 }

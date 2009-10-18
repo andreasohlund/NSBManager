@@ -20,7 +20,8 @@ namespace NSBManager.ManagementService.MessageHandling
             var endpoint = new Endpoint
                                {
                                    Id = message.EndpointId,
-                                   ServerName = message.Server
+                                   ServerName = message.Server,
+                                   AdressOfFailedMessageStore = message.Transport.AdressOfFailedMessageStore
                                };
             
             busTopology.RegisterEndpoint(endpoint);

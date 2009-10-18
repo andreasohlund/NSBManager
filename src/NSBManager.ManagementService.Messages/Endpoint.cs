@@ -7,5 +7,6 @@ namespace NSBManager.ManagementService.Messages
     {
         public string Id { get; set; }
         public string ServerName { get; set; }
+        public string AdressOfFailedMessageStore { get; set; }
     }
 }

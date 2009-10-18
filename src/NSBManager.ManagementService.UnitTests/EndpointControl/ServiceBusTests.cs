@@ -27,9 +27,16 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
         [Test]
         public void RegisterEndpoint_adds_endpoints()
         {
-            busTopology.RegisterEndpoint(new Endpoint{Id = "1@localhost",ServerName = "localhost"});
+            var endpoint = new Endpoint
+                               {
+                                   Id = "1@localhost",
+                                   ServerName = "localhost",
+                                   AdressOfFailedMessageStore = "error@server"
+                               };
+            busTopology.RegisterEndpoint(endpoint);
 
-            domainEvents.AssertWasCalled(x => x.Publish(Arg<EndpointStartedEvent>.Is.Anything));
+            domainEvents.AssertWasCalled(x => x.Publish(Arg<EndpointStartedEvent>
+                .Matches(e=>e.AdressOfFailedMessagesStore == endpoint.AdressOfFailedMessageStore)));
 
             busTopology.RegisterEndpoint(new Endpoint{Id = "2@localhost"});
 

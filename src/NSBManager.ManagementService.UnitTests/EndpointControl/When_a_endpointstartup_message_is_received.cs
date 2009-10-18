@@ -15,6 +15,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
         private IBusTopology busTopology;
 
         private string serverName = "server";
+        private string failedMessageStore = "error@server";
 
         [SetUp]
         public void SetUp()
@@ -29,7 +30,8 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
             var endpointStartupMessage = new EndpointStartupMessage
                                              {
                                                  EndpointId = endpointId,
-                                                 Server = serverName
+                                                 Server = serverName,
+                                                 Transport = new TransportInfo { AdressOfFailedMessageStore = failedMessageStore }
                                              };
 
 
@@ -45,7 +47,12 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
                                                                          e.ServerName == serverName)));
         }
 
-       
+        [Test]
+        public void Failed_message_store_should_be_registered()
+        {
+            busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(
+                                                                    e => e.AdressOfFailedMessageStore == failedMessageStore)));
+        }
 
 
 
