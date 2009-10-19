@@ -12,5 +12,6 @@ namespace NSBManager.ManagementService.Messages
     public class FailedMessage
     {
         public string Id { get; set; }
+        public string Origin { get; set; }
     }
 }

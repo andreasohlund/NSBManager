@@ -1,4 +1,3 @@
-using System;
 using NSBManager.ManagementService.FailedMessages;
 using NSBManager.ManagementService.MessageHandling;
 using NSBManager.ManagementService.Messages;
@@ -21,7 +20,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
 
             failedMessagesService.Stub(x => x.FailedMessages).Return(new List<ManagementService.FailedMessages.FailedMessage>
                                                                          {
-                                                                             new ManagementService.FailedMessages.FailedMessage(), 
+                                                                             new ManagementService.FailedMessages.FailedMessage{Origin ="test@server"}, 
                                                                              new ManagementService.FailedMessages.FailedMessage()
                                                                          });
 
@@ -30,6 +29,8 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
             handler.Handle(new GetAllFailedMessagesRequest());
 
             bus.AssertReply<GetAllFailedMessagesReply>(x=>x.Messages.Count == 2);
+
+            bus.AssertReply<GetAllFailedMessagesReply>(x => x.Messages[0].Origin == "test@server");
         }
     }
 } 

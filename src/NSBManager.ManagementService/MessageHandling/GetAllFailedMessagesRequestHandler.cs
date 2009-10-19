@@ -22,7 +22,11 @@ namespace NSBManager.ManagementService.MessageHandling
         {
             bus.Reply(new GetAllFailedMessagesReply
                           {
-                              Messages = failedMessagesService.FailedMessages.Select(x=>new FailedMessage{Id = x.Id}).ToList()
+                              Messages = failedMessagesService.FailedMessages.Select(x => new FailedMessage
+                                                                                              {
+                                                                                                  Id = x.Id,
+                                                                                                  Origin = x.Origin
+                                                                                            }).ToList()
                           });
         }
     }

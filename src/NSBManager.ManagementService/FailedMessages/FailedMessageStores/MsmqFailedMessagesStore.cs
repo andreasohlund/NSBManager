@@ -58,8 +58,17 @@ namespace NSBManager.ManagementService.FailedMessages.FailedMessageStores
         {
             return new FailedMessage
                        {
-                           Id = msmqMessage.Id
+                           Id = msmqMessage.Id,
+                           Origin = GetOriginFromLabel(msmqMessage.Label)
                        };
         }
+
+        private static string GetOriginFromLabel(string label)
+        {
+            int startIndex = label.IndexOf("<FailedQ>") + 9;
+            int endIndex = label.IndexOf("<",startIndex);
+            return label.Substring(startIndex, endIndex - startIndex);
+        }
+
     }
 }
