@@ -1,0 +1,24 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="NSBManager.UserInterface.Test"
+	x:Name="Window"
+	Title="Test"
+	Width="903" Height="550.174">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="887"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.5*"/>
+			<RowDefinition Height="0.5*"/>
+		</Grid.RowDefinitions>
+		<Grid Margin="8" Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.5*"/>
+				<ColumnDefinition Width="0.5*"/>
+			</Grid.ColumnDefinitions>
+		</Grid>
+	</Grid>
+</Window>

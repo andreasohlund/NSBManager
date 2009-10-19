@@ -29,5 +29,17 @@ namespace NSBManager.UserInterface.PhysicalModule.Views
             get { return DataContext as IServerDetailsPresentationModel; }
             set { DataContext = value; }
         }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var border = sender as Border;
+            border.BorderBrush = Brushes.White;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var border = sender as Border;
+            border.BorderBrush = Brushes.DimGray;
+        }
     }
 }

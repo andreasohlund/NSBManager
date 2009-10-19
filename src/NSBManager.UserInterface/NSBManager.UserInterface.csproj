@@ -98,10 +98,14 @@
     <Compile Include="Infrastructure\RegionNames.cs" />
     <Compile Include="IShellView.cs" />
     <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
+    <Compile Include="NSBMLogo.xaml.cs">
+      <DependentUpon>NSBMLogo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhysicalModule\Events\ServerChangedEvent.cs" />
     <Compile Include="PhysicalModule\Events\ServerSelectedEvent.cs" />
     <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
+    <Compile Include="PhysicalModule\Model\GuiEndpoint.cs" />
     <Compile Include="PhysicalModule\Model\IPhysicalModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
@@ -169,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="NSBMLogo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NSBMResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

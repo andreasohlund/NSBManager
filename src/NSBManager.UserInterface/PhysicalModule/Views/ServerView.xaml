@@ -14,7 +14,7 @@
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
                 </Border.Effect>
-                <StackPanel Background="Transparent" Margin="10" Width="100" Height="40">
+                <StackPanel Background="Transparent" Margin="10" Width="100">
                     <TextBlock Text="{Binding Name}" Foreground="White" />
                     <Button Content="{Binding Name}" 
                             commands:Click.Command="{Binding DataContext.SelectedServerCommand, ElementName=ServerViewControl}"
@@ -25,14 +25,6 @@
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Stretch">
-        <!--<ListView ItemsSource="{Binding Path=Servers}"
-                  SelectedItem="{Binding Path=SelectedServer, Mode=TwoWay}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Server Name" DisplayMemberBinding="{Binding Path=Name}" />
-                </GridView>
-            </ListView.View>
-        </ListView>-->
         
         <ItemsControl ItemsSource="{Binding Servers}"
                       ItemTemplate="{StaticResource itemsTemplate}">

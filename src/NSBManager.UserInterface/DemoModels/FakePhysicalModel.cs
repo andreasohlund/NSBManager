@@ -12,11 +12,14 @@ namespace NSBManager.UserInterface.DemoModels
         public FakePhysicalModel()
         {
             endpoints = new List<Endpoint>();
-            GenerateServersWithEndpoints(8, 4);
+            GenerateServersWithEndpoints(8, 10);
         }
 
-        private void GenerateServersWithEndpoints(int nrOfServers, int nrOfEndpoints)
+        private void GenerateServersWithEndpoints(int nrOfServers, int maxNrOfEndpoints)
         {
+            var random = new Random();
+            var nrOfEndpoints = random.Next(1, maxNrOfEndpoints);
+
             for (int s = 1; s < nrOfServers + 1; s++)
             {
                 for (int e = 1; e < nrOfEndpoints + 1; e++)
@@ -27,6 +30,7 @@ namespace NSBManager.UserInterface.DemoModels
                                           ServerName = string.Format("server{0}", s)
                                       });
                 }
+                nrOfEndpoints = random.Next(1, maxNrOfEndpoints);
             }
         }
 

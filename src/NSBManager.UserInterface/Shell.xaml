@@ -4,9 +4,69 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:cal="clr-namespace:Microsoft.Practices.Composite.Presentation.Regions;assembly=Microsoft.Practices.Composite.Presentation" 
-    xmlns:Infrastructure="clr-namespace:NSBManager.UserInterface.Infrastructure"
-    Title="Shell" Height="497" Width="977" mc:Ignorable="d" Background="#FF212121">
-    <Grid VerticalAlignment="Top">
+    xmlns:Infrastructure="clr-namespace:NSBManager.UserInterface.Infrastructure" 
+    xmlns:nsb="clr-namespace:NSBManager.UserInterface"
+    Title="Shell" Height="650" Width="980" mc:Ignorable="d" Background="#FF212121">
+
+    <Grid x:Name="LayoutRoot" Background="{DynamicResource Shell Background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        
+        <nsb:NSBMLogo Grid.Row="0" />
+        
+        <Border Effect="{DynamicResource Border Drop Shadow}" 
+                Margin="10,0,10,10" 
+                CornerRadius="4,4,4,4" 
+                BorderBrush="DimGray" 
+                Background="Transparent" 
+                BorderThickness="1,1,1,1" 
+                Grid.Row="1">
+            <StackPanel Margin="12,11,12,0" VerticalAlignment="Top" Grid.Row="1">
+                <ItemsControl x:Name="MainRegion" cal:RegionManager.RegionName="{x:Static Infrastructure:RegionNames.MainRegion}" />
+            </StackPanel>
+        </Border>
+        
+        <GridSplitter VerticalAlignment="Bottom" Grid.Row="1" Effect="{DynamicResource Border Drop Shadow}" Height="2" HorizontalAlignment="Stretch" Background="{DynamicResource GridSplitter Background}" />
+        
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border Margin="10,10,10,10" 
+                    CornerRadius="4,4,4,4" 
+                    BorderBrush="DimGray" 
+                    Background="Transparent" 
+                    BorderThickness="1,1,1,1" 
+                    Grid.Column="0" >
+                <StackPanel Margin="10,10,12,10" >
+                    <ItemsControl x:Name="DetailsRegion" cal:RegionManager.RegionName="{x:Static Infrastructure:RegionNames.DetailsRegion}" />
+                </StackPanel>
+            </Border>
+            
+            <GridSplitter Width="2" Effect="{DynamicResource Border Drop Shadow}" Background="{DynamicResource GridSplitter Background}"></GridSplitter>
+            
+            <Border Margin="10,10,10,10" 
+                    CornerRadius="4,4,4,4" 
+                    BorderBrush="DimGray" 
+                    Background="Transparent"
+                    BorderThickness="1,1,1,1" 
+
+                    Grid.Column="1">
+                <StackPanel Margin="10,10,12,10">
+                    <ItemsControl x:Name="ErrorsRegion" cal:RegionManager.RegionName="{x:Static Infrastructure:RegionNames.ErrorsRegion}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+
+    <!--<Grid VerticalAlignment="Top">
         <Grid.Background>
             <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="1.55" RadiusY="0.62">
                 <RadialGradientBrush.RelativeTransform>
@@ -76,5 +136,5 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-    </Grid>
+    </Grid>-->
 </Window>
