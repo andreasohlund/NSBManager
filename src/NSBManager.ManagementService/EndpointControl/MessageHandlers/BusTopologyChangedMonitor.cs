@@ -1,12 +1,11 @@
 using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
-using NSBManager.ManagementService.EndpointControl;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 using NServiceBus.Host;
 
-namespace NSBManager.ManagementService.MessageHandling
+namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
 {
     public class BusTopologyChangedMonitor : IListener<EndpointStartedEvent>,IWantToRunAtStartup
     {
@@ -24,7 +23,7 @@ namespace NSBManager.ManagementService.MessageHandling
             var eventMessage = new BusTopologyChangedEvent
                                    {
                                        Endpoints = busTopology.GetCurrentEndpoints()
-                                       .ToList()
+                                           .ToList()
                                    };
 
             bus.Publish(eventMessage);

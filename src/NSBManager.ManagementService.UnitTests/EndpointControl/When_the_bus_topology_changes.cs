@@ -1,7 +1,7 @@
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
-using NSBManager.ManagementService.MessageHandling;
+using NSBManager.ManagementService.EndpointControl.MessageHandlers;
 using NSBManager.ManagementService.Messages;
 using NSBManager.TestHelpers;
 using NServiceBus;

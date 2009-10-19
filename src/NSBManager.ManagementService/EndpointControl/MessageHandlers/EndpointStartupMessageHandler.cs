@@ -1,9 +1,8 @@
 using NSBManager.Instrumentation.Core.Messages;
-using NSBManager.ManagementService.EndpointControl;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 
-namespace NSBManager.ManagementService.MessageHandling
+namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
 {
     public class EndpointStartupMessageHandler:IHandleMessages<EndpointStartupMessage>
     {

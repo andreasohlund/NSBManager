@@ -60,6 +60,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boostrapper.cs" />
@@ -74,10 +75,11 @@
     <Compile Include="FailedMessages\IFailedMessagesStore.cs" />
     <Compile Include="FailedMessages\IFailedMessagesService.cs" />
     <Compile Include="FailedMessages\IFailedMessagesStoreFactory.cs" />
+    <Compile Include="FailedMessages\MessageHandlers\RetryFailedMessagesRequestHandler.cs" />
     <Compile Include="ManagementServiceRegistry.cs" />
-    <Compile Include="MessageHandling\EndpointStartupMessageHandler.cs" />
-    <Compile Include="MessageHandling\BusTopologyChangedMonitor.cs" />
-    <Compile Include="MessageHandling\GetAllFailedMessagesRequestHandler.cs" />
+    <Compile Include="EndpointControl\MessageHandlers\EndpointStartupMessageHandler.cs" />
+    <Compile Include="EndpointControl\MessageHandlers\BusTopologyChangedMonitor.cs" />
+    <Compile Include="FailedMessages\MessageHandlers\GetAllFailedMessagesRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EndpointControl\BusTopology.cs" />
   </ItemGroup>
@@ -104,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alarms\" />
+    <Folder Include="MessageHandling\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

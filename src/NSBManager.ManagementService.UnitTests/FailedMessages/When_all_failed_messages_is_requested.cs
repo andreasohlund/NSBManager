@@ -1,5 +1,5 @@
 using NSBManager.ManagementService.FailedMessages;
-using NSBManager.ManagementService.MessageHandling;
+using NSBManager.ManagementService.FailedMessages.MessageHandlers;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 using NUnit.Framework;

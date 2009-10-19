@@ -1,10 +1,8 @@
 using System.Linq;
-using NSBManager.ManagementService.FailedMessages;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
-using FailedMessage=NSBManager.ManagementService.Messages.FailedMessage;
 
-namespace NSBManager.ManagementService.MessageHandling
+namespace NSBManager.ManagementService.FailedMessages.MessageHandlers
 {
     public class GetAllFailedMessagesRequestHandler : IHandleMessages<GetAllFailedMessagesRequest>
     {
@@ -22,11 +20,11 @@ namespace NSBManager.ManagementService.MessageHandling
         {
             bus.Reply(new GetAllFailedMessagesReply
                           {
-                              Messages = failedMessagesService.FailedMessages.Select(x => new FailedMessage
+                              Messages = failedMessagesService.FailedMessages.Select(x => new Messages.FailedMessage
                                                                                               {
                                                                                                   Id = x.Id,
                                                                                                   Origin = x.Origin
-                                                                                            }).ToList()
+                                                                                              }).ToList()
                           });
         }
     }

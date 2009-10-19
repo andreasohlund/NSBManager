@@ -1,6 +1,6 @@
 using NSBManager.Instrumentation.Core.Messages;
 using NSBManager.ManagementService.EndpointControl;
-using NSBManager.ManagementService.MessageHandling;
+using NSBManager.ManagementService.EndpointControl.MessageHandlers;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 using NUnit.Framework;

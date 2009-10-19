@@ -15,37 +15,54 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages.MsmqMonitor
     {
         private MsmqFailedMessagesStore messageStore;
         private int numberOfMessagesArrived = 0;
-        private const string queueName = "managementservice.unittests@localhost";
+        private const string errorQueueAdress = "error.unittests@localhost";
+        private const string originQueueAdress = "origin.unittests@localhost";
 
         private MessageQueue errorQueue;
+        private MessageQueue originQueue;
+
+        const string label = @"<CorrId></CorrId><WinIdName>SE\ASO</WinIdName><FailedQ>" + originQueueAdress + "</FailedQ>";
 
 
         [SetUp]
         public void Setup()
         {
 
-            MsmqUtilities.CreateQueueIfNecessary(queueName);
+            MsmqUtilities.CreateQueueIfNecessary(errorQueueAdress);
+            MsmqUtilities.CreateQueueIfNecessary(originQueueAdress);
 
-            var fullPath = MsmqUtilities.GetFullPath(queueName);
-            errorQueue = new MessageQueue(fullPath);
-
+            errorQueue = new MessageQueue(MsmqUtilities.GetFullPath(errorQueueAdress));
             errorQueue.Purge();
 
-            messageStore = new MsmqFailedMessagesStore(queueName);
+            originQueue = new MessageQueue(MsmqUtilities.GetFullPath(originQueueAdress));
+            originQueue.Purge();
 
+            messageStore = new MsmqFailedMessagesStore(errorQueueAdress);
+
+        }
+
+        [Test]
+        public void Retried_message_should_be_moved_to_origin()
+        {
+            AddMessageToQueue(new Message(), label);
+            var message = messageStore.GetAllMessages().First();
+
+            messageStore.RetryMessage(message);
+
+            errorQueue.GetAllMessages().Count().ShouldEqual(0);
+            originQueue.GetAllMessages().Count().ShouldEqual(1);
         }
 
         [Test]
         public void Parse_NSB_specfic_label_information()
         {
-            string label = @"<CorrId></CorrId><WinIdName>SE\ASO</WinIdName><FailedQ>managmentgui@PCASO</FailedQ>";
-
+            
             AddMessageToQueue(new Message(), label);
 
             var message = messageStore.GetAllMessages().First();
 
-            message.Origin.ShouldEqual("managmentgui@PCASO");
-            message.AddressOfFailedMessageStore.ShouldEqual(queueName);
+            message.Origin.ShouldEqual(originQueueAdress);
+            message.AddressOfFailedMessageStore.ShouldEqual(errorQueueAdress);
 
         }
 
