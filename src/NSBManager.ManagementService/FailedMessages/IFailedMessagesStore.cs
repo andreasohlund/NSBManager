@@ -8,5 +8,6 @@ namespace NSBManager.ManagementService.FailedMessages
         event Action<FailedMessage> OnMessageFailed;
         IEnumerable<FailedMessage> GetAllMessages();
         void StartMonitoring();
+        void RetryMessage(FailedMessage message);
     }
 }

@@ -45,6 +45,7 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages.MsmqMonitor
             var message = messageStore.GetAllMessages().First();
 
             message.Origin.ShouldEqual("managmentgui@PCASO");
+            message.AddressOfFailedMessageStore.ShouldEqual(queueName);
 
         }
 

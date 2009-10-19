@@ -98,7 +98,30 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
         [Test]
         public void Should_run_at_startup()
         {
-            Assert.True(service is IWantToRunAtStartup);
+            (service as IWantToRunAtStartup).ShouldNotBeNull();
+        }
+
+        [Test]
+        public void Should_enable_resubmission_of_messages()
+        {
+            var failedMessage = new FailedMessage
+                                    {
+                                        Id = "1",
+                                        Origin = "queue@server",
+                                        AddressOfFailedMessageStore = adressOfFailedMessagesStore
+                                    };
+
+            service.MonitorFailedMessagesStores(adressOfFailedMessagesStore);
+
+            RaiseFailedMessageEvent(failedMessage);
+
+
+            service.RetryMessage("1");
+
+            store.AssertWasCalled(x => x.RetryMessage(failedMessage));
+
+            Assert.Throws<Exception>(()=>service.RetryMessage("bad id"));
+            
         }
 
 

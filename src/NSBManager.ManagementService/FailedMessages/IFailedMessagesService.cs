@@ -6,5 +6,7 @@ namespace NSBManager.ManagementService.FailedMessages
     {
         IEnumerable<FailedMessage> FailedMessages { get; }
         void MonitorFailedMessagesStores(string adressOfFailedMessagesStore);
+        void RetryMessage(string messageId);
+   
     }
 }

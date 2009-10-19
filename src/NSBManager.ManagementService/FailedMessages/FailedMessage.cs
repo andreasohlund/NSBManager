@@ -8,6 +8,8 @@ namespace NSBManager.ManagementService.FailedMessages
 
         public string Origin { get; set; }
 
+        public string AddressOfFailedMessageStore { get; set; }
+
         public override bool Equals(object obj)
         {
             var other = obj as FailedMessage;

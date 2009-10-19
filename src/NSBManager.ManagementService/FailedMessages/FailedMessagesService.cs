@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
 using NServiceBus.Host;
+using System.Linq;
 
 namespace NSBManager.ManagementService.FailedMessages
 {
@@ -14,7 +16,7 @@ namespace NSBManager.ManagementService.FailedMessages
         private readonly IFailedMessagesStoreFactory failedMessagesStoreFactory;
         private readonly IDomainEvents domainEvents;
         private readonly IList<FailedMessage> failedMessages = new List<FailedMessage>();
-        private readonly IDictionary<string, IFailedMessagesStore> failedMessagesStores;
+        private readonly IDictionary<string, IFailedMessagesStore> failedMessageStores;
 
         public FailedMessagesService(IFailedMessagesStoreFactory failedMessagesStoreFactory,
                                      IDomainEvents domainEvents)
@@ -22,7 +24,7 @@ namespace NSBManager.ManagementService.FailedMessages
             this.failedMessagesStoreFactory = failedMessagesStoreFactory;
             this.domainEvents = domainEvents;
 
-            failedMessagesStores = new Dictionary<string, IFailedMessagesStore>();
+            failedMessageStores = new Dictionary<string, IFailedMessagesStore>();
         }
 
         public IEnumerable<FailedMessage> FailedMessages
@@ -55,7 +57,7 @@ namespace NSBManager.ManagementService.FailedMessages
 
         public void MonitorFailedMessagesStores(string adressOfFailedMessagesStore)
         {
-            if (failedMessagesStores.ContainsKey(adressOfFailedMessagesStore))
+            if (failedMessageStores.ContainsKey(adressOfFailedMessagesStore))
                 return;
 
             var store = failedMessagesStoreFactory.CreateFailedMessagesStore(adressOfFailedMessagesStore);
@@ -69,7 +71,7 @@ namespace NSBManager.ManagementService.FailedMessages
             store.OnMessageFailed += HandleOnMessageFailed;
 
             store.StartMonitoring();
-            failedMessagesStores.Add(adressOfFailedMessagesStore, store);
+            failedMessageStores.Add(adressOfFailedMessagesStore, store);
         }
 
         public IEnumerable<FailedMessage> GetAllMessages()
@@ -85,6 +87,18 @@ namespace NSBManager.ManagementService.FailedMessages
         public void Stop()
         {
             
+        }
+
+        public void RetryMessage(string messageId)
+        {
+            var message = failedMessages.Where(x => x.Id == messageId).FirstOrDefault();
+
+            if (message == null)
+                throw new Exception("FailedMessage with id: " + messageId + " not found");
+
+            var store = failedMessageStores[message.AddressOfFailedMessageStore];
+
+            store.RetryMessage(message);
         }
     }
 }

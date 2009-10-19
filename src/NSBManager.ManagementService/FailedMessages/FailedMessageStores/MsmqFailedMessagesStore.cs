@@ -10,8 +10,12 @@ namespace NSBManager.ManagementService.FailedMessages.FailedMessageStores
     {
         private readonly MessageQueue errorQueue;
         private Cursor cursor;
+        private string adress;
+
         public MsmqFailedMessagesStore(string adress)
         {
+            this.adress = adress;
+
             var fullPath = MsmqUtilities.GetFullPath(adress);
 
             errorQueue = new MessageQueue(fullPath)
@@ -38,6 +42,10 @@ namespace NSBManager.ManagementService.FailedMessages.FailedMessageStores
             errorQueue.BeginPeek(MessageQueue.InfiniteTimeout, cursor, PeekAction.Current, null, OnPeekCompleted);
         }
 
+        public void RetryMessage(FailedMessage message)
+        {
+        }
+
 
         private void OnPeekCompleted(IAsyncResult asyncResult)
         {
@@ -54,12 +62,13 @@ namespace NSBManager.ManagementService.FailedMessages.FailedMessageStores
             return errorQueue.GetAllMessages().Select(m => ConvertToFailedMessage(m));
         }
 
-        private static FailedMessage ConvertToFailedMessage(Message msmqMessage)
+        private FailedMessage ConvertToFailedMessage(Message msmqMessage)
         {
             return new FailedMessage
                        {
                            Id = msmqMessage.Id,
-                           Origin = GetOriginFromLabel(msmqMessage.Label)
+                           Origin = GetOriginFromLabel(msmqMessage.Label),
+                           AddressOfFailedMessageStore = adress
                        };
         }
 
