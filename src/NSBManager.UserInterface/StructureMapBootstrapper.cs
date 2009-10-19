@@ -40,44 +40,28 @@ namespace NSBManager.UserInterface
 
         protected void ConfigureContainer(string profileToUse)
         {
-            IModuleCatalog catalog = GetModuleCatalog();
+            //IModuleCatalog catalog = GetModuleCatalog();
 
-            if(catalog != null)
-            {
-                ObjectFactory.Configure(x => x.Register(catalog));
-            }
+            //if(catalog != null)
+            //{
+            //    ObjectFactory.Configure(x => x.Register(catalog));
+            //}
             
             ObjectFactory.Configure(x =>
                                         {
                                             x.AddRegistry(new EventRegistry());
-
-                                            x.For<IPhysicalModel>().AsSingletons()
-                                                .Use<PhysicalModel>();
-
-                                            x.CreateProfile("demo")
-                                                .For<IPhysicalModel>().UseConcreteType<FakePhysicalModel>();
-
-                                            //this line should be replaced with a convention scanner
-
-                                            x.ForConcreteType<ShellPresenter>();
-                                            x.For<IShellView>().Use<Shell>();
-
-                                            // Modules
-                                            x.ForConcreteType<PhysicalModule.PhysicalModule>();
-                                            
-                                            // For Prism
+                                            x.AddRegistry(new UserInterfaceRegistry());
                                             x.AddRegistry(new PrismRegistry());
-
                                         });
 
             ObjectFactory.Profile = profileToUse;
 
             ServiceLocator.SetLocatorProvider(ObjectFactory.GetInstance<IServiceLocator>);
         }
-        protected virtual IModuleCatalog GetModuleCatalog()
-        {
-            return null;
-        }
+        //protected virtual IModuleCatalog GetModuleCatalog()
+        //{
+        //    return null;
+        //}
         protected RegionAdapterMappings ConfigureRegionAdapterMappings()
         {
             var regionAdapterMappings = ObjectFactory.TryGetInstance<RegionAdapterMappings>();
@@ -119,16 +103,7 @@ namespace NSBManager.UserInterface
 
         protected virtual void InitializeModules()
         {
-            IModuleManager manager;
-
-            try
-            {
-                manager = ObjectFactory.GetInstance<IModuleManager>();
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException(ex.Message);
-            }
+            var manager = ObjectFactory.GetInstance<IModuleManager>();
 
             manager.Run();
         }

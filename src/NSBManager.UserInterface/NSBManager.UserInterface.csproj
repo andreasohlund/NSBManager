@@ -138,6 +138,7 @@
     <Compile Include="ShellPresenter.cs" />
     <Compile Include="StructureMapBootstrapper.cs" />
     <Compile Include="StructureMapServiceLocator.cs" />
+    <Compile Include="UserInterfaceRegistry.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -186,6 +187,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FailedMessagesModule\Views\" />
     <Folder Include="PhysicalModule\ViewModels\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

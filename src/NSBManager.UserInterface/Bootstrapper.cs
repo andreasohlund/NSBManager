@@ -7,13 +7,13 @@ namespace NSBManager.UserInterface
 {
     public class Bootstrapper : StructureMapBootstrapper
     {
-        protected override IModuleCatalog GetModuleCatalog()
-        {
-            var catalog = new ModuleCatalog();
-            catalog.AddModule(typeof (PhysicalModule.PhysicalModule));
+        //protected override IModuleCatalog GetModuleCatalog()
+        //{
+        //    var catalog = new ModuleCatalog();
+        //    catalog.AddModule(typeof (PhysicalModule.PhysicalModule));
 
-            return catalog;
-        }
+        //    return catalog;
+        //}
 
         protected override DependencyObject CreateShell()
         {

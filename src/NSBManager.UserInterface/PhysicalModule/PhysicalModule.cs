@@ -25,6 +25,7 @@ namespace NSBManager.UserInterface.PhysicalModule
 
             IRegion detailsRegion = regionManager.Regions[RegionNames.DetailsRegion];
             detailsRegion.Add(ObjectFactory.GetInstance<IServerDetailsPresentationModel>().View);
+
         }
 
         private void RegisterViewsAndServices()
