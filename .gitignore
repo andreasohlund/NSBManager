@@ -11,3 +11,4 @@ _ReSharper.*
 *.swp
 *.user
 TestResult.xml
+results
