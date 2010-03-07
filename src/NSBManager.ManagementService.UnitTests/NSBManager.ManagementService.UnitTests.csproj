@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Machine.Specifications, Version=0.3.0.0, Culture=neutral, PublicKeyToken=5c474de7a495cff1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\MSpec\Machine.Specifications.dll</HintPath>
+    </Reference>
     <Reference Include="NBehave.Spec.NUnit, Version=0.4.0.0, Culture=neutral, PublicKeyToken=d421feca0f4a05f6, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\tools\NBehave\NBehave.Spec.NUnit.dll</HintPath>
@@ -73,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointControl\ServiceBusTests.cs" />
+    <Compile Include="EndpointControl\When_known_endpoints_is_loaded.cs" />
     <Compile Include="FailedMessages\FailedMessagesServiceTests.cs" />
     <Compile Include="FailedMessages\FailedMessagesStoreFactoryTests.cs" />
     <Compile Include="FailedMessages\MsmqMonitor\MsmqFailedMessagesStoreTests.cs" />

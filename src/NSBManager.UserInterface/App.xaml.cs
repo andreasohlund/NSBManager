@@ -51,6 +51,8 @@ namespace NSBManager.UserInterface
             config.CreateBus()
                 .Start();
 
+
+            //todo use the NSB startup event to do this without requireing the user to explicilty start the monitor
             var monitor = config.Builder.Build<IEndpointMonitor>();
 
             monitor.Start();

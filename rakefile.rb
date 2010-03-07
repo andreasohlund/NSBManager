@@ -14,7 +14,7 @@ CLR_VERSION = "v3.5"
 versionNumber = ENV["BUILD_NUMBER"].nil? ? 0 : ENV["BUILD_NUMBER"]
 
 props = { :archive => "build" }
-props = { :archive => "build" }
+
 
 desc "Compiles, unit tests"
 task :all => [:default]
@@ -41,7 +41,8 @@ end
 desc "Prepares the working directory for a new build"
 task :clean do
 	#TODO: do any other tasks required to clean/prepare the working directory
-	Dir.mkdir props[:archive] unless exists?(props[:archive])
+	FileUtils.rm_r props[:archive], :force=>true
+        Dir.mkdir props[:archive]
 	Dir.mkdir props[:archive]+'/UserInterface'
 	Dir.mkdir props[:archive]+'/Service'
 	Dir.mkdir props[:archive]+'/Instrumentation'
@@ -69,6 +70,10 @@ desc "Runs unit tests"
 task :unit_test => :compile do
   runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => 'src', :platform => 'x86'
   runner.executeTests ['NSBManager.ManagementService.UnitTests', 'NSBManager.ManagementService.UnitTests', 'NSBManager.Instrumentation.UnitTests']  
+
+  mspecrunner = MSpecRunner.new :compilemode => COMPILE_TARGET, :source => 'src'
+  mspecrunner.executeTests ['NSBManager.ManagementService.UnitTests']  
+
 end
 
 desc "Target used for the CI server"

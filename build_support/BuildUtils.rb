@@ -22,6 +22,29 @@ class NUnitRunner
 	end
 end
 
+
+class MSpecRunner
+	include FileTest
+
+	def initialize(paths)
+		@sourceDir = paths.fetch(:source, 'source')
+		@resultsDir = paths.fetch(:results, 'results')
+		@compilePlatform = paths.fetch(:platform, '')
+		@compileTarget = paths.fetch(:compilemode, 'debug')
+	
+		@mspecExe = File.join('tools', 'mspec', "mspec.exe").gsub('/','\\')
+	end
+	
+	def executeTests(assemblies)
+		Dir.mkdir @resultsDir unless exists?(@resultsDir)
+		
+		assemblies.each do |assem|
+			file = File.expand_path("#{@sourceDir}/#{assem}/bin/#{@compileTarget}/#{assem}.dll")
+                        sh "#{@mspecExe} #{file} --html ./#{@resultsDir }"
+		end
+	end
+end
+
 class MSBuildRunner
 	def self.compile(attributes)
 		version = attributes.fetch(:clrversion, 'v3.5')
