@@ -38,18 +38,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\log4net\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Composite, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Prism\Microsoft.Practices.Composite.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Composite.Presentation, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Prism\Microsoft.Practices.Composite.Presentation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Prism\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
@@ -93,16 +81,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Infrastructure\PrismRegistry.cs" />
     <Compile Include="DemoModels\FakePhysicalModel.cs" />
-    <Compile Include="Infrastructure\RegionNames.cs" />
     <Compile Include="IShellView.cs" />
     <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="NSBMLogo.xaml.cs">
       <DependentUpon>NSBMLogo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PhysicalModule\Events\ServerChangedEvent.cs" />
-    <Compile Include="PhysicalModule\Events\ServerSelectedEvent.cs" />
     <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
     <Compile Include="PhysicalModule\Model\GuiEndpoint.cs" />
@@ -110,19 +94,6 @@
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
     <Compile Include="PhysicalModule\Model\Server.cs" />
-    <Compile Include="PhysicalModule\PhysicalModule.cs" />
-    <Compile Include="PhysicalModule\Views\IServerDetailsPresentationModel.cs" />
-    <Compile Include="PhysicalModule\Views\IServerDetailsView.cs" />
-    <Compile Include="PhysicalModule\Views\IServerPresentationModel.cs" />
-    <Compile Include="PhysicalModule\Views\IServerView.cs" />
-    <Compile Include="PhysicalModule\Views\ServerDetailsPresentationModel.cs" />
-    <Compile Include="PhysicalModule\Views\ServerDetailsView.xaml.cs">
-      <DependentUpon>ServerDetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PhysicalModule\Views\ServerPresentationModel.cs" />
-    <Compile Include="PhysicalModule\Views\ServerView.xaml.cs">
-      <DependentUpon>ServerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -136,13 +107,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Shell.xaml.cs">
-      <DependentUpon>Shell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ShellPresenter.cs" />
-    <Compile Include="StructureMapBootstrapper.cs" />
-    <Compile Include="StructureMapServiceLocator.cs" />
-    <Compile Include="UserInterfaceRegistry.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -181,22 +145,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PhysicalModule\Views\ServerDetailsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PhysicalModule\Views\ServerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Shell.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FailedMessagesModule\Views\" />
     <Folder Include="PhysicalModule\ViewModels\" />
+    <Folder Include="PhysicalModule\Views\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

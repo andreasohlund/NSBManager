@@ -33,7 +33,7 @@ namespace NSBManager.UserInterface
             ConfigureNServiceBus();
 
             var bootStrapper = new Bootstrapper();
-            bootStrapper.Run(profile);
+            //bootStrapper.Run(profile);
         }
 
         private void ConfigureNServiceBus()
