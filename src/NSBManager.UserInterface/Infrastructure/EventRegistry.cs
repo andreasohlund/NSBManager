@@ -11,7 +11,7 @@ namespace NSBManager.UserInterface.Infrastructure
         {
             RegisterInterceptor(new RegisterEventListenersInterceptor());
 
-            For<IEventAggregator>().AsSingletons().Use<EventAggregator>();
+            For<IEventAggregator>().Singleton().Use<EventAggregator>();
 
             ForSingletonOf<SynchronizationContext>().TheDefault.Is.ConstructedBy(() =>
             {

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="NSBManager.UserInterface.Views.ShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pf="clr-namespace:Caliburn.PresentationFramework.RoutedMessaging;assembly=Caliburn.PresentationFramework"
+             xmlns:ca="clr-namespace:Caliburn.PresentationFramework.Actions;assembly=Caliburn.PresentationFramework"
+             Width="800"
+             Height="600"
+             >
+    <DockPanel>
+        <ItemsControl DockPanel.Dock="Top"
+                      HorizontalAlignment="Center"
+                      ItemsSource="{Binding MenuItems}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button ca:Action.Target="{Binding}"
+                            pf:Message.Attach="Execute"
+                            ToolTipService.ToolTip="{Binding DisplayName}"
+                            Width="50"
+                            Height="50"
+                            Margin="4">
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </DockPanel>
+</UserControl>

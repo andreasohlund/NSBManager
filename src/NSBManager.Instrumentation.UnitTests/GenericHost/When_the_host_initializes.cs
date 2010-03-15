@@ -19,7 +19,8 @@ namespace NSBManager.Instrumentation.UnitTests.GenericHost
             configuration = new Configuration();
 
             Configure.With()
-                .SpringBuilder()
+                //Todo: Fix
+                //.SpringBuilder()
                 .UnicastBus()
                 .MsmqTransport();
 

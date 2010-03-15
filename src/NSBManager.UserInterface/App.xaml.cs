@@ -1,28 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Caliburn.PresentationFramework.ApplicationModel;
+using Caliburn.StructureMap;
+using Microsoft.Practices.ServiceLocation;
 using NSBManager.Instrumentation.Core;
+using NSBManager.UserInterface.ViewModels;
 using NServiceBus;
+using StructureMap;
 
 namespace NSBManager.UserInterface
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App
     {
+        protected override void BeforeConfiguration()
+        {
+            ConfigureNServiceBus();
+            base.BeforeConfiguration();
+        }
+
+        protected override IServiceLocator CreateContainer()
+        {
+            ObjectFactory.Configure(x =>
+                                        {
+                                            x.AddRegistry<UserInterfaceRegistry>();
+
+                                            x.For<IShell>().Singleton().Use<ShellViewModel>();
+
+                                            x.Scan(y =>
+                                                       {
+                                                           y.TheCallingAssembly();
+                                                           y.AddAllTypesOf<IShortcut>();
+                                                       });
+                                        });
+
+            //Todo: Change later
+            ObjectFactory.Profile = "demo";
+
+            return new StructureMapAdapter(ObjectFactory.Container);
+        }
+
+        protected override object CreateRootModel()
+        {
+            return Container.GetInstance<ShellViewModel>();
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
+
+            //Todo: This runs after CreateContainer, so how shall we get the profile?
             base.OnStartup(e);
 
             var profile = "";
@@ -30,9 +55,9 @@ namespace NSBManager.UserInterface
             if (e.Args.Count() > 0)
                 profile = e.Args[0];
 
-            ConfigureNServiceBus();
+            //ConfigureNServiceBus();
 
-            var bootStrapper = new Bootstrapper();
+            //var bootStrapper = new Bootstrapper();
             //bootStrapper.Run(profile);
         }
 

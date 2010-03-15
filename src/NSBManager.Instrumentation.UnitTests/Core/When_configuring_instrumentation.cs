@@ -14,8 +14,9 @@ namespace NSBManager.Instrumentation.UnitTests.Core
         [SetUp]
         public void SetUp()
         {
-            config = Configure.With(new Type[] {})
-                .SpringBuilder()
+            config = Configure.With(new Type[] { })
+                //Todo: Fix?
+                //.SpringBuilder()
                 .EnableInstrumentation()
                 .UnicastBus()
                 .MsmqTransport();
@@ -24,7 +25,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core
         [Test]
         public void The_endpoint_manager_should_be_registered()
         {
-            Assert.IsNotNull(config.Builder.Build<IEndpointMonitor>()); 
+            Assert.IsNotNull(config.Builder.Build<IEndpointMonitor>());
         }
 
         [Test]

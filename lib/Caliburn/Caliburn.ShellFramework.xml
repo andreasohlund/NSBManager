@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Caliburn.ShellFramework</name>
+    </assembly>
+    <members>
+        <member name="T:Caliburn.ShellFramework.ShellFrameworkExtensions">
+            <summary>
+            General extension methods related to the shell framework.
+            </summary>
+        </member>
+        <member name="M:Caliburn.ShellFramework.ShellFrameworkExtensions.ShellFramework(Caliburn.Core.Configuration.IModuleHook)">
+            <summary>
+            Adds the shell framework module's configuration to the system.
+            </summary>
+            <param name="hook">The hook.</param>
+        </member>
+    </members>
+</doc>
