@@ -5,7 +5,6 @@ using NSBManager.Instrumentation.Core.Messages;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
-using NSBManager.TestHelpers;
 
 namespace NSBManager.Instrumentation.UnitTests.Core
 {

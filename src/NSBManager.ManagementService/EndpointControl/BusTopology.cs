@@ -1,30 +1,32 @@
+using System;
 using System.Collections.Generic;
 using NSBManager.Infrastructure;
-using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.Messages;
 using System.Linq;
+using NServiceBus;
 
 namespace NSBManager.ManagementService.EndpointControl
 {
     public class BusTopology : IBusTopology
     {
-        private readonly IDomainEvents domainEvents;
+        private readonly IBus bus;
 
-        private readonly IList<Endpoint> endpoints = new List<Endpoint>();
+        private IList<Endpoint> endpoints;
 
-        public BusTopology(IDomainEvents domainEvents)
+        public BusTopology(IBus bus)
         {
-            this.domainEvents = domainEvents;
+            this.bus = bus;
+            endpoints = new List<Endpoint>();
         }
 
         public void RegisterEndpoint(Endpoint endpoint)
         {
-            if (endpoints.Count(x => x.Id == endpoint.Id) == 0)
+            if (!endpoints.Any(x => x.Id == endpoint.Id))
             {
                 endpoints.Add(endpoint);
 
 
-                domainEvents.Publish(new EndpointStartedEvent
+                bus.Publish(new EndpointStartedEvent
                                          {
                                              AdressOfFailedMessagesStore = endpoint.AdressOfFailedMessageStore
                                          });
@@ -36,6 +38,17 @@ namespace NSBManager.ManagementService.EndpointControl
         public IEnumerable<Endpoint> GetCurrentEndpoints()
         {
             return endpoints;
+        }
+
+        public void Start(IEnumerable<Endpoint> initialEndpoints)
+        {
+            endpoints = new List<Endpoint>(initialEndpoints);
+
+            foreach (var endpoint in endpoints)
+            {
+                endpoint.Status = EndpointStatus.Unknown;
+                bus.Send(endpoint.Adress, new EndpointPingRequest());
+            }
         }
     }
 }

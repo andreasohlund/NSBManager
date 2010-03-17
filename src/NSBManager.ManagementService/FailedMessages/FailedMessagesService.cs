@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
-using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
+using NSBManager.ManagementService.Messages;
 using NServiceBus.Host;
 using System.Linq;
 

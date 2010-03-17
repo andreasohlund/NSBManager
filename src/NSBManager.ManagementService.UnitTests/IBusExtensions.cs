@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using NServiceBus;
 using Rhino.Mocks;
 
-namespace NSBManager.TestHelpers
+namespace NSBManager
 {
     public static  class IBusExtensions
     {
@@ -19,6 +19,11 @@ namespace NSBManager.TestHelpers
                                                    .Matches(p => exp.Compile().Invoke((T)p[0]))));
         }
 
+        public static void AssertWasSent<T>(this IBus bus, string adress, Expression<Predicate<T>> exp) where T : IMessage
+        {
+            bus.AssertWasCalled(x => x.Send(Arg<string>.Matches(s => s == adress), Arg<IMessage[]>
+                                                   .Matches(p => exp.Compile().Invoke((T)p[0]))));
+        }
 
         public static void AssertReply<T>(this IBus bus, Expression<Predicate<T>> exp) where T : IMessage
         {

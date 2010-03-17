@@ -2,14 +2,15 @@ using System;
 using System.Linq;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
-using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.FailedMessages;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
+using NSBManager.ManagementService.Messages;
 using NServiceBus.Host;
 using NUnit.Framework;
 using Rhino.Mocks;
 using NBehave.Spec.NUnit;
 using System.Collections.Generic;
+using FailedMessage = NSBManager.ManagementService.FailedMessages.FailedMessage;
 
 namespace NSBManager.ManagementService.UnitTests.FailedMessages
 {

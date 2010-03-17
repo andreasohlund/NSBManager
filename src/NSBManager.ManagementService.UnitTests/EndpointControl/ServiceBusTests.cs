@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using NSBManager.Infrastructure;
 using NSBManager.ManagementService.EndpointControl;
-using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.Messages;
+using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -14,13 +14,13 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
     {
         private BusTopology busTopology;
 
-        private IDomainEvents domainEvents;
+        private IBus bus;
         [SetUp]
         public void Setup()
         {
-            domainEvents = MockRepository.GenerateStub<IDomainEvents>();
+            bus = MockRepository.GenerateStub<IBus>();
 
-            busTopology = new BusTopology(domainEvents);
+            busTopology = new BusTopology(bus);
 
         }
 
@@ -35,8 +35,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
                                };
             busTopology.RegisterEndpoint(endpoint);
 
-            domainEvents.AssertWasCalled(x => x.Publish(Arg<EndpointStartedEvent>
-                .Matches(e=>e.AdressOfFailedMessagesStore == endpoint.AdressOfFailedMessageStore)));
+            bus.AssertWasPublished<EndpointStartedEvent>(e => e.AdressOfFailedMessagesStore == endpoint.AdressOfFailedMessageStore);
 
             busTopology.RegisterEndpoint(new Endpoint{Id = "2@localhost"});
 

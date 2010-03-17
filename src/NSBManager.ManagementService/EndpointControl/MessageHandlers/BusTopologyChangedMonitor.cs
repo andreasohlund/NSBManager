@@ -1,6 +1,5 @@
 using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
-using NSBManager.ManagementService.EndpointControl.DomainEvents;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 using NServiceBus.Host;

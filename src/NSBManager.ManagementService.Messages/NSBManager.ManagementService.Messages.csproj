@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BusTopologyChangedEvent.cs" />
     <Compile Include="Endpoint.cs" />
+    <Compile Include="EndpointPingRequest.cs" />
+    <Compile Include="EndpointStartedEvent.cs" />
     <Compile Include="GetAllFailedMessagesReply.cs" />
     <Compile Include="GetAllFailedMessagesRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

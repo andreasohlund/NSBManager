@@ -4,7 +4,6 @@ using NSBManager.ManagementService.Messages;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
-using NSBManager.TestHelpers;
 using System.Collections.Generic;
 
 namespace NSBManager.ManagementService.UnitTests.FailedMessages

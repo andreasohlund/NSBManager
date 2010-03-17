@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="Boostrapper.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="EndpointControl\DomainEvents\EndpointStartedEvent.cs" />
     <Compile Include="EndpointControl\IBusTopology.cs" />
     <Compile Include="FailedMessages\FailedMessage.cs" />
     <Compile Include="FailedMessages\DomainEvents\FailedMessageDetectedEvent.cs" />
@@ -106,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alarms\" />
+    <Folder Include="EndpointControl\DomainEvents\" />
     <Folder Include="MessageHandling\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
