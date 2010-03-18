@@ -5,9 +5,19 @@
              xmlns:ca="clr-namespace:Caliburn.PresentationFramework.Actions;assembly=Caliburn.PresentationFramework">
     <StackPanel VerticalAlignment="Top"
                HorizontalAlignment="Left">
-        <TextBlock Text="This is server view"
-                   Foreground="White"
-                   FontSize="30" Margin="0 0 0 20" />
+        <Label Content="Servers on the bus"
+               Foreground="White"
+               FontSize="18"
+               Margin="0 0 0 20">
+            <Label.Effect>
+                <DropShadowEffect BlurRadius="10"
+                                  Color="#FF09D1EE"
+                                  Opacity="1"
+                                  ShadowDepth="0"
+                                  Direction="0" />
+            </Label.Effect>
+        </Label>
+
         <ItemsControl DockPanel.Dock="Top"
                       HorizontalAlignment="Center"
                       ItemsSource="{Binding Servers}">
@@ -18,7 +28,6 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-
                     <Button ca:Action.Target="{Binding}"
                             pf:Message.Attach="ShowServerDetails($dataContext)"
                             Content="{Binding Name}"

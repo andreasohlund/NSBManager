@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{984334C2-2423-4F2E-BE64-1E9806885552}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -113,6 +113,8 @@
     <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
     <Compile Include="PhysicalModule\Model\Server.cs" />
     <Compile Include="PhysicalModule\PhysicalModuleMenuItem.cs" />
+    <Compile Include="PhysicalModule\ViewModels\IServerViewModel.cs" />
+    <Compile Include="PhysicalModule\Model\PhysicalModelExtensions.cs" />
     <Compile Include="PhysicalModule\ViewModels\PhysicalViewModel.cs" />
     <Compile Include="PhysicalModule\ViewModels\ServerDetailsViewModel.cs" />
     <Compile Include="PhysicalModule\Views\PhysicalView.xaml.cs">

@@ -2,7 +2,7 @@ using Caliburn.PresentationFramework.Screens;
 
 namespace NSBManager.UserInterface.ViewModels
 {
-    public interface IShell : IScreenConductor
+    public interface IShell : IScreenConductor<IScreen>
     {
         
     }

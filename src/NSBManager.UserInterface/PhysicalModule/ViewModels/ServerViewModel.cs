@@ -12,41 +12,29 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
     public class ServerViewModel : Screen, IServerViewModel
     {
         private readonly IPhysicalModel physicalModel;
-        
+
         private readonly IObservableCollection<Server> servers = new BindableCollection<Server>();
 
-        public IObservableCollection<Server> Servers
-        {
-            get { return servers; }
-        }
+        public IObservableCollection<Server> Servers { get; private set; }
 
         public ServerViewModel(IPhysicalModel physicalModel)
         {
             this.physicalModel = physicalModel;
 
-            RefreshServersFromPhysicalModel();
+            Servers = new BindableCollection<Server>(this.physicalModel.Servers());
         }
 
-        private void RefreshServersFromPhysicalModel()
-        {
-            var groupedServers = physicalModel.Endpoints.GroupBy(x => x.ServerName);
-
-            servers.Clear();
-
-            foreach (var keys in groupedServers)
-            {
-                servers.Add(new Server{ Name = keys.Key });
-            }
-        }
 
         public IEnumerable<IResult> ShowServerDetails(Server server)
         {
-            //Todo: Add logic to show ServerDetailsView
-            yield return Show.Child<ServerDetailsViewModel>().In<IShell>();
+            //Note: This doesn't seem right. We need some sort of Endpoints collection on the Server object
+            yield return Show.Child<ServerDetailsViewModel>()
+                                .In<IShell>()
+                                .Configured(x =>
+                                                {
+                                                    x.ServerName = server.Name; 
+                                                    x.Endpoints =new BindableCollection<GuiEndpoint>(physicalModel.EndpointsOnServer(server.Name));
+                                                });
         }
-    }
-
-    public interface IServerViewModel : IScreen
-    {
     }
 }

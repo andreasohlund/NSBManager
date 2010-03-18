@@ -12,7 +12,7 @@ using NSBManager.UserInterface.PhysicalModule.ViewModels;
 
 namespace NSBManager.UserInterface.ViewModels
 {
-    public class ShellViewModel : ScreenConductor<IScreen>, IShell
+    public class ShellViewModel : ScreenConductor<IScreen>.WithCollection.OneScreenActive, IShell
     {
         private readonly IServiceLocator _serviceLocator;
         public MainMenuViewModel MainMenu { get; set; }

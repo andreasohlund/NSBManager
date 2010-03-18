@@ -13,7 +13,7 @@ namespace NSBManager.UserInterface.PhysicalModule
     {
         public IEnumerable<IResult> Execute()
         {
-            yield return Show.Child<PhysicalViewModel>().In<IShell>();
+            yield return Show.Child<ServerViewModel>().In<IShell>();
         }
 
         public string DisplayName
