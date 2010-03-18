@@ -1,83 +1,42 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Caliburn.PresentationFramework;
 using Caliburn.PresentationFramework.ApplicationModel;
+using Caliburn.PresentationFramework.RoutedMessaging;
 using Caliburn.PresentationFramework.Screens;
 using Caliburn.ShellFramework.Menus;
+using Caliburn.ShellFramework.Results;
+using Microsoft.Practices.ServiceLocation;
+using NSBManager.UserInterface.PhysicalModule.ViewModels;
 
 namespace NSBManager.UserInterface.ViewModels
 {
-    public class ShellViewModel : IShell
+    public class ShellViewModel : ScreenConductor<IScreen>, IShell
     {
-        private IObservableCollection<IShortcut> menuItems;
+        private readonly IServiceLocator _serviceLocator;
+        public MainMenuViewModel MainMenu { get; set; }
 
-        public IObservableCollection<IShortcut> MenuItems
+        public ShellViewModel(IServiceLocator serviceLocator)
         {
-            get { return menuItems; }
-        }
-
-        public ShellViewModel(IShortcut[] menuItems)
-        {
-            this.menuItems = new BindableCollection<IShortcut>(menuItems);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void Initialize()
-        {
+            _serviceLocator = serviceLocator;
+            MainMenu = _serviceLocator.GetInstance<MainMenuViewModel>();
             
+            ActiveScreen = _serviceLocator.GetInstance<StartViewModel>();
         }
 
-        public bool CanShutdown()
+        public IEnumerable<IResult> ShowServerView()
         {
-            return true;
+            yield return Show.Child<ServerViewModel>().In<IShell>();
         }
-
-        public void Shutdown()
+      
+        public override void OpenScreen(IScreen screen, Action<bool> completed)
         {
-            
-        }
+            var before = ActiveScreen;
 
-        public void Activate()
-        {
-            
-        }
+            base.OpenScreen(screen, completed);
 
-        public void Deactivate()
-        {
-            
-        }
-
-        public string DisplayName
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
-        public void OpenScreen(IScreen screen, Action<bool> completed)
-        {
-            //Todo: Display chosen screen
-            
-        }
-
-        public void ShutdownScreen(IScreen screen, Action<bool> completed)
-        {
-            
-        }
-
-        public IObservableCollection<IScreen> Screens
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public void ShutdownActiveScreen(Action<bool> completed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IScreen ActiveScreen
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            var after = ActiveScreen;
         }
     }
 }

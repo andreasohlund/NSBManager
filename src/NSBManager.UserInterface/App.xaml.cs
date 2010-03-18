@@ -4,6 +4,7 @@ using Caliburn.PresentationFramework.ApplicationModel;
 using Caliburn.StructureMap;
 using Microsoft.Practices.ServiceLocation;
 using NSBManager.Instrumentation.Core;
+using NSBManager.UserInterface.PhysicalModule.ViewModels;
 using NSBManager.UserInterface.ViewModels;
 using NServiceBus;
 using StructureMap;
@@ -25,7 +26,7 @@ namespace NSBManager.UserInterface
                                             x.AddRegistry<UserInterfaceRegistry>();
 
                                             x.For<IShell>().Singleton().Use<ShellViewModel>();
-
+                                            x.For<IServerViewModel>().Use<ServerViewModel>();
                                             x.Scan(y =>
                                                        {
                                                            y.TheCallingAssembly();
@@ -41,7 +42,7 @@ namespace NSBManager.UserInterface
 
         protected override object CreateRootModel()
         {
-            return Container.GetInstance<ShellViewModel>();
+            return Container.GetInstance<IShell>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
