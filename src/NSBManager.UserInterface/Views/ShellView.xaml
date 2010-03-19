@@ -2,11 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:UserInterface="clr-namespace:NSBManager.UserInterface"
-             Width="800"
-             Height="600">
-    <StackPanel Background="{StaticResource Shell Background}">
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             MinWidth="800"
+             MinHeight="600">
+    <StackPanel Background="{StaticResource Shell Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <DockPanel>
+            
+            
             <UserInterface:NSBMLogo />
+            
             <ContentControl x:Name="MainMenu"
                             DockPanel.Dock="Top"
                             Margin="20 10" />

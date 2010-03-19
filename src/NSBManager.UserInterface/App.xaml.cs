@@ -21,18 +21,7 @@ namespace NSBManager.UserInterface
 
         protected override IServiceLocator CreateContainer()
         {
-            ObjectFactory.Configure(x =>
-                                        {
-                                            x.AddRegistry<UserInterfaceRegistry>();
-
-                                            x.For<IShell>().Singleton().Use<ShellViewModel>();
-                                            x.For<IServerViewModel>().Use<ServerViewModel>();
-                                            x.Scan(y =>
-                                                       {
-                                                           y.TheCallingAssembly();
-                                                           y.AddAllTypesOf<IShortcut>();
-                                                       });
-                                        });
+            ObjectFactory.Configure(x => x.AddRegistry<UserInterfaceRegistry>());
 
             //Todo: Change later
             ObjectFactory.Profile = "demo";
