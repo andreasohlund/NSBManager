@@ -9,23 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NSBManager.UserInterface
+namespace NSBManager.UserInterface.Views
 {
     /// <summary>
-    /// Interaction logic for Shell.xaml
+    /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class Shell : IShellView
+    public partial class ShellView : UserControl
     {
-        public Shell()
+        public ShellView()
         {
             InitializeComponent();
-        }
-
-        public void ShowView()
-        {
-            Show();
         }
     }
 }

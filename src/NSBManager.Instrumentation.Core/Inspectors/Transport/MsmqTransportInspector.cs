@@ -18,8 +18,8 @@ namespace NSBManager.Instrumentation.Core.Inspectors.Transport
         {
             return new MsmqTransportInfo
                        {
-                           Adress = MsmqUtilities.GetQueueNameFromLogicalName(transport.InputQueue) + "@" +MsmqUtilities.GetMachineNameFromLogicalName(transport.InputQueue),
-                           AdressOfFailedMessageStore = MsmqUtilities.GetQueueNameFromLogicalName(transport.ErrorQueue) + "@" + MsmqUtilities.GetMachineNameFromLogicalName(transport.ErrorQueue)
+                           //Adress = MsmqUtilities.GetQueueNameFromLogicalName(transport.InputQueue) + "@" +MsmqUtilities.GetMachineNameFromLogicalName(transport.InputQueue),
+                           //AdressOfFailedMessageStore = MsmqUtilities.GetQueueNameFromLogicalName(transport.ErrorQueue) + "@" + MsmqUtilities.GetMachineNameFromLogicalName(transport.ErrorQueue)
                        };
         }
     }

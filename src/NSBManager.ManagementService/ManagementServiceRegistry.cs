@@ -17,7 +17,7 @@ namespace NSBManager.ManagementService
             ConfigureDomainEvents();
 
             ConfigureFailedMessageStores();
-            For<IBusTopology>().AsSingletons().Use<BusTopology>();
+            For<IBusTopology>().Singleton().Use<BusTopology>();
         }
 
         private void ConfigureFailedMessageStores()
@@ -33,7 +33,7 @@ namespace NSBManager.ManagementService
         {
             RegisterInterceptor(new RegisterEventListenersInterceptor());
 
-            For<IDomainEvents>().AsSingletons().Use<EventAggregator>();
+            For<IDomainEvents>().Singleton().Use<EventAggregator>();
             For<IEventAggregator>().TheDefault.Is.ConstructedBy(ctx => ctx.GetInstance<IDomainEvents>());
 
 

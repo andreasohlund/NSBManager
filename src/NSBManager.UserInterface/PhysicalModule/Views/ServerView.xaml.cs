@@ -17,17 +17,11 @@ namespace NSBManager.UserInterface.PhysicalModule.Views
     /// <summary>
     /// Interaction logic for ServerView.xaml
     /// </summary>
-    public partial class ServerView : IServerView
+    public partial class ServerView : UserControl
     {
         public ServerView()
         {
             InitializeComponent();
-        }
-
-        public IServerPresentationModel Model
-        {
-            get { return DataContext as IServerPresentationModel; }
-            set { DataContext = value; }
         }
     }
 }

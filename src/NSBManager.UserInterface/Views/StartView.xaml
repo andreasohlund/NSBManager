@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="NSBManager.UserInterface.Views.StartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel>
+        <TextBlock Text="Welcome to NSBManager"
+                   FontSize="18"
+                   Foreground="White" />
+        <TextBlock Text="This is the start view"
+                   Foreground="White" />
+    </StackPanel>
+</UserControl>

@@ -36,16 +36,16 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
             messagePublisher.Handle(new EndpointStartedEvent());
         }
 
-        [Test]
-        public void A_event_should_be_published_on_the_bus()
-        {
-            bus.AssertWasPublished<BusTopologyChangedEvent>(p => p.GetType() == typeof(BusTopologyChangedEvent));
-        }
+        //[Test]
+        //public void A_event_should_be_published_on_the_bus()
+        //{
+        //    bus.AssertWasPublished<BusTopologyChangedEvent>(p => p.GetType() == typeof(BusTopologyChangedEvent));
+        //}
 
-        [Test]
-        public void The_event_should_contain_the_list_of_known_endpoints()
-        {
-            bus.AssertWasPublished<BusTopologyChangedEvent>(p => p.Endpoints.Select(e => e.Id == endpointId).Count() == 1);
-        }
+        //[Test]
+        //public void The_event_should_contain_the_list_of_known_endpoints()
+        //{
+        //    bus.AssertWasPublished<BusTopologyChangedEvent>(p => p.Endpoints.Select(e => e.Id == endpointId).Count() == 1);
+        //}
     }
 }

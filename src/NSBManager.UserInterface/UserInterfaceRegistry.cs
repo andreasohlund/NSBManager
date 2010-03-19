@@ -1,8 +1,6 @@
-using Microsoft.Practices.Composite.Modularity;
 using NSBManager.UserInterface.DemoModels;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using StructureMap.Configuration.DSL;
-using StructureMap;
 
 namespace NSBManager.UserInterface
 {
@@ -10,28 +8,11 @@ namespace NSBManager.UserInterface
     {
         public UserInterfaceRegistry()
         {
-            For<IPhysicalModel>().AsSingletons()
-                                                .Use<PhysicalModel>();
+            For<IPhysicalModel>()
+                .Singleton()
+                .Use<PhysicalModel>();
 
-            CreateProfile("demo")
-                .For<IPhysicalModel>().UseConcreteType<FakePhysicalModel>();
-
-            ForConcreteType<ShellPresenter>();
-            For<IShellView>().Use<Shell>();
-
-            // Modules
-            For<IModule>().AsSingletons()
-                .AddInstances(i => i.OfConcreteType<PhysicalModule.PhysicalModule>());
-
-            For<IModuleCatalog>().TheDefault.Is.ConstructedBy(ctx =>
-                                                                  {
-                                                                      var catalog = new ModuleCatalog();
-                                                                      foreach(var module in ObjectFactory.GetAllInstances<IModule>())
-                                                                        catalog.AddModule(module.GetType());
-
-                                                                      return catalog;
-                                                                  });
-            
+            Profile("demo", x => x.For<IPhysicalModel>().Use<FakePhysicalModel>());
         }
     }
 }

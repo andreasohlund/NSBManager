@@ -48,14 +48,16 @@ namespace NSBManager.ManagementService.FailedMessages.FailedMessageStores
             {
                 var m = errorQueue.ReceiveById(message.Id, TimeSpan.FromSeconds(5), MessageQueueTransactionType.Automatic);
 
-                var failedQueue = MsmqTransport.GetFailedQueue(m);
+                //TODO: Fix with new NServiceBus
 
-                m.Label = MsmqTransport.GetLabelWithoutFailedQueue(m);
+                //var failedQueue = MsmqTransport.GetFailedQueue(m);
 
-                using (var q = new MessageQueue(failedQueue))
-                {
-                    q.Send(m, MessageQueueTransactionType.Automatic);
-                }
+                //m.Label = MsmqTransport.GetLabelWithoutFailedQueue(m);
+
+                //using (var q = new MessageQueue(failedQueue))
+                //{
+                //    q.Send(m, MessageQueueTransactionType.Automatic);
+                //}
 
                 scope.Complete();
             }

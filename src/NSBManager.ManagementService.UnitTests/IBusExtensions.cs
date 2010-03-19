@@ -10,7 +10,7 @@ namespace NSBManager
         public static void AssertWasPublished<T>(this IBus bus, Expression<Predicate<T>> exp) where T : IMessage
         {
             bus.AssertWasCalled(x => x.Publish(Arg<T[]>
-                                                   .Matches(p =>exp.Compile().Invoke(p[0]))));
+                                                   .Matches(p => exp.Compile().Invoke(p[0]))));
         }
 
         public static void AssertWasSent<T>(this IBus bus, Expression<Predicate<T>> exp) where T : IMessage

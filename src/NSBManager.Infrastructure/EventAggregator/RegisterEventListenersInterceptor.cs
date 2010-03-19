@@ -1,6 +1,7 @@
 using System;
 using StructureMap;
 using StructureMap.Interceptors;
+using StructureMap.TypeRules;
 
 namespace NSBManager.Infrastructure.EventAggregator
 {

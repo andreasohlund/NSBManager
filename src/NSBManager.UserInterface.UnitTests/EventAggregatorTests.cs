@@ -30,7 +30,7 @@ namespace NSBManager.UserInterface.UnitTests
         [Test]
         public void Can_publish_event()
         {
-            container.Configure(x => x.For<IListener<TestEvent>>().AsSingletons()
+            container.Configure(x => x.For<IListener<TestEvent>>().Singleton()
                                          .Use<TestListener>());
 
             var listener = container.GetInstance<TestListener>();
