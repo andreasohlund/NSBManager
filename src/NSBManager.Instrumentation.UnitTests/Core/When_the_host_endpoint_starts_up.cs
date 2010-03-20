@@ -13,7 +13,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core
     {
         private IBus bus;
         private TransportInfo transportInfo;
-        private HostInfo hostInfo;
+        private HostInformation hostInformation;
 
         [SetUp]
         public void SetUp()
@@ -27,8 +27,8 @@ namespace NSBManager.Instrumentation.UnitTests.Core
 
             var hostInspector = MockRepository.GenerateStub<IHostInspector>();
 
-            hostInfo = new HostInfo();
-            hostInspector.Stub(x => x.GetHostInformation()).Return(hostInfo);
+            hostInformation = new HostInformation();
+            hostInspector.Stub(x => x.GetHostInformation()).Return(hostInformation);
 
             var endpointWatcher = new EndpointMonitor(bus,
                 transportInspector,
@@ -44,7 +44,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core
             //transport.adress is guaranteed to be unique across endpoints so we use that a ID
             bus.AssertWasSent<EndpointStartupMessage>(p => p.EndpointId == transportInfo.Adress &&
                 p.Server == Environment.MachineName &&
-                p.Host == hostInfo);
+                p.Host == hostInformation);
         }
 
 

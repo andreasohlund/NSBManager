@@ -12,7 +12,7 @@ namespace NSBManager.Instrumentation.Core.Messages
 
         public TransportInfo Transport { get; set; }
 
-        public HostInfo Host { get; set; }
+        public HostInformation Host { get; set; }
     }
 
     [Serializable]

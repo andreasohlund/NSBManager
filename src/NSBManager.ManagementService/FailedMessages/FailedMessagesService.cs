@@ -4,7 +4,7 @@ using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
 using NSBManager.ManagementService.Messages;
-using NServiceBus.Host;
+using NServiceBus;
 using System.Linq;
 
 namespace NSBManager.ManagementService.FailedMessages

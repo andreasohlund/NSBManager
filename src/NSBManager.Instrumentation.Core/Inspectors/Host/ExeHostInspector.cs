@@ -5,9 +5,13 @@ namespace NSBManager.Instrumentation.Core.Inspectors.Host
 {
     public class ExeHostInspector:IHostInspector
     {
-        public HostInfo GetHostInformation()
+        public HostInformation GetHostInformation()
         {
-            return new HostInfo { WorkingDir = Environment.CurrentDirectory };
+            return new HostInformation
+                       {
+                           Type=HostType.CommandLineExe,
+                           WorkingDir = Environment.CurrentDirectory
+                       };
         }
     }
 }

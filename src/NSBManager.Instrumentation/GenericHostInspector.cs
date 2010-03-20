@@ -5,9 +5,9 @@ namespace NSBManager.Instrumentation
 {
     public class GenericHostInspector:IHostInspector
     {
-        public HostInfo GetHostInformation()
+        public HostInformation GetHostInformation()
         {
-            return new GenericHostInfo();
+            return new GenericHostInformation();
         }
     }
 }

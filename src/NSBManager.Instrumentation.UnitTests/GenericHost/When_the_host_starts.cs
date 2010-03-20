@@ -1,5 +1,5 @@
 using NSBManager.Instrumentation.Core;
-using NServiceBus.Host;
+using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
 

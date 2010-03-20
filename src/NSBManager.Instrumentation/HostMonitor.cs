@@ -1,6 +1,6 @@
 using System;
 using NSBManager.Instrumentation.Core;
-using NServiceBus.Host;
+using NServiceBus;
 
 namespace NSBManager.Instrumentation
 {

@@ -53,7 +53,8 @@
     <Compile Include="Inspectors\ITransportInspector.cs" />
     <Compile Include="Messages\EndpointStartupMessage.cs" />
     <Compile Include="Inspectors\Transport\MsmqTransportInspector.cs" />
-    <Compile Include="Messages\HostInfo.cs" />
+    <Compile Include="Messages\HostInformation.cs" />
+    <Compile Include="Messages\HostType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

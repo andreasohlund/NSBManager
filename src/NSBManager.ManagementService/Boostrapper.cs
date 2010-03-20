@@ -1,4 +1,4 @@
-using NServiceBus.Host;
+using NServiceBus;
 using StructureMap;
 
 namespace NSBManager.ManagementService

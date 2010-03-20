@@ -4,6 +4,6 @@ namespace NSBManager.Instrumentation.Core.Inspectors
 {
     public interface IHostInspector
     {
-        HostInfo GetHostInformation();
+        HostInformation GetHostInformation();
     }
 }

@@ -1,6 +1,4 @@
 using NServiceBus;
-using NServiceBus.Host;
-using NServiceBus.ObjectBuilder;
 
 namespace NSBManager.Instrumentation
 {

@@ -13,7 +13,7 @@ namespace NSBManager.Instrumentation.UnitTests.GenericHost
 
             var info = inspector.GetHostInformation();
 
-            info.ShouldBeInstanceOfType(typeof(GenericHostInfo));
+            info.ShouldBeInstanceOfType(typeof(GenericHostInformation));
         }
     }
 } 

@@ -5,7 +5,7 @@ using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.FailedMessages;
 using NSBManager.ManagementService.FailedMessages.DomainEvents;
 using NSBManager.ManagementService.Messages;
-using NServiceBus.Host;
+using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
 using NBehave.Spec.NUnit;

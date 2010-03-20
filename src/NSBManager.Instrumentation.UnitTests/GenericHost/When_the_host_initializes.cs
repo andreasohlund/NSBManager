@@ -2,7 +2,6 @@ using System;
 using NSBManager.Instrumentation.Core;
 using NSBManager.Instrumentation.Core.Inspectors;
 using NServiceBus;
-using NServiceBus.Host;
 using NUnit.Framework;
 using NBehave.Spec.NUnit;
 

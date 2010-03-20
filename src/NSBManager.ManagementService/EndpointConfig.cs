@@ -1,6 +1,4 @@
-using System;
 using NServiceBus;
-using NServiceBus.Host;
 
 namespace NSBManager.ManagementService
 {

@@ -2,7 +2,6 @@ using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
-using NServiceBus.Host;
 
 namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
 {
