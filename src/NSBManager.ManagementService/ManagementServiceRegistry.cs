@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using NSBManager.Infrastructure;
 using NSBManager.Infrastructure.EventAggregator;
@@ -25,7 +24,7 @@ namespace NSBManager.ManagementService
             For<IFailedMessagesStoreFactory>().Use<FailedMessagesStoreFactory>();
             For<IFailedMessagesStore>()
                 .Use<MsmqFailedMessagesStore>()
-                .WithName(typeof(MsmqTransport).Name);
+                .Named(typeof(MsmqTransport).Name);
 
         }
 
@@ -34,10 +33,10 @@ namespace NSBManager.ManagementService
             RegisterInterceptor(new RegisterEventListenersInterceptor());
 
             For<IDomainEvents>().Singleton().Use<EventAggregator>();
-            For<IEventAggregator>().TheDefault.Is.ConstructedBy(ctx => ctx.GetInstance<IDomainEvents>());
+            For<IEventAggregator>().Use(ctx => ctx.GetInstance<IDomainEvents>());
 
 
-            ForSingletonOf<SynchronizationContext>().TheDefault.Is.ConstructedBy(() =>
+            ForSingletonOf<SynchronizationContext>().Use(() =>
                                                                                      {
                                                                                          if (SynchronizationContext.Current == null)
                                                                                          {
