@@ -7,7 +7,10 @@ namespace NSBManager.Instrumentation
     {
         public HostInformation GetHostInformation()
         {
-            return new GenericHostInformation();
+            return new HostInformation
+                       {
+                           Type = HostType.GenericHost
+                       };
         }
     }
 }

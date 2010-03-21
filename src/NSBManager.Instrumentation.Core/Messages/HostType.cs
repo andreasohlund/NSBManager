@@ -2,6 +2,7 @@
 {
     public enum HostType
     {
-        CommandLineExe
+        CommandLineExe,
+        GenericHost
     }
 }

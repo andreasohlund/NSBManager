@@ -10,7 +10,6 @@ namespace NSBManager.Instrumentation.Core.Inspectors.Host
             return new HostInformation
                        {
                            Type=HostType.CommandLineExe,
-                           WorkingDir = Environment.CurrentDirectory
                        };
         }
     }

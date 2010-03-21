@@ -75,7 +75,7 @@
     <Compile Include="Core\Inspectors\When_a_command_line_exe_is_instrumented.cs" />
     <Compile Include="Core\Inspectors\MsmqTransportInspectorTests.cs" />
     <Compile Include="Core\When_configuring_instrumentation.cs" />
-    <Compile Include="GenericHost\GenericHostInspectorTests.cs" />
+    <Compile Include="GenericHost\When_a_generic_host_exe_is_instrumented.cs" />
     <Compile Include="GenericHost\When_the_host_initializes.cs" />
     <Compile Include="GenericHost\When_the_host_starts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
