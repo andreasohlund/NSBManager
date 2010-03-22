@@ -9,7 +9,7 @@ using Rhino.Mocks;
 namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
     [Subject("Bus topology management")]
-    public class When_bus_topology_is_started
+    public class When_the_bus_topology_is_initialized
     {
         Establish context = () =>
         {
@@ -22,7 +22,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
             SUT = new BusTopology(bus);
         };
 
-        Because of = () =>SUT.Start(initialEndpoints);
+        Because of = () =>SUT.Initialize(initialEndpoints);
         
 
         It should_assume_that_endpoint_status_is_unknown = () =>

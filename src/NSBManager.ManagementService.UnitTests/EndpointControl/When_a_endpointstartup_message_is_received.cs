@@ -42,7 +42,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
         [Test]
         public void The_servicebus_should_be_notified()
         {
-            busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(
+            busTopology.AssertWasCalled(b => b.EndpointStarted(Arg<Endpoint>.Matches(
                                                                     e => e.Id == endpointId &&
                                                                          e.ServerName == serverName)));
         }
@@ -50,7 +50,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
         [Test]
         public void Failed_message_store_should_be_registered()
         {
-            busTopology.AssertWasCalled(b => b.RegisterEndpoint(Arg<Endpoint>.Matches(
+            busTopology.AssertWasCalled(b => b.EndpointStarted(Arg<Endpoint>.Matches(
                                                                     e => e.AdressOfFailedMessageStore == failedMessageStore)));
         }
 

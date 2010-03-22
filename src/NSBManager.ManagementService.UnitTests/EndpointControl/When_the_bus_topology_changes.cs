@@ -31,7 +31,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
                                                                                           }});
             
             IListener<EndpointStartedEvent> messagePublisher =
-                new BusTopologyChangedMonitor(bus,busTopology);
+                new EndpointControlService(bus,busTopology);
 
             messagePublisher.Handle(new EndpointStartedEvent());
         }

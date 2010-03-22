@@ -5,7 +5,8 @@ namespace NSBManager.ManagementService.EndpointControl
 {
     public interface IBusTopology
     {
-        void RegisterEndpoint(Endpoint endpoint);
+        void EndpointStarted(Endpoint endpoint);
         IEnumerable<Endpoint> GetCurrentEndpoints();
+        void Initialize(IEnumerable<Endpoint> knownEndpoints);
     }
 }

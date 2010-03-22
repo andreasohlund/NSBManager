@@ -80,8 +80,9 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndpointControl\When_the_service_is_started.cs" />
     <Compile Include="EndpointControl\ServiceBusTests.cs" />
-    <Compile Include="EndpointControl\When_bus_topology_is_started.cs" />
+    <Compile Include="EndpointControl\When_the_bus_topology_is_initialized.cs" />
     <Compile Include="FailedMessages\FailedMessagesServiceTests.cs" />
     <Compile Include="FailedMessages\FailedMessagesStoreFactoryTests.cs" />
     <Compile Include="FailedMessages\MsmqMonitor\MsmqFailedMessagesStoreTests.cs" />

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using NSBManager.Infrastructure;
 using NSBManager.ManagementService.Messages;
 using System.Linq;
 using NServiceBus;
@@ -19,7 +17,7 @@ namespace NSBManager.ManagementService.EndpointControl
             endpoints = new List<Endpoint>();
         }
 
-        public void RegisterEndpoint(Endpoint endpoint)
+        public void EndpointStarted(Endpoint endpoint)
         {
             if (!endpoints.Any(x => x.Id == endpoint.Id))
             {
@@ -28,7 +26,7 @@ namespace NSBManager.ManagementService.EndpointControl
 
                 bus.Publish(new EndpointStartedEvent
                                          {
-                                             AdressOfFailedMessagesStore = endpoint.AdressOfFailedMessageStore
+                                             Endpoint = endpoint
                                          });
             }
                 
@@ -40,7 +38,7 @@ namespace NSBManager.ManagementService.EndpointControl
             return endpoints;
         }
 
-        public void Start(IEnumerable<Endpoint> initialEndpoints)
+        public void Initialize(IEnumerable<Endpoint> initialEndpoints)
         {
             endpoints = new List<Endpoint>(initialEndpoints);
 

@@ -23,7 +23,7 @@ namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
                                    AdressOfFailedMessageStore = message.Transport.AdressOfFailedMessageStore
                                };
             
-            busTopology.RegisterEndpoint(endpoint);
+            busTopology.EndpointStarted(endpoint);
 
         }
     }

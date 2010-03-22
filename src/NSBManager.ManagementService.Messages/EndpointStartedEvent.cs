@@ -6,6 +6,6 @@ namespace NSBManager.ManagementService.Messages
     [Serializable]
     public class EndpointStartedEvent:IMessage
     {
-        public string AdressOfFailedMessagesStore { get; set; }
+        public Endpoint Endpoint { get; set; }
     }
 }

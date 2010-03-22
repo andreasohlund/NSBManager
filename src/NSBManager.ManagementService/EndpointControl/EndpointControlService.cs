@@ -5,12 +5,13 @@ using NServiceBus;
 
 namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
 {
-    public class BusTopologyChangedMonitor : IListener<EndpointStartedEvent>,IWantToRunAtStartup
+    public class EndpointControlService :   IWantToRunAtStartup,
+                                            IListener<EndpointStartedEvent>
     {
         private readonly IBus bus;
         private readonly IBusTopology busTopology;
 
-        public BusTopologyChangedMonitor(IBus bus,IBusTopology busTopology)
+        public EndpointControlService(IBus bus,IBusTopology busTopology)
         {
             this.bus = bus;
             this.busTopology = busTopology;
@@ -29,6 +30,8 @@ namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
 
         public void Run()
         {
+            //TODO: load endpoints from store
+            busTopology.Initialize(null);
         }
 
         public void Stop()

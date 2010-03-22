@@ -67,7 +67,13 @@ namespace NSBManager.ManagementService.UnitTests.FailedMessages
         {
             var handler = (IListener<EndpointStartedEvent>) service;
 
-            var eventMessage = new EndpointStartedEvent { AdressOfFailedMessagesStore = adressOfFailedMessagesStore };
+            var eventMessage = new EndpointStartedEvent
+                                   {
+                                       Endpoint= new Endpoint
+                                                     {
+                                                         AdressOfFailedMessageStore = adressOfFailedMessagesStore
+                                                     }
+                                   };
 
             handler.Handle(eventMessage);
 

@@ -33,16 +33,16 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
                                    ServerName = "localhost",
                                    AdressOfFailedMessageStore = "error@server"
                                };
-            busTopology.RegisterEndpoint(endpoint);
+            busTopology.EndpointStarted(endpoint);
 
-            bus.AssertWasPublished<EndpointStartedEvent>(e => e.AdressOfFailedMessagesStore == endpoint.AdressOfFailedMessageStore);
+            bus.AssertWasPublished<EndpointStartedEvent>(e => e.Endpoint.AdressOfFailedMessageStore == endpoint.AdressOfFailedMessageStore);
 
-            busTopology.RegisterEndpoint(new Endpoint{Id = "2@localhost"});
+            busTopology.EndpointStarted(new Endpoint{Id = "2@localhost"});
 
 
             Assert.AreEqual(busTopology.GetCurrentEndpoints().Count(),2);
 
-            busTopology.RegisterEndpoint(new Endpoint { Id = "2@localhost" });
+            busTopology.EndpointStarted(new Endpoint { Id = "2@localhost" });
 
             Assert.AreEqual(busTopology.GetCurrentEndpoints().Count(), 2);
         }

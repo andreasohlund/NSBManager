@@ -52,7 +52,7 @@ namespace NSBManager.ManagementService.FailedMessages
 
         public void Handle(EndpointStartedEvent message)
         {
-            MonitorFailedMessagesStores(message.AdressOfFailedMessagesStore);
+            MonitorFailedMessagesStores(message.Endpoint.AdressOfFailedMessageStore);
         }
 
         public void MonitorFailedMessagesStores(string adressOfFailedMessagesStore)
