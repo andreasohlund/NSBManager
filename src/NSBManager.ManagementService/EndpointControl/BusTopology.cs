@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using NSBManager.ManagementService.Messages;
 using System.Linq;
-using NSBManager.ManagementService.UnitTests.EndpointControl;
 using NServiceBus;
 
 namespace NSBManager.ManagementService.EndpointControl
@@ -23,6 +22,8 @@ namespace NSBManager.ManagementService.EndpointControl
         {
             if (!endpoints.Any(x => x.Id == endpoint.Id))
             {
+                endpoint.Status = EndpointStatus.Running;
+
                 endpoints.Add(endpoint);
 
 

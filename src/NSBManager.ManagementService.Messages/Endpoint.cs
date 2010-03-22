@@ -17,6 +17,6 @@ namespace NSBManager.ManagementService.Messages
     public enum EndpointStatus
     {
         Unknown,
-        Online
+        Running
     }
 }

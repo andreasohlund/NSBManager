@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.Messages;
-using NSBManager.ManagementService.UnitTests.EndpointControl;
 using NServiceBus;
 
 namespace NSBManager.ManagementService.EndpointControl

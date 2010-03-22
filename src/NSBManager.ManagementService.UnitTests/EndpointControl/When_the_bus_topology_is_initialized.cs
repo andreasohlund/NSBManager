@@ -15,7 +15,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
         {
             initialEndpoints = new List<Endpoint>
                                    {
-                                       new Endpoint {Id = "1", Status = EndpointStatus.Online,Adress = "test@testserver"}
+                                       new Endpoint {Id = "1", Status = EndpointStatus.Running,Adress = "test@testserver"}
                                    };
 
             bus = MockRepository.GenerateStub<IBus>();

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using NSBManager.ManagementService.Messages;
+﻿using System;
+using System.Collections.Generic;
 using NServiceBus;
 
-namespace NSBManager.ManagementService.UnitTests.EndpointControl
+namespace NSBManager.ManagementService.Messages
 {
+    [Serializable]
     public class TopologySnapshotMessage : IMessage
     {
         public List<Endpoint> Endpoints { get; set; }
