@@ -40,11 +40,11 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
             busTopology.EndpointStarted(new Endpoint{Id = "2@localhost"});
 
 
-            Assert.AreEqual(busTopology.GetCurrentEndpoints().Count(),2);
+            Assert.AreEqual(busTopology.GetSnapshot().Count(),2);
 
             busTopology.EndpointStarted(new Endpoint { Id = "2@localhost" });
 
-            Assert.AreEqual(busTopology.GetCurrentEndpoints().Count(), 2);
+            Assert.AreEqual(busTopology.GetSnapshot().Count(), 2);
         }
     }
 }

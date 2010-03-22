@@ -26,7 +26,7 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
         
 
         It should_assume_that_endpoint_status_is_unknown = () =>
-            SUT.GetCurrentEndpoints().First(e => e.Id == "1")
+            SUT.GetSnapshot().First(e => e.Id == "1")
             .Status.ShouldEqual(EndpointStatus.Unknown);
 
         It should_ping_all_endpoints_for_current_status = () =>

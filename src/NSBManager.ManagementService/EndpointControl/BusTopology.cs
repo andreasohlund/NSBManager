@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using NSBManager.ManagementService.Messages;
 using System.Linq;
+using NSBManager.ManagementService.UnitTests.EndpointControl;
 using NServiceBus;
 
 namespace NSBManager.ManagementService.EndpointControl
@@ -33,10 +35,7 @@ namespace NSBManager.ManagementService.EndpointControl
 
         }
 
-        public IEnumerable<Endpoint> GetCurrentEndpoints()
-        {
-            return endpoints;
-        }
+      
 
         public void Initialize(IEnumerable<Endpoint> initialEndpoints)
         {
@@ -47,6 +46,12 @@ namespace NSBManager.ManagementService.EndpointControl
                 endpoint.Status = EndpointStatus.Unknown;
                 bus.Send(endpoint.Adress, new EndpointPingRequest());
             }
+        }
+
+        public IEnumerable<Endpoint> GetSnapshot()
+        {
+            lock(endpoints)
+                return new List<Endpoint>(endpoints);
         }
     }
 }

@@ -80,6 +80,7 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndpointControl\when_a_client_connects.cs" />
     <Compile Include="EndpointControl\When_the_service_is_started.cs" />
     <Compile Include="EndpointControl\ServiceBusTests.cs" />
     <Compile Include="EndpointControl\When_the_bus_topology_is_initialized.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="IBusExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EndpointControl\When_a_endpointstartup_message_is_received.cs" />
-    <Compile Include="EndpointControl\When_the_bus_topology_changes.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">

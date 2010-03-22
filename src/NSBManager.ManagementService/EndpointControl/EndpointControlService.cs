@@ -1,12 +1,15 @@
+using System;
 using System.Linq;
 using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.Messages;
+using NSBManager.ManagementService.UnitTests.EndpointControl;
 using NServiceBus;
 
-namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
+namespace NSBManager.ManagementService.EndpointControl
 {
     public class EndpointControlService :   IWantToRunAtStartup,
-                                            IListener<EndpointStartedEvent>
+                                            IHandleMessages<ClientConnectRequest> 
+
     {
         private readonly IBus bus;
         private readonly IBusTopology busTopology;
@@ -17,17 +20,6 @@ namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
             this.busTopology = busTopology;
         }
 
-        public void Handle(EndpointStartedEvent message)
-        {
-            var eventMessage = new BusTopologyChangedEvent
-                                   {
-                                       Endpoints = busTopology.GetCurrentEndpoints()
-                                           .ToList()
-                                   };
-
-            bus.Publish(eventMessage);
-        }
-
         public void Run()
         {
             //TODO: load endpoints from store
@@ -36,6 +28,15 @@ namespace NSBManager.ManagementService.EndpointControl.MessageHandlers
 
         public void Stop()
         {
+        }
+
+        public void Handle(ClientConnectRequest request)
+        {
+         
+           bus.Reply(new TopologySnapshotMessage
+                         {
+                             Endpoints=busTopology.GetSnapshot().ToList()
+                         }); 
         }
     }
 }
