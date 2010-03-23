@@ -71,6 +71,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap.AutoMocking, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\StructureMap\StructureMap.AutoMocking.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -80,6 +84,7 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndpointControl\context_specification.cs" />
     <Compile Include="EndpointControl\when_a_client_connects.cs" />
     <Compile Include="EndpointControl\when_a_endpoint_is_started.cs" />
     <Compile Include="EndpointControl\When_the_service_is_started.cs" />
@@ -91,7 +96,6 @@
     <Compile Include="FailedMessages\When_all_failed_messages_is_requested.cs" />
     <Compile Include="IBusExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EndpointControl\When_a_endpointstartup_message_is_received.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NSBManager.Infrastructure\NSBManager.Infrastructure.csproj">
