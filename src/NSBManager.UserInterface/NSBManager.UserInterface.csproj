@@ -101,16 +101,15 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DemoModels\FakePhysicalModel.cs" />
-    <Compile Include="LogicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
     <Compile Include="NSBMLogo.xaml.cs">
       <DependentUpon>NSBMLogo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PhysicalModule\MessageHandlers\BusTopologyChangedEventHandler.cs" />
+    <Compile Include="PhysicalModule\MessageHandlers\TopologySnapshotMessageHandler.cs" />
     <Compile Include="Infrastructure\EventRegistry.cs" />
     <Compile Include="PhysicalModule\Model\GuiEndpoint.cs" />
     <Compile Include="PhysicalModule\Model\IPhysicalModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModel.cs" />
-    <Compile Include="PhysicalModule\Events\PhysicalModelChanged.cs" />
+    <Compile Include="PhysicalModule\Events\PhysicalModelUpdated.cs" />
     <Compile Include="PhysicalModule\Model\Server.cs" />
     <Compile Include="PhysicalModule\PhysicalModuleMenuItem.cs" />
     <Compile Include="PhysicalModule\ViewModels\IServerViewModel.cs" />
@@ -220,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FailedMessagesModule\Views\" />
+    <Folder Include="LogicalModule\MessageHandlers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

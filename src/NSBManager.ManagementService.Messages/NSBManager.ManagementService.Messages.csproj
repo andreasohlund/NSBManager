@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusTopologyChangedEvent.cs" />
     <Compile Include="Endpoint.cs" />
     <Compile Include="EndpointPingRequest.cs" />
     <Compile Include="EndpointStartedEvent.cs" />
@@ -53,7 +52,7 @@
     <Compile Include="GetAllFailedMessagesRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetryFailedMessagesRequest.cs" />
-    <Compile Include="TopologySnapshotMessage.cs" />
+    <Compile Include="TopologySnapshot.cs" />
     <Compile Include="ClientConnectRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

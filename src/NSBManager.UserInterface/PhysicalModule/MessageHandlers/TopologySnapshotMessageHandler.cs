@@ -4,16 +4,16 @@ using NServiceBus;
 
 namespace NSBManager.UserInterface.PhysicalModule.MessageHandlers
 {
-    public class BusTopologyChangedEventHandler : IHandleMessages<BusTopologyChangedEvent>
+    public class TopologySnapshotMessageHandler : IHandleMessages<TopologySnapshot>
     {
         private readonly IPhysicalModel physicalModel;
         
-        public BusTopologyChangedEventHandler(IPhysicalModel physicalModel)
+        public TopologySnapshotMessageHandler(IPhysicalModel physicalModel)
         {
             this.physicalModel = physicalModel;
         }
 
-        public void Handle(BusTopologyChangedEvent message)
+        public void Handle(TopologySnapshot message)
         {
             physicalModel.UpdateModel(message.Endpoints);
 

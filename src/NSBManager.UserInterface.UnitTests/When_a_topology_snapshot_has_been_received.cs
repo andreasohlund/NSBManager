@@ -10,16 +10,16 @@ using System.Linq;
 namespace NSBManager.UserInterface.UnitTests
 {
     [TestFixture]
-    public class When_the_bus_topology_changes
+    public class When_a_topology_snapshot_has_been_received
     {
         [Test]
-        public void The_physical_model_should_be_updated()
+        public void The_physical_model_should_be_refreshed()
         {
             var physicalModel = MockRepository.GenerateStub<IPhysicalModel>();
 
-            IHandleMessages<BusTopologyChangedEvent> messageHandler = new BusTopologyChangedEventHandler(physicalModel);
+            IHandleMessages<TopologySnapshot> messageHandler = new TopologySnapshotMessageHandler(physicalModel);
 
-            var eventMessage = new BusTopologyChangedEvent
+            var eventMessage = new TopologySnapshot
                                    {
                                        Endpoints = new List<Endpoint> { new Endpoint() }
                                    };

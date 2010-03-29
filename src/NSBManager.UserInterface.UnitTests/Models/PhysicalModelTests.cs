@@ -21,7 +21,7 @@ namespace NSBManager.UserInterface.UnitTests.Models
             model.UpdateModel(new List<Endpoint>{new Endpoint()});
 
 
-            eventAggregator.AssertWasCalled(x => x.Publish<PhysicalModelChanged>());
+            eventAggregator.AssertWasCalled(x => x.Publish<PhysicalModelUpdated>());
         }
     }
 } 

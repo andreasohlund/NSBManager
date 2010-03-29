@@ -1,6 +1,5 @@
-using System;
+using System.Collections.Generic;
 using System.Linq;
-using NSBManager.Infrastructure.EventAggregator;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
 
@@ -22,7 +21,7 @@ namespace NSBManager.ManagementService.EndpointControl
         public void Run()
         {
             //TODO: load endpoints from store
-            busTopology.Initialize(null);
+            busTopology.Initialize(new List<Endpoint>());
         }
 
         public void Stop()
@@ -32,7 +31,7 @@ namespace NSBManager.ManagementService.EndpointControl
         public void Handle(ClientConnectRequest request)
         {
          
-           bus.Reply(new TopologySnapshotMessage
+           bus.Reply(new TopologySnapshot
                          {
                              Endpoints=busTopology.GetSnapshot().ToList()
                          }); 

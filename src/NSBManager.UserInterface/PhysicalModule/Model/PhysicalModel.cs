@@ -33,7 +33,7 @@ namespace NSBManager.UserInterface.PhysicalModule.Model
                 endpoints.Add(endpoint);
             }
 
-            eventAggregator.Publish<PhysicalModelChanged>();
+            eventAggregator.Publish<PhysicalModelUpdated>();
         }
 
 

@@ -1,15 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Caliburn.PresentationFramework;
 using Caliburn.PresentationFramework.RoutedMessaging;
 using Caliburn.PresentationFramework.Screens;
 using Caliburn.ShellFramework.Results;
+using NSBManager.Infrastructure.EventAggregator;
+using NSBManager.UserInterface.PhysicalModule.Events;
 using NSBManager.UserInterface.PhysicalModule.Model;
 using NSBManager.UserInterface.ViewModels;
 
 namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 {
-    public class ServerViewModel : Screen, IServerViewModel
+    public class ServerViewModel : Screen, IServerViewModel, IListener<PhysicalModelUpdated>
     {
         private readonly IPhysicalModel physicalModel;
 
@@ -35,6 +38,13 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
                                                     x.ServerName = server.Name; 
                                                     x.Endpoints =new BindableCollection<GuiEndpoint>(physicalModel.EndpointsOnServer(server.Name));
                                                 });
+        }
+
+        public void Handle(PhysicalModelUpdated message)
+        {
+            Servers = new BindableCollection<Server>(this.physicalModel.Servers());
+
+            this.RaisePropertyChangedEventImmediately("Servers");
         }
     }
 }

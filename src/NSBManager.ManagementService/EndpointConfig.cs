@@ -8,7 +8,9 @@ namespace NSBManager.ManagementService
     {
         public void Init()
         {
-            Configure.With().StructureMapBuilder().BinarySerializer();
+            Configure.With()
+                .StructureMapBuilder()
+                .BinarySerializer();
         }
     }
 

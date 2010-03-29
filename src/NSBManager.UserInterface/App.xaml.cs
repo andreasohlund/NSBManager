@@ -2,8 +2,11 @@
 using System.Windows;
 using Caliburn.PresentationFramework.ApplicationModel;
 using Caliburn.StructureMap;
+using log4net.Appender;
+using log4net.Core;
 using Microsoft.Practices.ServiceLocation;
 using NSBManager.Instrumentation.Core;
+using NSBManager.ManagementService.Messages;
 using NSBManager.UserInterface.PhysicalModule.ViewModels;
 using NSBManager.UserInterface.ViewModels;
 using NServiceBus;
@@ -24,7 +27,7 @@ namespace NSBManager.UserInterface
             ObjectFactory.Configure(x => x.AddRegistry<UserInterfaceRegistry>());
 
             //Todo: Change later
-            ObjectFactory.Profile = "demo";
+            //ObjectFactory.Profile = "demo";
 
             return new StructureMapAdapter(ObjectFactory.Container);
         }
@@ -45,25 +48,27 @@ namespace NSBManager.UserInterface
             if (e.Args.Count() > 0)
                 profile = e.Args[0];
 
-            //ConfigureNServiceBus();
-
-            //var bootStrapper = new Bootstrapper();
-            //bootStrapper.Run(profile);
+            
+            //todo: This should be done using a dialog that asks the user what service to connect to
+            // and the use that adress to configure where so send the connect request
+            ConfigureNServiceBus();
+            bus.Send(new ClientConnectRequest());
         }
 
-        private void ConfigureNServiceBus()
+        private static void ConfigureNServiceBus()
         {
             var config = Configure.With()
+                .Log4Net(new ConsoleAppender{Threshold = Level.Info})
                 .StructureMapBuilder()
                 .BinarySerializer()
                 .EnableInstrumentation()
+                .MsmqTransport()
+                    .IsTransactional(true)
+                    .PurgeOnStartup(true)
                 .UnicastBus()
-                    .LoadMessageHandlers()
-                        .MsmqTransport()
-                        .IsTransactional(true)
-                        .PurgeOnStartup(true);
-
-            config.CreateBus()
+                    .LoadMessageHandlers();
+                    
+            bus = config.CreateBus()
                 .Start();
 
 
@@ -72,5 +77,7 @@ namespace NSBManager.UserInterface
 
             monitor.Start();
         }
+
+        static IBus bus;
     }
 }

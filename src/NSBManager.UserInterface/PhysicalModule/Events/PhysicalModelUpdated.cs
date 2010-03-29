@@ -1,6 +1,6 @@
 namespace NSBManager.UserInterface.PhysicalModule.Events
 {
-    public class PhysicalModelChanged
+    public class PhysicalModelUpdated
     {
     }
 }
