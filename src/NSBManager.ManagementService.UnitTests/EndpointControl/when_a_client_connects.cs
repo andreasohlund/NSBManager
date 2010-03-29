@@ -7,24 +7,14 @@ using Rhino.Mocks;
 namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
     [Subject("Client communication")]
-    public class when_a_client_connects
+    public class when_a_client_connects : ContextSpecification<EndpointControlService>
     {
-        private Establish context = () =>
-                                        {
-                                            bus = MockRepository.GenerateStub<IBus>();
-                                            busTopology = MockRepository.GenerateStub<IBusTopology>();
-                                            busTopology.Stub(t => t.GetSnapshot()).Return(new[] {new Endpoint()});
-
-                                            SUT = new EndpointControlService(bus,busTopology);
-                                        };
+        private Establish context = () => Dependency<IBusTopology>().Stub(t => t.GetSnapshot()).Return(new[] {new Endpoint()});
 
         private Because of = () => SUT.Handle(new ClientConnectRequest());
 
         private It should_get_a_topology_snapshot = () =>
-            bus.AssertReply<TopologySnapshotMessage>(r => r.Endpoints.Count == 1);
+            Dependency<IBus>().AssertReply<TopologySnapshotMessage>(r => r.Endpoints.Count == 1);
 
-        private static IHandleMessages<ClientConnectRequest> SUT;
-        private static IBus bus;
-        private static IBusTopology busTopology;
     }
 }

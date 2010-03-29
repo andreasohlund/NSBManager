@@ -3,7 +3,7 @@ using StructureMap.AutoMocking;
 
 namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
-    public abstract class context_specification<TSubjectUnderTest>
+    public abstract class ContextSpecification<TSubjectUnderTest>
         where TSubjectUnderTest : class
     {
         private static IAutoMockingContainer<TSubjectUnderTest> _autoMockingContainer;

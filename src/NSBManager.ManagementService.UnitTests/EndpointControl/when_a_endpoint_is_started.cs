@@ -6,8 +6,8 @@ using NServiceBus;
 
 namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
-    [Subject("Topology transitions")]
-    public class when_a_endpoint_is_started : context_specification<BusTopology>
+    [Subject(typeof(BusTopology), "Topology transitions")]
+    public class when_a_endpoint_is_started : ContextSpecification<BusTopology>
     {
         Establish context = () =>
         {
