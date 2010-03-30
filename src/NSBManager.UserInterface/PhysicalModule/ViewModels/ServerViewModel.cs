@@ -16,8 +16,6 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
     {
         private readonly IPhysicalModel physicalModel;
 
-        private readonly IObservableCollection<Server> servers = new BindableCollection<Server>();
-
         public IObservableCollection<Server> Servers { get; private set; }
 
         public ServerViewModel(IPhysicalModel physicalModel)
@@ -44,7 +42,7 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
         {
             Servers = new BindableCollection<Server>(this.physicalModel.Servers());
 
-            this.RaisePropertyChangedEventImmediately("Servers");
+            NotifyOfPropertyChange(() => Servers);
         }
     }
 }

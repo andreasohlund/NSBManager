@@ -13,7 +13,7 @@ namespace NSBManager.UserInterface
         public UserInterfaceRegistry()
         {
             RegisterInterceptor(new RegisterEventListenersInterceptor());
-            For<IEventAggregator>().Use<EventAggregator>();
+            For<IEventAggregator>().Singleton().Use<EventAggregator>();
             
             For<IPhysicalModel>().Singleton().Use<PhysicalModel>();
             For<IShell>().Singleton().Use<ShellViewModel>();
