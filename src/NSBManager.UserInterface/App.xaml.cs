@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using Caliburn.PresentationFramework.ApplicationModel;
 using Caliburn.StructureMap;
@@ -18,7 +19,7 @@ namespace NSBManager.UserInterface
     {
         protected override void BeforeConfiguration()
         {
-            ConfigureNServiceBus();
+            ConnectToNServiceBus();
             base.BeforeConfiguration();
         }
 
@@ -26,9 +27,11 @@ namespace NSBManager.UserInterface
         {
             ObjectFactory.Configure(x => x.AddRegistry<UserInterfaceRegistry>());
 
-            //Todo: Change later
-            //ObjectFactory.Profile = "demo";
+            var commandLine = Environment.CommandLine.Split(' ');
 
+            if (commandLine.Length > 1)
+                ObjectFactory.Profile = commandLine[1];
+            
             return new StructureMapAdapter(ObjectFactory.Container);
         }
 
@@ -36,26 +39,21 @@ namespace NSBManager.UserInterface
         {
             return Container.GetInstance<IShell>();
         }
-
+       
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            //Todo: This runs after CreateContainer, so how shall we get the profile?
             base.OnStartup(e);
-
-            var profile = "";
-
-            if (e.Args.Count() > 0)
-                profile = e.Args[0];
-
             
             //todo: This should be done using a dialog that asks the user what service to connect to
             // and the use that adress to configure where so send the connect request
-            ConfigureNServiceBus();
+            ConnectToNServiceBus();
+            
+            //todo: move this to a separate screen
             bus.Send(new ClientConnectRequest());
         }
 
-        private static void ConfigureNServiceBus()
+        private static void ConnectToNServiceBus()
         {
             var config = Configure.With()
                 .Log4Net(new ConsoleAppender{Threshold = Level.Info})
