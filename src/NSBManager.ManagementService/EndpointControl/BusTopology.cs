@@ -10,27 +10,29 @@ namespace NSBManager.ManagementService.EndpointControl
     {
         private readonly IBus bus;
 
-        private IList<Endpoint> endpoints;
+        private IList<Endpoint> knownEndpoints;
 
         public BusTopology(IBus bus)
         {
             this.bus = bus;
-            endpoints = new List<Endpoint>();
+            knownEndpoints = new List<Endpoint>();
         }
 
         public void EndpointStarted(Endpoint endpoint)
         {
-            if (!endpoints.Any(x => x.Id == endpoint.Id))
+            if (!knownEndpoints.Any(x => x.Id == endpoint.Id))
             {
                 endpoint.Status = EndpointStatus.Running;
 
-                endpoints.Add(endpoint);
+                knownEndpoints.Add(endpoint);
 
-
-                bus.Publish(new EndpointStartedEvent
-                                         {
-                                             Endpoint = endpoint
-                                         });
+             
+                bus.Publish<IEndpointStartedEvent>(x =>
+                {
+                    lock (knownEndpoints)
+                        x.Endpoints = new List<Endpoint>(knownEndpoints);
+                    x.StartedEndpoint = endpoint;
+                });
             }
                 
 
@@ -40,9 +42,9 @@ namespace NSBManager.ManagementService.EndpointControl
 
         public void Initialize(IEnumerable<Endpoint> initialEndpoints)
         {
-            endpoints = new List<Endpoint>(initialEndpoints);
+            knownEndpoints = new List<Endpoint>(initialEndpoints);
 
-            foreach (var endpoint in endpoints)
+            foreach (var endpoint in knownEndpoints)
             {
                 endpoint.Status = EndpointStatus.Unknown;
                 bus.Send(endpoint.Adress, new EndpointPingRequest());
@@ -51,8 +53,8 @@ namespace NSBManager.ManagementService.EndpointControl
 
         public IEnumerable<Endpoint> GetSnapshot()
         {
-            lock(endpoints)
-                return new List<Endpoint>(endpoints);
+            lock(knownEndpoints)
+                return new List<Endpoint>(knownEndpoints);
         }
     }
 }

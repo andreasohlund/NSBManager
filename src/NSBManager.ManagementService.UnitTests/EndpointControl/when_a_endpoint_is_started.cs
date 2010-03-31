@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Machine.Specifications;
 using NSBManager.ManagementService.EndpointControl;
 using NSBManager.ManagementService.Messages;
 using NServiceBus;
+using Rhino.Mocks;
 
 namespace NSBManager.ManagementService.UnitTests.EndpointControl
 {
@@ -23,8 +25,10 @@ namespace NSBManager.ManagementService.UnitTests.EndpointControl
             SUT.GetSnapshot().Count().ShouldEqual(1);
 
 
-        private It should_result_in_a_notification_to_the_clients = () =>
-            Dependency<IBus>().AssertWasPublished<EndpointStartedEvent>(e => e.Endpoint.Id == startedEndpoint.Id);
+        It should_trigger_a_endpoint_started_event = () =>
+            Dependency<IBus>().
+                AssertWasCalled(x => x.Publish<IEndpointStartedEvent>(Arg<Action<IEndpointStartedEvent>>.Is.Anything));
+
 
         private It should_have_status_set_to_running = () =>
             SUT.GetSnapshot().First()

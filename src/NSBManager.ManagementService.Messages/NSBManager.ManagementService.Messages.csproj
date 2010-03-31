@@ -50,6 +50,8 @@
     <Compile Include="EndpointStartedEvent.cs" />
     <Compile Include="GetAllFailedMessagesReply.cs" />
     <Compile Include="GetAllFailedMessagesRequest.cs" />
+    <Compile Include="IEndpointStartedEvent.cs" />
+    <Compile Include="ITopologyChangedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetryFailedMessagesRequest.cs" />
     <Compile Include="TopologySnapshot.cs" />
