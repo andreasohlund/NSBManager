@@ -11,7 +11,7 @@ namespace NSBManager.Instrumentation.Core
         private readonly ITransportInspector transportInspector;
         private readonly IHostInspector hostInspector;
 
-        public EndpointMonitor( IBus bus, 
+        public EndpointMonitor( IBus bus,
                                 ITransportInspector transportInspector, 
                                 IHostInspector hostInspector)
         {

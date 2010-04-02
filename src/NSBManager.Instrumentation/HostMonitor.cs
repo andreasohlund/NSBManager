@@ -20,7 +20,6 @@ namespace NSBManager.Instrumentation
 
         public void Stop()
         {
-            throw new NotImplementedException();
         }
     }
 }

@@ -30,12 +30,11 @@ namespace NSBManager.Instrumentation.UnitTests.Core
             hostInformation = new HostInformation();
             hostInspector.Stub(x => x.GetHostInformation()).Return(hostInformation);
 
-            var endpointWatcher = new EndpointMonitor(bus,
+            var endpointMonotor = new EndpointMonitor(bus,
                 transportInspector,
                 hostInspector);
 
-
-            endpointWatcher.Start();
+            endpointMonotor.Start();
         }
 
         [Test]

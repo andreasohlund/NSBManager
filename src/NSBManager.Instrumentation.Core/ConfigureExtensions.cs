@@ -8,12 +8,12 @@ namespace NServiceBus
 {
     public static class ConfigureExtensions
     {
-        public static Configure EnableInstrumentation(this Configure config)
+        public static Configure ConfigureInstrumentation(this Configure config)
         {
-            return EnableInstrumentation(config,new ExeHostInspector());
+            return ConfigureInstrumentation(config,new ExeHostInspector());
         }
 
-        public static Configure EnableInstrumentation(this Configure config, IHostInspector hostInspector)
+        public static Configure ConfigureInstrumentation(this Configure config, IHostInspector hostInspector)
         {
             config.Configurer.ConfigureComponent<EndpointMonitor>(ComponentCallModelEnum.Singlecall);
             config.Configurer.ConfigureComponent<MsmqTransportInspector>(ComponentCallModelEnum.Singlecall);
@@ -22,5 +22,16 @@ namespace NServiceBus
 
             return config;
         }
+
+          public static IBus StartWithInstrumentation(this IStartableBus startableBus)
+          {
+              var bus = startableBus.Start();
+              
+              var monitor = Configure.Instance.Builder.Build<IEndpointMonitor>();
+
+              monitor.Start();
+              return bus;
+          }
+
     }
 }

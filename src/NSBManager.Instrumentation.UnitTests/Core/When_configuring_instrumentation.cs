@@ -16,7 +16,7 @@ namespace NSBManager.Instrumentation.UnitTests.Core
         {
             config = Configure.With(new Type[] { })
                 .DefaultBuilder()
-                .EnableInstrumentation()
+                .ConfigureInstrumentation()
                 .UnicastBus()
                 .MsmqTransport();
         }

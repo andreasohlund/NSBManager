@@ -77,7 +77,6 @@
     <Compile Include="Core\When_configuring_instrumentation.cs" />
     <Compile Include="GenericHost\When_a_generic_host_exe_is_instrumented.cs" />
     <Compile Include="GenericHost\When_the_host_initializes.cs" />
-    <Compile Include="GenericHost\When_the_host_starts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\When_the_host_endpoint_starts_up.cs" />
   </ItemGroup>

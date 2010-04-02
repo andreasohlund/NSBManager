@@ -31,7 +31,7 @@ namespace NSBManager.UserInterface
 
             if (commandLine.Length > 1)
                 ObjectFactory.Profile = commandLine[1];
-            
+
             return new StructureMapAdapter(ObjectFactory.Container);
         }
 
@@ -39,41 +39,35 @@ namespace NSBManager.UserInterface
         {
             return Container.GetInstance<IShell>();
         }
-       
+
         protected override void OnStartup(StartupEventArgs e)
         {
 
             base.OnStartup(e);
-            
+
             //todo: This should be done using a dialog that asks the user what service to connect to
             // and the use that adress to configure where so send the connect request
             ConnectToNServiceBus();
-            
+
             //todo: move this to a separate screen
             bus.Send(new ClientConnectRequest());
         }
 
         private static void ConnectToNServiceBus()
         {
-            var config = Configure.With()
-                .Log4Net(new ConsoleAppender{Threshold = Level.Info})
+            bus = Configure.With()
+                .Log4Net(new ConsoleAppender { Threshold = Level.Info })
                 .StructureMapBuilder()
                 .BinarySerializer()
-                .EnableInstrumentation()
+                .ConfigureInstrumentation()
                 .MsmqTransport()
                     .IsTransactional(true)
                     .PurgeOnStartup(true)
                 .UnicastBus()
-                    .LoadMessageHandlers();
-                    
-            bus = config.CreateBus()
-                .Start();
+                    .LoadMessageHandlers()
+                .CreateBus()
+                .StartWithInstrumentation();
 
-
-            //todo use the NSB startup event to do this without requireing the user to explicilty start the monitor
-            var monitor = config.Builder.Build<IEndpointMonitor>();
-
-            monitor.Start();
         }
 
         static IBus bus;
