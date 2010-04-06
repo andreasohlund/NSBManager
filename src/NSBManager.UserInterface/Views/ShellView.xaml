@@ -1,12 +1,53 @@
-﻿<UserControl x:Class="NSBManager.UserInterface.Views.ShellView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:UserInterface="clr-namespace:NSBManager.UserInterface"
-             HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch"
-             MinWidth="800"
-             MinHeight="600">
-    <StackPanel Background="{StaticResource Shell Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+﻿<Window x:Class="NSBManager.UserInterface.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserInterface="clr-namespace:NSBManager.UserInterface"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Title="NSBManager"
+        MinHeight="600"
+        MinWidth="820"
+        WindowState="Maximized"
+        Background="{DynamicResource ShellBackground}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="27" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <UserInterface:NSBMLogo Grid.RowSpan="4" />
+        <Menu Grid.Row="1">
+            <MenuItem x:Name="ShowHomeView"
+                      Cursor="Hand"
+                      Header="Home" />
+            <MenuItem x:Name="ShowServerView"
+                      Cursor="Hand"
+                      Header="Server view" />
+            <MenuItem x:Name="ShowSettings"
+                      Header="Settings" />
+        </Menu>
+
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
+            <WrapPanel VerticalAlignment="Top"
+                       Margin="0,8,0,0"
+                       Grid.Row="2"
+                       HorizontalAlignment="Left">
+
+                <ContentControl x:Name="ActiveScreen"
+                                Margin="10 0" />
+
+            </WrapPanel>
+        </ScrollViewer>
+
+        <ContentControl x:Name="BottomTaskBar"
+                        Grid.Row="3" />
+
+    </Grid>
+
+    <!--<StackPanel  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <DockPanel>
             
             
@@ -25,5 +66,5 @@
 
             </ContentControl>
         </StackPanel>
-    </StackPanel>
-</UserControl>
+    </StackPanel>-->
+</Window>

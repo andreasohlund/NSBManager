@@ -2,56 +2,99 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:pf="clr-namespace:Caliburn.PresentationFramework.RoutedMessaging;assembly=Caliburn.PresentationFramework"
-             xmlns:ca="clr-namespace:Caliburn.PresentationFramework.Actions;assembly=Caliburn.PresentationFramework">
-    <DockPanel>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="Back"
-                        Height="25"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Left"
-                        Margin="10">
+             xmlns:ca="clr-namespace:Caliburn.PresentationFramework.Actions;assembly=Caliburn.PresentationFramework"
+             Height="225"
+             Width="330"
+             BorderThickness="1">
+    <UserControl.Effect>
+        <DropShadowEffect ShadowDepth="0"
+                          BlurRadius="20"
+                          Opacity="0.7" />
+    </UserControl.Effect>
 
-                    <TextBlock Text="Back"
-                               TextDecorations="Underline">
-                        
-                    </TextBlock>
-                </Button>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-                <Label Content="{Binding ServerName}" Foreground="White">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="10"
-                                          Color="#FF09D1EE"
-                                          Opacity="1"
-                                          ShadowDepth="0"
-                                          Direction="0" />
-                    </Label.Effect>
-                </Label>
-                
-            </StackPanel>
-            <ItemsControl DockPanel.Dock="Top"
-                          ItemsSource="{Binding Endpoints}">
+        <Rectangle Fill="{DynamicResource ControlBackgroundBrush}"
+                   HorizontalAlignment="Stretch"
+                   Margin="0"
+                   Stroke="Black"
+                   RadiusY="5"
+                   RadiusX="5"
+                   Grid.RowSpan="2" />
+
+        <Label x:Name="Header"
+               Content="{Binding ServerName}"
+               HorizontalAlignment="Left"
+               Margin="20 5 5 5"
+               FontSize="16"
+               Grid.Row="0" />
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Hidden"
+                      Grid.Row="1"
+                      Margin="1 6">
+
+            <ItemsControl ItemsSource="{Binding Endpoints}"
+                          Grid.Row="1">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"
-                                    Margin="10" />
+                        <StackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <!--pf:Message.Attach="ShowServerDetails($dataContext)"-->
-                        <Button ca:Action.Target="{Binding}"
-                                Content="{Binding Id}"
-                                HorizontalAlignment="Left"
-                                MinWidth="100"
-                                MinHeight="30"
-                                Margin="8">
-                        </Button>
+                        <Border BorderThickness="1"
+                                BorderBrush="Black"
+                                CornerRadius="5"
+                                Padding="5"
+                                Height="90"
+                                VerticalAlignment="Top"
+                                Margin="10 0 10 10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{Binding Name}"
+                                           FontFamily="Global User Interface"
+                                           FontSize="18"
+                                           FontWeight="Bold"
+                                           Grid.Row="0"
+                                           Foreground="{DynamicResource ForegroundGradient}">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="5"
+                                                          BlurRadius="5" />
+                                    </TextBlock.Effect>
+                                </TextBlock>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="5 0"
+                                            Grid.Row="1">
+                                    <Label>Status:</Label>
+                                    <TextBlock Text="{Binding Status}"
+                                               Margin="5 0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="5 0"
+                                            Grid.Row="2">
+                                    <Label>Host type:</Label>
+                                    <TextBlock Text="{Binding HostType}"
+                                               Margin="5 0" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+        </ScrollViewer>
 
-        </StackPanel>
-    </DockPanel>
+    </Grid>
 
 </UserControl>

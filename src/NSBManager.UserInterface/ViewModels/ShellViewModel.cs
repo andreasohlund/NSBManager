@@ -16,6 +16,8 @@ namespace NSBManager.UserInterface.ViewModels
     {
         private readonly IServiceLocator _serviceLocator;
         public MainMenuViewModel MainMenu { get; set; }
+        public BottomTaskBarViewModel BottomTaskBar { get; set; }
+
 
         public ShellViewModel(IServiceLocator serviceLocator)
         {
@@ -23,6 +25,7 @@ namespace NSBManager.UserInterface.ViewModels
             MainMenu = _serviceLocator.GetInstance<MainMenuViewModel>();
             
             ActiveScreen = _serviceLocator.GetInstance<StartViewModel>();
+            BottomTaskBar = _serviceLocator.GetInstance<BottomTaskBarViewModel>();
         }
 
         public IEnumerable<IResult> ShowServerView()
@@ -30,13 +33,9 @@ namespace NSBManager.UserInterface.ViewModels
             yield return Show.Child<ServerViewModel>().In<IShell>();
         }
       
-        public override void OpenScreen(IScreen screen, Action<bool> completed)
+        public IEnumerable<IResult> ShowHomeView()
         {
-            var before = ActiveScreen;
-
-            base.OpenScreen(screen, completed);
-
-            var after = ActiveScreen;
+            yield return Show.Child<StartViewModel>().In<IShell>();
         }
     }
 }

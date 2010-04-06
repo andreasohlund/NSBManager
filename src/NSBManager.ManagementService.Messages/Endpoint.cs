@@ -12,6 +12,8 @@ namespace NSBManager.ManagementService.Messages
         public EndpointStatus Status { get; set; }
 
         public string Adress { get; set; }
+
+        public string HostType { get; set; }
     }
 
     public enum EndpointStatus

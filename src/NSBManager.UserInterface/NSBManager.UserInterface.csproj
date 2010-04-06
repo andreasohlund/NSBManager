@@ -112,10 +112,14 @@
     <Compile Include="PhysicalModule\Events\PhysicalModelUpdated.cs" />
     <Compile Include="PhysicalModule\Model\Server.cs" />
     <Compile Include="PhysicalModule\PhysicalModuleMenuItem.cs" />
+    <Compile Include="PhysicalModule\ViewModels\BottomTaskBarViewModel.cs" />
     <Compile Include="PhysicalModule\ViewModels\IServerViewModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModelExtensions.cs" />
     <Compile Include="PhysicalModule\ViewModels\PhysicalViewModel.cs" />
     <Compile Include="PhysicalModule\ViewModels\ServerDetailsViewModel.cs" />
+    <Compile Include="PhysicalModule\Views\BottomTaskBarView.xaml.cs">
+      <DependentUpon>BottomTaskBarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhysicalModule\Views\PhysicalView.xaml.cs">
       <DependentUpon>PhysicalView.xaml</DependentUpon>
     </Compile>
@@ -192,6 +196,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PhysicalModule\Views\BottomTaskBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PhysicalModule\Views\PhysicalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +207,10 @@
     <Page Include="PhysicalModule\Views\ServerDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainMenuView.xaml">
       <SubType>Designer</SubType>

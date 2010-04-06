@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NSBManager.UserInterface.Views
+namespace NSBManager.UserInterface.PhysicalModule.Views
 {
     /// <summary>
-    /// Interaction logic for ShellView.xaml
+    /// Interaction logic for BottomTaskBarView.xaml
     /// </summary>
-    public partial class ShellView : Window
+    public partial class BottomTaskBarView : UserControl
     {
-        public ShellView()
+        public BottomTaskBarView()
         {
             InitializeComponent();
         }

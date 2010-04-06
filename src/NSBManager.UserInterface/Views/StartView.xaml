@@ -6,14 +6,6 @@
                FontSize="18"
                Foreground="White">
             
-            <Label.Effect>
-                <DropShadowEffect BlurRadius="10"
-                                  Color="#FF09D1EE"
-                                  Opacity="1"
-                                  ShadowDepth="0"
-                                  Direction="0" />
-            </Label.Effect>
-        
         </Label>
         <Label Content="This is the start view"
                    Foreground="White" />

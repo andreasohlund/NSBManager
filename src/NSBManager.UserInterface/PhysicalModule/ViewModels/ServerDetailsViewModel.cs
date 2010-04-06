@@ -13,15 +13,24 @@ namespace NSBManager.UserInterface.PhysicalModule.ViewModels
 {
     public class ServerDetailsViewModel : Screen
     {
+        private readonly Server server;
         private readonly IPhysicalModel physicalModel;
 
-        public string ServerName { get; set; }
-        public Server Server { get; set; }
+        public string ServerName { get { return server.Name; } }
+        
         public IObservableCollection<GuiEndpoint> Endpoints { get; set; }
 
-        public ServerDetailsViewModel(IPhysicalModel physicalModel)
+        public ServerDetailsViewModel(Server server, IPhysicalModel physicalModel)
         {
+            this.server = server;
             this.physicalModel = physicalModel;
+
+            Endpoints = new BindableCollection<GuiEndpoint>(GetEndpointsFromPhysicalModel());
+        }
+
+        private IEnumerable<GuiEndpoint> GetEndpointsFromPhysicalModel()
+        {
+            return physicalModel.EndpointsOnServer(ServerName);
         }
 
         public IEnumerable<IResult> Back()

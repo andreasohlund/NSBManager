@@ -23,7 +23,12 @@ namespace NSBManager.UserInterface.PhysicalModule.Model
             //Todo: AutoMapper?
             foreach (var endpoint in endpoints)
             {
-                yield return new GuiEndpoint { Id = endpoint.Id };
+                yield return new GuiEndpoint
+                                 {
+                                     Id = endpoint.Id,
+                                     HostType = endpoint.HostType,
+                                     Status = endpoint.Status.ToString()
+                                 };
             }
         }
     }
