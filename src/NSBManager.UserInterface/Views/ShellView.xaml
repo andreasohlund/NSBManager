@@ -25,6 +25,9 @@
             <MenuItem x:Name="ShowServerView"
                       Cursor="Hand"
                       Header="Server view" />
+            <MenuItem x:Name="ShowEndpointsView"
+                      Cursor="Hand"
+                      Header="Endpoints view" />
             <MenuItem x:Name="ShowSettings"
                       Header="Settings" />
         </Menu>

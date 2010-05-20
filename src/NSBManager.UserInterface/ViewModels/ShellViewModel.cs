@@ -37,5 +37,10 @@ namespace NSBManager.UserInterface.ViewModels
         {
             yield return Show.Child<StartViewModel>().In<IShell>();
         }
+
+        public IEnumerable<IResult> ShowEndpointsView()
+        {
+            yield return Show.Child<EndpointsViewModel>().In<IShell>();
+        }
     }
 }

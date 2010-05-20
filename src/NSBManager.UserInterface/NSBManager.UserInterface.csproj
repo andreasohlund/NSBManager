@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NSBManager.UserInterface</RootNamespace>
     <AssemblyName>NSBManager.UserInterface</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -19,6 +19,7 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,6 +83,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -117,12 +119,16 @@
     <Compile Include="PhysicalModule\Model\Server.cs" />
     <Compile Include="PhysicalModule\PhysicalModuleMenuItem.cs" />
     <Compile Include="PhysicalModule\ViewModels\BottomTaskBarViewModel.cs" />
+    <Compile Include="PhysicalModule\ViewModels\EndpointsViewModel.cs" />
     <Compile Include="PhysicalModule\ViewModels\IServerViewModel.cs" />
     <Compile Include="PhysicalModule\Model\PhysicalModelExtensions.cs" />
     <Compile Include="PhysicalModule\ViewModels\PhysicalViewModel.cs" />
     <Compile Include="PhysicalModule\ViewModels\ServerDetailsViewModel.cs" />
     <Compile Include="PhysicalModule\Views\BottomTaskBarView.xaml.cs">
       <DependentUpon>BottomTaskBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhysicalModule\Views\EndpointsView.xaml.cs">
+      <DependentUpon>EndpointsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhysicalModule\Views\PhysicalView.xaml.cs">
       <DependentUpon>PhysicalView.xaml</DependentUpon>
@@ -211,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PhysicalModule\Views\EndpointsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PhysicalModule\Views\PhysicalView.xaml">
       <SubType>Designer</SubType>
